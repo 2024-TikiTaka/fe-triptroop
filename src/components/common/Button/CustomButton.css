@@ -1,0 +1,61 @@
+/*-----------------------
+
+0.0  CUSTOM BUTTON
+  ├─ 0.1 COLOR
+  ├─ 0.2 SIZE
+  └─ 0.3 ACTION
+
+최종 수정일 : 2024.05.22
+
+-----------------------*/
+
+/*----------------------------------------------------------------
+      0.1    COLOR
+----------------------------------------------------------------*/
+/* 색상 버튼 */
+[class*="blue"].color-w { border-color: transparent; }
+.blue-100 { background-color: #CFE2FF; border-color: #CFE2FF; }
+.blue-200 { background-color: #9EC5FE; border-color: #9EC5FE; }
+.blue-300 { background-color: #6EA8FE; border-color: #6EA8FE; }
+.blue-400 { background-color: #3D8BFD; border-color: #3D8BFD; }
+.blue-500 { background-color: #0D6EFD; border-color: #0D6EFD; }
+.blue-600 { background-color: #0A58CA; border-color: #0A58CA; }
+.blue-700 { background-color: #084298; border-color: #084298; }
+.blue-800 { background-color: #052C65; border-color: #052C65; }
+.blue-900 { background-color: #031633; border-color: #031633; }
+
+/* 라인 버튼 */
+.outline { background-color: #FFF; }
+.outline.blue-100 { border-color: #CFE2FF; color: #CFE2FF; }
+.outline.blue-200 { border-color: #9EC5FE; color: #9EC5FE; }
+.outline.blue-300 { border-color: #6EA8FE; color: #6EA8FE; }
+.outline.blue-400 { border-color: #3D8BFD; color: #3D8BFD; }
+.outline.blue-500 { border-color: #0D6EFD; color: #0D6EFD; }
+.outline.blue-600 { border-color: #0A58CA; color: #0A58CA; }
+.outline.blue-700 { border-color: #084298; color: #084298; }
+.outline.blue-800 { border-color: #052C65; color: #052C65; }
+.outline.blue-900 { border-color: #031633; color: #031633; }
+
+
+
+
+/*----------------------------------------------------------------
+      0.2    SIZE
+----------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+/*----------------------------------------------------------------
+      0.3    ACTION
+----------------------------------------------------------------*/
+
+
+
+
+

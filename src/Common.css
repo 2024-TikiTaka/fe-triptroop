@@ -1,0 +1,105 @@
+/*-----------------------
+
+0.0  STYLE SETTING
+  ├─ 0.1 FONT
+  └─ 0.2 GENERALIZATION
+
+최종 수정일 : 2024.05.22
+
+-----------------------*/
+
+/*----------------------------------------------------------------
+      0.1   FONT
+----------------------------------------------------------------*/
+@font-face {
+    font-family: 'NotoSansKR';
+    font-style: normal;
+    font-weight: 100;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    font-style: normal;
+    font-weight: 300;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    font-style: normal;
+    font-weight: 400;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    font-style: normal;
+    font-weight: 500;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format('woff2'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format('woff'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    font-style: normal;
+    font-weight: 700;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    font-style: normal;
+    font-weight: 900;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');
+}
+
+/*----------------------------------------------------------------
+      0.2   GENERALIZATION
+----------------------------------------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    text-decoration: none;
+    list-style: none;
+    vertical-align: baseline;
+    background-repeat: no-repeat;
+    color: #333;
+    font-size: 1rem; /*1rem = 16px*/
+    word-break: break-word;
+    font-family: "NotoSansKR", AppleSDGothic, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -.02em;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    font-size-adjust: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    transition: ease .5s;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+
+
+
+
+
+
+
+
