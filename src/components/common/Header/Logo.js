@@ -1,6 +1,5 @@
-import Button from "react-bootstrap/Button";
 import React from "react";
-import {Col, Container, Image, Row} from "react-bootstrap";
+import {Col, Image} from "react-bootstrap";
 
 function Logo() {
     return (
