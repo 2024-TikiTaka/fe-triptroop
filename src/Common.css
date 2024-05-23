@@ -2,15 +2,28 @@
 
 0.0  STYLE SETTING
   ├─ 0.1 FONT
-  └─ 0.2 GENERALIZATION
+  ├─ 0.2 GENERALIZATION
+  └─ 0.3 CUSTOM BOOTSTRAP
+      ├─0.3.1 LAYOUT
+      └─0.3.2 BUTTONS
 
-최종 수정일 : 2024.05.22
+1.0  LAYOUT
+  ├─ 1.1 WRAPPER
+  ├─ 1.2 HEADER
+  │   ├─1.2.1 HEADER SETTING
+  │   └─1.2.2 NAVIGATION
+  └─ 1.3 FOOTER
+      ├─1.3.1 FOOTER SETTING
+      └─1.3.2 DESIGN
+
+최종 수정일 : 2024.05.23
 
 -----------------------*/
 
 /*----------------------------------------------------------------
       0.1   FONT
 ----------------------------------------------------------------*/
+
 @font-face {
     font-family: 'NotoSansKR';
     font-style: normal;
@@ -68,6 +81,7 @@
 /*----------------------------------------------------------------
       0.2   GENERALIZATION
 ----------------------------------------------------------------*/
+
 * {
     margin: 0;
     padding: 0;
@@ -101,10 +115,100 @@ button[class*="logo"] { background-color: transparent; }
 
 main { min-height: calc(100vh - 82px - 265px) }
 
+/*----------------------------------------------------------------
+      0.3   CUSTOM BOOTSTRAP
+----------------------------------------------------------------*/
+    /*    0.3.1    LAYOUT    */
+        /* row */
+       .row:has(.wrapper) .col-xl-11 {
+           padding: 0 5px;
+       }
+
+    /*    0.3.2    BUTTONS    */
+        /* 색상 버튼 */
+        [class*="blue"].color-w { border-color: transparent; }
+        .blue-100, .outline.blue-100:hover { background-color: #CFE2FF; border-color: #CFE2FF; }
+        .blue-200, .outline.blue-200:hover { background-color: #9EC5FE; border-color: #9EC5FE; }
+        .blue-300, .outline.blue-300:hover { background-color: #6EA8FE; border-color: #6EA8FE; }
+        .blue-400, .outline.blue-400:hover { background-color: #3D8BFD; border-color: #3D8BFD; }
+        .blue-500, .outline.blue-500:hover { background-color: #0D6EFD; border-color: #0D6EFD; }
+        .blue-600, .outline.blue-600:hover { background-color: #0A58CA; border-color: #0A58CA; }
+        .blue-700, .outline.blue-700:hover { background-color: #084298; border-color: #084298; }
+        .blue-800, .outline.blue-800:hover { background-color: #052C65; border-color: #052C65; }
+        .blue-900, .outline.blue-900:hover { background-color: #031633; border-color: #031633; }
+        /* 라인 버튼 */
+        .outline { background-color: #FFF; }
+        [class*="blue"].outline:hover { color: #FFF; }
+        .outline.blue-100 { border-color: #CFE2FF; color: #CFE2FF; }
+        .outline.blue-200 { border-color: #9EC5FE; color: #9EC5FE; }
+        .outline.blue-300 { border-color: #6EA8FE; color: #6EA8FE; }
+        .outline.blue-400 { border-color: #3D8BFD; color: #3D8BFD; }
+        .outline.blue-500 { border-color: #0D6EFD; color: #0D6EFD; }
+        .outline.blue-600 { border-color: #0A58CA; color: #0A58CA; }
+        .outline.blue-700 { border-color: #084298; color: #084298; }
+        .outline.blue-800 { border-color: #052C65; color: #052C65; }
+        .outline.blue-900 { border-color: #031633; color: #031633; }
+
+/*----------------------------------------------------------------
+      1.1   WRAPPER
+----------------------------------------------------------------*/
+
 .wrapper {
-    width: 1200px;
     margin: auto;
 }
+
+/*----------------------------------------------------------------
+      1.2   HEADER
+----------------------------------------------------------------*/
+
+    /*    1.2.1    HEADER SETTING    */
+    header { position:relative; padding-bottom: 2px; }
+    header::after { content: ""; position: absolute; left: 0; right: 0; width: 100%; height: 2px; background-image: linear-gradient(to right, #678BD8, #DCCFDA); }
+    header .wrapper { display: flex; height: 80px; justify-content: space-between; align-items: center; }
+    header .user-btns button:not(:first-child) { margin-left: 20px }
+
+    /*    1.2.2    NAVIGATION    */
+    header nav a,
+    header .navbar a { font-size: 18px; color: #1A365D; padding: 0!important; }
+    header nav a:not(:last-child) { margin-right: 50px; }
+
+/*----------------------------------------------------------------
+      1.3   FOOTER
+----------------------------------------------------------------*/
+    /*    1.3.1    FOOTER SETTING    */
+    footer { display: flex; height: 265px; align-items: center; background-image: url("../public/images/footer_background.jpg"); }
+    footer ul { display: flex; flex-wrap: wrap; flex-direction: row; }
+    footer span, footer p { font-size: 12px; color: #FFF; }
+
+    /*    1.3.2    DESIGN    */
+    .footer-img { margin-bottom: 20px; }
+    .footer-img a { display: inline-block; }
+    .footer-img a:not(:first-child) { margin-left: 40px; }
+    .footer-img [class*="col"]:not(:first-child) { display: flex; justify-content: flex-end; align-items: center; }
+    .footer-img [class*="col"] { padding: 0; }
+
+    .footer-list { padding: 0; }
+    .footer-list .col { padding: 0; }
+    .footer-list span { display: inline-block; padding: 0 14px; border-right: 2px solid; margin-bottom: 5px; }
+    .footer-list span:first-of-type { padding-left: 0; }
+    .footer-list span:last-of-type { padding-right: 0; border-right: 0; margin-bottom: 10px; }
+    @media (min-width: 1400px) {
+        footer span, footer p { font-size: 13px; margin:0; }
+    }
+    @media (min-width: 1200px) and (max-width: 1399px) {
+        .footer-list span:nth-last-of-type(3) { padding-right: 90px; border-right: 0; }
+        .footer-list span:nth-last-of-type(2) { padding-left: 0; }
+    }
+    @media (min-width: 992px) and (max-width: 1199px) {
+        .footer-img a { width: 30px; }
+        .footer-list span:nth-last-of-type(4) { padding-right: 50px; border-right: 0; }
+        .footer-list span:nth-last-of-type(3) { padding-left: 0; }
+    }
+    @media (max-width: 991px) {
+        .footer-img a { width: 20px; }
+        .footer-list span:nth-of-type(3) { border-right: 0; }
+        .footer-list span:nth-of-type(4) { padding-left: 0; }
+    }
 
 
 
