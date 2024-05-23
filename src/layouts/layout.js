@@ -1,17 +1,15 @@
-//import Header from "../components/common/Header";
-//import Navbar from "../components/common/Navbar";
+import Header from "../components/common/Header/Header";
 import Footer from "../components/common/Footer/Footer";
-//import {Outlet} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 function Layout() {
 
 
     return (
         <>
-            {/*<Header/>*/}
-            {/*<Navbar/>*/}
-            {/*<main className="main">*/}
-            {/*    <Outlet/>*/}
-            {/*</main>*/}
+            <Header/>
+            <main className="main">
+                <Outlet/>
+            </main>
             <Footer/>
         </>
     );

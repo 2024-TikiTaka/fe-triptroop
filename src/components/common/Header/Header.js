@@ -1,92 +1,36 @@
-// import {useNavigate} from "react-router-dom";
-// import {useEffect, useState} from "react";
-// import {isLogin} from "../../utils/TokenUtils";
-// import {useDispatch, useSelector} from "react-redux";
-// import {callLogoutAPI} from "../../apis/MemberAPICalls";
-//
-// function Header() {
-//
-//     const navigate = useNavigate();
-//     const [search, setSearch] = useState('');
-//     const dispatch = useDispatch();
-//
-//     /* 로고 클릭 시 메인 페이지로 이동 */
-//     const onClickHandler = () => navigate("/");
-//     const onEnterKeyHandler = e => {
-//         if(e.key === 'Enter') navigate(`/product/search?value=${search}`);
-//     }
-//
-//     function BeforeLogin() {
-//         return (
-//
-//
-//
-//             <div>
-//                 <button
-//                     className="header-btn"
-//                     onClick={ () => navigate(`/member/login`) }
-//                 >
-//                     로그인
-//                 </button>
-//                 |
-//                 <button
-//                     className="header-btn"
-//                     onClick={ () => navigate(`/member/signup`) }
-//                 >
-//                     회원가입
-//                 </button>
-//             </div>
-//         );
-//     }
-//
-//     function AfterLogin() {
-//
-//         const { success } = useSelector(state => state.memberReducer);
-//
-//         useEffect(() => {
-//             if(success === true) {
-//                 window.location.replace('/');
-//             }
-//         }, [success]);
-//
-//         return (
-//             <div>
-//                 <button
-//                     className="header-btn"
-//                     onClick={ () => navigate('/member/mypage') }
-//                 >
-//                     마이페이지
-//                 </button>
-//                 |
-//                 <button
-//                     className="header-btn"
-//                     onClick={ () => dispatch(callLogoutAPI()) }
-//                 >
-//                     로그아웃
-//                 </button>
-//             </div>
-//         );
-//     }
-//
-//     return (
-//         <div className="header-div">
-//             <button
-//                 className="logo-btn"
-//                 onClick={ onClickHandler }
-//             >
-//                 OHGIRAFFERS
-//             </button>
-//             <input
-//                 className="input-style"
-//                 type="text"
-//                 placeholder="검색"
-//                 onChange={ e => setSearch(e.target.value) }
-//                 onKeyUp={ onEnterKeyHandler }
-//                 value={ search }
-//             />
-//             { isLogin() ? <AfterLogin/> : <BeforeLogin/> }
-//         </div>
-//     );
-// }
-//
-// export default Header;
+ import {isLogin} from "../../../utils/TokenUtils";
+ import Button from "react-bootstrap/Button";
+ import Navigation from "./Navigation";
+ import './Header.css';
+
+ function Header() {
+
+    function BeforeLogin() {
+         return (
+             <div className="btnBox">
+                 <Button className="outline blue-900 " onClick={() => alert('회원가입 버튼 클릭 확인')}>회원가입</Button>
+                 <Button className="blue-900" onClick={() => alert('로그인 버튼 클릭 확인')}>로그인</Button>
+             </div>
+         );
+     }
+
+     function AfterLogin() {
+         return (
+             <div className="btnBox">
+                 <Button className="outline blue-900">마이페이지</Button>
+                 <Button className="blue-900">로그아웃</Button>
+             </div>
+         );
+     }
+
+     return (
+        <header className="header">
+            <div className="wrapper">
+                <button className="logo-btn"><img src="/images/logo.svg" alt="logo 이미지"/></button>
+                <Navigation/>
+                { isLogin() ? <AfterLogin/> : <BeforeLogin/> }
+            </div>
+        </header>
+    );
+ }
+ export default Header;

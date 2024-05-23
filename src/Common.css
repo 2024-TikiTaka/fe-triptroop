@@ -95,6 +95,17 @@
     -webkit-appearance: none;
 }
 
+ol, ul, dl { margin:0; padding:0; }
+
+button[class*="logo"] { background-color: transparent; }
+
+main { min-height: calc(100vh - 82px - 265px) }
+
+.wrapper {
+    width: 1200px;
+    margin: auto;
+}
+
 
 
 

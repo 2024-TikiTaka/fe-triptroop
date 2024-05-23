@@ -1,14 +1,29 @@
 /*-----------------------
 
 0.0  FOOTER
+  ├─ 0.1 GENERALIZATION
+  └─ 0.2 DESIGN
 
-최종 수정일 : 2024.05.22
+최종 수정일 : 2024.05.23
 
 -----------------------*/
 
 /*----------------------------------------------------------------
-      0.0    FOOTER
+      0.1    GENERALIZATION
+----------------------------------------------------------------*/
+ul { display: flex; flex-wrap: wrap; }
+li, p { color: #FFF; font-size: 13px; margin:0; }
+footer { display: flex; height: 265px; align-items: center; background-image: url("../../../../public/images/footer_background.jpg"); }
+
+/*----------------------------------------------------------------
+      0.2    DESIGN
 ----------------------------------------------------------------*/
 
-
+.footer-img { display: flex; justify-content: space-between; align-items: center; }
+.footer-img ul { flex-direction: row; }
+.footer-img li:not(.footer-img li:first-child) { margin-left: 40px; }
+.footer-img ~ ul { margin: 20px 0 10px; }
+.footer-img ~ ul li { padding: 0 14px; border-right: 2px solid }
+.footer-img ~ ul li:first-child { padding-left: 0; }
+.footer-img ~ ul li:last-child { padding-right: 0; border-right: 0; }
 
