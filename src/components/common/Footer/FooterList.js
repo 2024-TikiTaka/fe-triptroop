@@ -30,7 +30,7 @@ function FooterList() {
                 </Nav>
             </Col>
             <Col xl={12} className="mt-3">
-                <p className="text-center">
+                <p>
                     Copyright © 2024 TripTroop Final Project. All Rights Reserved.
                 </p>
             </Col>

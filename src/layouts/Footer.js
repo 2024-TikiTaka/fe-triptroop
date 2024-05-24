@@ -1,7 +1,7 @@
 import React from 'react';
-import Wrapper from "../../../layouts/Wrapper";
-import FooterList from "./FooterList";
-import FooterImage from "./FooterImage";
+import Wrapper from "./Wrapper";
+import FooterList from "../components/common/Footer/FooterList";
+import FooterImage from "../components/common/Footer/FooterImage";
 
 function Footer() {
     return (
