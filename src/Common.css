@@ -2,15 +2,31 @@
 
 0.0  STYLE SETTING
   ├─ 0.1 FONT
-  └─ 0.2 GENERALIZATION
+  ├─ 0.2 GENERALIZATION
+  └─ 0.3 CUSTOM BOOTSTRAP
+      ├─0.3.1 LAYOUT
+      ├─0.3.2 BUTTONS
+      └─0.3.3 ICONS
 
-최종 수정일 : 2024.05.22
+1.0  LAYOUT
+  ├─ 1.1 WRAPPER
+  ├─ 1.2 HEADER
+  │   ├─1.2.1 HEADER SETTING
+  │   ├─1.2.2 NAVIGATION
+  │   └─1.2.3 RESPONSIVE
+  └─ 1.3 FOOTER
+      ├─1.3.1 FOOTER SETTING
+      ├─1.3.2 DESIGN
+      └─1.3.3 RESPONSIVE
+
+최종 수정일 : 2024.05.24
 
 -----------------------*/
 
 /*----------------------------------------------------------------
       0.1   FONT
 ----------------------------------------------------------------*/
+
 @font-face {
     font-family: 'NotoSansKR';
     font-style: normal;
@@ -68,6 +84,7 @@
 /*----------------------------------------------------------------
       0.2   GENERALIZATION
 ----------------------------------------------------------------*/
+
 * {
     margin: 0;
     padding: 0;
@@ -96,15 +113,142 @@
 }
 
 ol, ul, dl { margin:0; padding:0; }
-
+span, a, img { display: inline-flex; }
 button[class*="logo"] { background-color: transparent; }
 
 main { min-height: calc(100vh - 82px - 265px) }
 
+/*----------------------------------------------------------------
+      0.3   CUSTOM BOOTSTRAP
+----------------------------------------------------------------*/
+    /*    0.3.1    LAYOUT    */
+        /* row */
+       .row:has(.wrapper) .col-xl-11 {
+           padding: 0 5px;
+       }
+
+    /*    0.3.2    BUTTONS    */
+        /* 색상 버튼 */
+        [class*="blue"].color-w { border-color: transparent; }
+        .outline:has([class*="blue"]) [class*="blue"] { background-color: transparent; }
+        .outline:has([class*="blue"]):hover [class*="blue"] * { color: #FFF; }
+        .blue-100, .outline.blue-100:hover { background-color: #CFE2FF; border-color: #CFE2FF; }
+        .blue-200, .outline.blue-200:hover { background-color: #9EC5FE; border-color: #9EC5FE; }
+        .blue-300, .outline.blue-300:hover { background-color: #6EA8FE; border-color: #6EA8FE; }
+        .blue-400, .outline.blue-400:hover { background-color: #3D8BFD; border-color: #3D8BFD; }
+        .blue-500, .outline.blue-500:hover { background-color: #0D6EFD; border-color: #0D6EFD; }
+        .blue-600, .outline.blue-600:hover { background-color: #0A58CA; border-color: #0A58CA; }
+        .blue-700, .outline.blue-700:hover { background-color: #084298; border-color: #084298; }
+        .blue-800, .outline.blue-800:hover { background-color: #052C65; border-color: #052C65; }
+        .blue-900, .outline.blue-900:hover { background-color: #031633; border-color: #031633; }
+        /* 라인 버튼 */
+        .outline { background-color: #FFF; }
+        [class*="blue"].outline:hover { color: #FFF; }
+        .outline.blue-100 { border-color: #CFE2FF; color: #CFE2FF; }
+        .outline.blue-200 { border-color: #9EC5FE; color: #9EC5FE; }
+        .outline.blue-300 { border-color: #6EA8FE; color: #6EA8FE; }
+        .outline.blue-400 { border-color: #3D8BFD; color: #3D8BFD; }
+        .outline.blue-500 { border-color: #0D6EFD; color: #0D6EFD; }
+        .outline.blue-600 { border-color: #0A58CA; color: #0A58CA; }
+        .outline.blue-700 { border-color: #084298; color: #084298; }
+        .outline.blue-800 { border-color: #052C65; color: #052C65; }
+        .outline.blue-900 { border-color: #031633; color: #031633; }
+
+    /*    0.3.3    ICONS    */
+        /* 아이콘 색상 */
+        .bi.white * { color: #FFF; }
+        .bi.blue-100 * { color: #CFE2FF; }
+        .bi.blue-200 * { color: #9EC5FE; }
+        .bi.blue-300 * { color: #6EA8FE; }
+        .bi.blue-400 * { color: #3D8BFD; }
+        .bi.blue-500 * { color: #0D6EFD; }
+        .bi.blue-600 * { color: #0A58CA; }
+        .bi.blue-700 * { color: #084298; }
+        .bi.blue-800 * { color: #052C65; }
+        .bi.blue-900 * { color: #031633; }
+
+/*----------------------------------------------------------------
+      1.1   WRAPPER
+----------------------------------------------------------------*/
+
 .wrapper {
-    width: 1200px;
     margin: auto;
 }
+
+/*----------------------------------------------------------------
+      1.2   HEADER
+----------------------------------------------------------------*/
+
+    /*    1.2.1    HEADER SETTING    */
+    header { position:relative; padding-bottom: 2px; }
+    header::after { content: ""; position: absolute; left: 0; right: 0; width: 100%; height: 2px; background-image: linear-gradient(to right, #678BD8, #DCCFDA); }
+    header .wrapper { display: flex; height: 80px; justify-content: space-between; align-items: center; }
+    header .user-btns button:not(:nth-child(odd)) { margin-left: 20px }
+
+    /*    1.2.2    NAVIGATION    */
+    header nav a,
+    header .navbar a { font-size: 18px; color: #1A365D; padding: 0!important; }
+    header nav a:not(:last-child) { margin-right: 50px; }
+    header nav { width: 100%; }
+    header nav:not(.mobile-nav) > * { width: 100%; justify-content: space-between; }
+
+    /*    1.2.3    RESPONSIVE    */
+    .menubar {  }
+
+/*----------------------------------------------------------------
+      1.3   FOOTER
+----------------------------------------------------------------*/
+    /*    1.3.1    FOOTER SETTING    */
+    footer { display: flex; min-height: 265px; align-items: center; background-image: url("../public/images/footer_background.jpg"); background-size: 100% 100%; padding: 40px 0; }
+    footer ul { display: flex; flex-wrap: wrap; flex-direction: row; }
+    footer span, footer p, footer a { font-size: 13px; color: #FFF; }
+
+    /*    1.3.2    DESIGN    */
+    .footer-img { display: flex; margin-bottom: 20px; padding: 0; }
+    .footer-img .link-list { display: flex; align-items: center; justify-content: flex-end; }
+    .footer-img a { width: 100%; max-width: 35px; }
+    .footer-img a:not(:first-child) { margin-left: 40px; }
+    .footer-list [class*="col"] { padding: 0; }
+    .footer-list .nav-item { position: relative; display: flex; align-items: center; height: 13px; padding: 0 13px; margin-bottom: 8px; }
+    .footer-list .nav-item > * { opacity:.6; }
+    .footer-list .nav-item::after,
+    .footer-list .nav-item::before { content: ""; position: absolute; width: 2px; height: 100%; background: #FFFFFF; top: 0; }
+    .footer-list .nav-item::after { right: -2px; }
+    .footer-list .nav-item::before { left: 0; }
+    .footer-list .nav-link { display: inline-flex; padding: 0; font-size:13px; color:#FFF; }
+    .footer-list .nav-link:hover { opacity: 1; }
+
+    /*    1.3.3    RESPONSIVE    */
+    @media (min-width: 1400px) {
+
+    }
+    @media (max-width: 1399px) {
+        .footer-img a { max-width: 30px; }
+        .footer-img a:not(:first-child) { margin-left: 35px; }
+    }
+    @media (max-width: 1199px) {
+
+    }
+    @media (max-width: 991px) {
+        .container { padding: 0 20px; }
+    }
+    @media (max-width: 767px) {
+        .footer-img a { max-width: 25px; }
+        .footer-img a:not(:first-child) { margin-left: 30px; }
+    }
+    @media (max-width: 520px) {
+        footer p { text-align: center; }
+        .footer-img { flex-direction: column; align-items: center; }
+        .footer-img a { max-width: 20px; }
+        .footer-img a:not(:first-child) { margin-left: 25px; }
+        .footer-img .link-list { justify-content: center; margin-top: 40px; }
+        .footer-list .nav { flex-wrap: nowrap; flex-direction: column; align-items: center; margin: 40px 0; }
+        .footer-list .nav-item { margin-bottom: 15px; }
+    }
+
+
+
+
 
 
 
