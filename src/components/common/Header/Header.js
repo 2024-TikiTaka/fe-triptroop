@@ -5,6 +5,14 @@
 
  function Header() {
 
+     function Chat() {
+         return (
+           <div className="chat">
+               <Button className="chatIcon" onClick={() => alert('채팅')}>채팅</Button>
+           </div>
+         );
+     }
+
     function BeforeLogin() {
          return (
              <div className="btnBox">
@@ -28,6 +36,7 @@
             <div className="wrapper">
                 <button className="logo-btn"><img src="/images/logo.svg" alt="logo 이미지"/></button>
                 <Navigation/>
+                <Chat/>
                 { isLogin() ? <AfterLogin/> : <BeforeLogin/> }
             </div>
         </header>
