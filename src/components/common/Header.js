@@ -89,7 +89,7 @@ function Header() {
                                 </Nav>
 
                                 <Nav>
-                                    {!isLogin() ? <AfterLogin /> : <BeforeLogin />}
+                                    {isLogin() ? <AfterLogin /> : <BeforeLogin />}
                                 </Nav>
                             </Navbar.Collapse>
                         </Offcanvas.Body>

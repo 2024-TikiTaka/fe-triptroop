@@ -1,21 +1,18 @@
-
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import Error from "./pages/error/Error";
-import './Common.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './common.css';
 
 function App() {
-  return (
-      <BrowserRouter>
+    return (
+        <BrowserRouter>
             <Routes>
-                <Route path="/" element={ <Layout/> }>
-
-                </Route>
-              <Route path="*" element={ <Error/> }/>
-        </Routes>
-      </BrowserRouter>
-  );
+                <Route path="/" element={<Layout />} />
+                <Route path="*" element={<Error />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;
