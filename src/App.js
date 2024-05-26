@@ -1,7 +1,7 @@
 
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Layout from "./layouts/layout";
+import Layout from "./layouts/Layout";
 import Error from "./pages/error/Error";
 import './Common.css';
 import './CustomButton.css';
