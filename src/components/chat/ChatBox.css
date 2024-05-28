@@ -1,0 +1,26 @@
+.chat-box-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1050; /* Bootstrap modal z-index */
+}
+
+.chat-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chat-box-header {
+    cursor: grab; /* 드래그 가능하게 마우스 커서를 변경 */
+}
+
+.chat-box-header:active {
+    cursor: grabbing; /* 드래그 중일 때 grabbing 커서 설정 */
+}
