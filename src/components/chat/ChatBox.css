@@ -12,15 +12,66 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* 그림자 */
+    border-radius: 20px; /* 모서리를 둥글게 설정 */
+    position: relative; /* 닫기 버튼 위치 설정을 위해 position 추가 */
 }
 
 .chat-box-header {
     cursor: grab; /* 드래그 가능하게 마우스 커서를 변경 */
+    /*border-top-left-radius: 20px; !* 헤더의 좌상단 모서리 둥글게 *!*/
+    /*border-top-right-radius: 20px; !* 헤더의 우상단 모서리 둥글게 *!*/
+    padding: 10px;
+    position: relative;
+    display: flex;
+    justify-content: flex-end; /* 닫기 버튼을 오른쪽 끝으로 정렬 */
 }
 
 .chat-box-header:active {
     cursor: grabbing; /* 드래그 중일 때 grabbing 커서 설정 */
+}
+
+/* 닫기 버튼 */
+.close-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #555; /* 닫기 버튼 색상 */
+    padding: 5px;
+    margin: -10px -10px 0 0;
+    z-index: 1100; /* 닫기 버튼을 다른 요소보다 위로 설정 */
+}
+
+.close-button:hover {
+    color: #000; /* 마우스를 올렸을 때 색상 변경 */
+}
+
+.close-button:before {
+    content: '✖'; /* 스타일 있는 닫기 표시 */
+    font-family: Arial, sans-serif;
+}
+
+.modal-body {
+    flex-grow: 1;
+    padding: 10px; /* 모달 바디의 여백 설정 */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤 가능하게 설정 */
+}
+
+.modal-footer {
+    padding: 0; /* 모달 푸터의 여백 설정 제거 */
+    border-top: none; /* 푸터 상단의 경계선 제거 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.modal-footer button {
+    flex-grow: 1;
+    margin: 0 5px; /* 버튼 간의 간격 조정 */
+    padding: 10px; /* 버튼의 클릭 가능한 영역 넓히기 */
+    border-radius: 5px;
 }
