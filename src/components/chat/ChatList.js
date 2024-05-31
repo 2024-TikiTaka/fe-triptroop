@@ -34,7 +34,7 @@ const ChatList = () => {
             <h2>채팅 목록</h2>
             <ul>
                 {chatRooms.map((room) => (
-                    <li key={room.id.timestamp}>{room.roomName}</li>
+                    <li key={room.id}>{room.roomName}</li>
                 ))}
             </ul>
         </div>
