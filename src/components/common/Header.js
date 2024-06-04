@@ -1,3 +1,5 @@
+import React, {useState} from "react";
+import ChatBox from "../chat/ChatBox";
 import { isLogin } from "../../utils/TokenUtils";
 import { NavLink } from "react-router-dom";
 import { Button, Col, Container, Image, Nav, Navbar, Offcanvas } from "react-bootstrap";
@@ -10,9 +12,16 @@ const CustomNavLink = ({ to, children }) => (
 );
 
 function Header() {
+    const [showChat, setShowChat] = useState(false);
+    const handleChatShow = () => setShowChat(true);
+    const handleChatClose = () => setShowChat(false);
+
     function BeforeLogin() {
         return (
             <div className="user-btns">
+                <Button className="" onClick={handleChatShow}>
+                    <span className="">채팅</span>
+                </Button>
                 <Button className="outline blue-900">
                     <span className="d-none d-lg-inline-block">회원가입</span>
                     <span className="d-lg-none">
@@ -56,10 +65,10 @@ function Header() {
             <Navbar expand="lg">
                 <Container fluid>
                     <Navbar.Brand href="/#" className="logo-btn">
-                        <Image src="/images/logo.svg" fluid />
+                        <Image src="/images/logo.svg" fluid/>
                     </Navbar.Brand>
 
-                    <Navbar.Toggle aria-controls="offcanvasNavbar-expand-lg" />
+                    <Navbar.Toggle aria-controls="offcanvasNavbar-expand-lg"/>
                     <Navbar.Offcanvas
                         id="offcanvasNavbar-expand-lg"
                         aria-labelledby="offcanvasNavbarLabel-expand-lg"
@@ -89,14 +98,18 @@ function Header() {
                                 </Nav>
 
                                 <Nav>
-                                    {isLogin() ? <AfterLogin /> : <BeforeLogin />}
+                                    {isLogin() ? <AfterLogin/> : <BeforeLogin/>}
                                 </Nav>
                             </Navbar.Collapse>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container>
             </Navbar>
+            <div className="chat-container">
+                <ChatBox show={showChat} handleClose={handleChatClose}/> {/* ChatBox 컴포넌트를 추가 */}
+            </div>
         </header>
     );
 }
+
 export default Header;
