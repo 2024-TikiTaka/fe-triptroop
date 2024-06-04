@@ -1,11 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 const NoticeList = () => {
-    return (
-        <div>
-            공지 내용
-        </div>
-    );
-};
+	return <div>공지 내용</div>
+}
 
-export default NoticeList;
+export default NoticeList
