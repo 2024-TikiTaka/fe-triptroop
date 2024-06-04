@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
+// ChatList.js
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const ChatList = () => {
+const ChatList = ({ onSelectRoom }) => {
     const [chatRooms, setChatRooms] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -11,7 +12,6 @@ const ChatList = () => {
             try {
                 const response = await axios.get('http://localhost:8080/api/v1/chat/chatroom');
                 setChatRooms(response.data);
-                console.log(response);
             } catch (error) {
                 setError('채팅 목록을 불러오는 중 오류가 발생했습니다.');
             } finally {
@@ -34,12 +34,13 @@ const ChatList = () => {
             <h2>채팅 목록</h2>
             <ul>
                 {chatRooms.map((room) => (
-                    <li key={room.id}>{room.roomName}</li>
+                    <li key={room.id} onClick={() => onSelectRoom(room)}>
+                        {room.roomName}
+                    </li>
                 ))}
             </ul>
         </div>
-    )
-
+    );
 };
 
 export default ChatList;

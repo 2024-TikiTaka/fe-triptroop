@@ -1,17 +1,19 @@
-import React, {useState} from 'react';
-import {Modal, Button, Form, Tabs, Tab} from 'react-bootstrap';
-import Draggable from "react-draggable";
+// ChatBox.js
+import React, { useState } from 'react';
+import { Modal, Button } from 'react-bootstrap';
+import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
 import './ChatBox.css';
-import ChatList from "./ChatList";
-import NoticeList from "./NoticeList";
-import FriendList from "./FriendList";
+import ChatList from './ChatList';
+import ChatRoom from './ChatRoom';
+import NoticeList from './NoticeList';
+import FriendList from './FriendList';
 
 const ChatBox = ({ show, handleClose }) => {
-    /* 채팅창 이동속도 올림 */
     const [position, setPosition] = useState({ x: 0, y: 0 });
-    const [activeTab, setActiveTab, setKey] = useState('friends');
+    const [activeTab, setActiveTab] = useState('friends');
+    const [selectedRoom, setSelectedRoom] = useState(null);
 
     const handleDrag = (e, data) => {
         const scale = 2; // 이동 속도 조정 비율
@@ -32,6 +34,16 @@ const ChatBox = ({ show, handleClose }) => {
 
     if (!show) return null;
 
+    const handleSelectRoom = (room) => {
+        setSelectedRoom(room);
+        setActiveTab('chatRoom');
+    };
+
+    const handleBackToList = () => {
+        setSelectedRoom(null);
+        setActiveTab('chats');
+    };
+
     return (
         <Draggable
             position={position}
@@ -40,7 +52,6 @@ const ChatBox = ({ show, handleClose }) => {
             bounds="body"
         >
             <div className="chat-box-wrapper">
-                 {/*채팅창 크기 조정 */}
                 <ResizableBox
                     width={300}
                     height={400}
@@ -53,9 +64,12 @@ const ChatBox = ({ show, handleClose }) => {
                         <button className="close-button" onClick={handleClose}></button>
                     </div>
                     <Modal.Body className="modal-body">
-                        {activeTab === 'friends' && <FriendList/>}
-                        {activeTab === 'chats' && <ChatList/>}
-                        {activeTab === 'notices' && <NoticeList/>}
+                        {activeTab === 'friends' && <FriendList />}
+                        {activeTab === 'chats' && <ChatList onSelectRoom={handleSelectRoom} />}
+                        {activeTab === 'notices' && <NoticeList />}
+                        {activeTab === 'chatRoom' && selectedRoom && (
+                            <ChatRoom room={selectedRoom} onBack={handleBackToList} />
+                        )}
                     </Modal.Body>
                     <Modal.Footer className="modal-footer">
                         <Button variant={activeTab === 'friends' ? 'primary' : 'secondary'} onClick={() => setActiveTab('friends')}>
