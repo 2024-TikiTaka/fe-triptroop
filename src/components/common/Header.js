@@ -35,7 +35,7 @@ function Header() {
                 <Offcanvas.Body>
                     <Navbar.Collapse className="justify-content-between">
                         <Nav className="justify-content-center">
-                            <Nav.Link as={CustomNavLink} to="/travel">
+                            <Nav.Link as={CustomNavLink} to="/travels">
                                 여행지 소개
                             </Nav.Link>
                             <Nav.Link as={CustomNavLink} to="/schedule">
@@ -80,7 +80,7 @@ function Header() {
                 <Offcanvas.Body>
                     <Navbar.Collapse className="justify-content-between">
                         <Nav className="justify-content-center">
-                            <Nav.Link as={CustomNavLink} to="/travel">
+                            <Nav.Link as={CustomNavLink} to="/travels">
                                 여행지 소개
                             </Nav.Link>
                             <Nav.Link as={CustomNavLink} to="/schedule">

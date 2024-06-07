@@ -7,6 +7,7 @@ import {
 
 const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
+
 const DEFAULT_URL = `http://${SERVER_IP}:${SERVER_PORT}`;
 
 /* 인증이 필요 없는 (토큰을 전달하지 않아도 되는) 기능 호출 시 사용하는 함수 */
