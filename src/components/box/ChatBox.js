@@ -1,19 +1,19 @@
 // ChatBox.js
 import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, CloseButton } from 'react-bootstrap';
 import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
-import './ChatBox.css';
-import ChatList from './ChatList';
-import ChatRoom from './ChatRoom';
-import NoticeList from './NoticeList';
-import FriendList from './FriendList';
+import '../../styles/chat.css';
+import ChatList from '../list/ChatList';
+import ChatRoom from '../item/ChatRoom';
+import NoticeList from '../list/NoticeList';
+import FriendList from '../list/FriendList';
 
 const ChatBox = ({ show, handleClose }) => {
-    const [position, setPosition] = useState({ x: 0, y: 0 });
-    const [activeTab, setActiveTab] = useState('friends');
-    const [selectedRoom, setSelectedRoom] = useState(null);
+    const [ position, setPosition ] = useState({ x: 0, y: 0 });
+    const [ activeTab, setActiveTab ] = useState('friends');
+    const [ selectedRoom, setSelectedRoom ] = useState(null);
 
     const handleDrag = (e, data) => {
         const scale = 2; // 이동 속도 조정 비율
@@ -55,14 +55,14 @@ const ChatBox = ({ show, handleClose }) => {
                 <ResizableBox
                     width={300}
                     height={400}
-                    minConstraints={[300, 200]}
-                    maxConstraints={[800, 600]}
+                    minConstraints={[ 300, 200 ]}
+                    maxConstraints={[ 800, 600 ]}
                     className="chat-box"
-                    resizeHandles={['se']} //크기 조정 핸들 설정 (남동쪽)
+                    resizeHandles={[ 'se' ]} //크기 조정 핸들 설정 (남동쪽)
                 >
-                    <div className="chat-box-header">
-                        <button className="close-button" onClick={handleClose}></button>
-                    </div>
+                    <Modal.Header className="chat-box-header">
+                        <CloseButton onClick={handleClose} />
+                    </Modal.Header>
                     <Modal.Body className="modal-body">
                         {activeTab === 'friends' && <FriendList />}
                         {activeTab === 'chats' && <ChatList onSelectRoom={handleSelectRoom} />}
