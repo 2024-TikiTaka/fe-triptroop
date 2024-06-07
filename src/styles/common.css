@@ -1,0 +1,262 @@
+/*-----------------------
+
+0.0  STYLE SETTING
+  ├─ 0.1 FONT
+  ├─ 0.2 GENERALIZATION
+  └─ 0.3 CUSTOM BOOTSTRAP
+    ├─0.3.1 LAYOUT
+    ├─0.3.2 BUTTONS
+    └─0.3.3 ICONS
+
+1.0  LAYOUT
+  ├─ 1.1 WRAPPER
+  ├─ 1.2 HEADER
+  │   ├─1.2.1 HEADER SETTING
+  │   ├─1.2.2 NAVIGATION
+  │   └─1.2.3 RESPONSIVE
+  └─ 1.3 FOOTER
+    ├─1.3.1 FOOTER SETTING
+    ├─1.3.2 DESIGN
+    └─1.3.3 RESPONSIVE
+
+최종 수정일 : 2024.05.24
+
+-----------------------*/
+
+/*----------------------------------------------------------------
+    0.1   FONT
+----------------------------------------------------------------*/
+
+/* @font-face {
+    font-style: normal;
+    font-weight: 100;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');
+    font-family: 'NotoSansKR';
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 300;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype');
+    font-family: 'NotoSansKR';
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 400;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype');
+    font-family: 'NotoSansKR';
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 500;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format('woff2'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format('woff'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format('opentype');
+    font-family: 'NotoSansKR';
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 700;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');
+    font-family: 'NotoSansKR';
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 900;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');
+    font-family: 'NotoSansKR';
+} */
+
+/*----------------------------------------------------------------
+    0.2   GENERALIZATION
+----------------------------------------------------------------*/
+
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    appearance: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-repeat: no-repeat;
+    color: #333;
+    font-size: 1rem; /*1rem = 16px*/
+    font-family: "Noto Sans KR", AppleSDGothic, sans-serif;
+    font-size-adjust: none;
+    letter-spacing: -.02em;
+    list-style: none;
+    text-decoration: none;
+    vertical-align: baseline;
+    word-break: break-word;
+    transition: ease .5s;
+}
+
+ol, ul, dl { margin: 0; padding: 0; }
+span, a, img { display: inline-flex; }
+button[class*="logo"] { background-color: transparent; }
+
+main { min-height: calc(100vh - 82px - 265px) }
+
+/*----------------------------------------------------------------
+    0.3   CUSTOM BOOTSTRAP
+----------------------------------------------------------------*/
+/*    0.3.1    LAYOUT    */
+/* row */
+/* .row:has(.wrapper) .col-xl-11 {
+    padding: 0 5px;
+} */
+
+/*    0.3.2    BUTTONS    */
+/* 색상 버튼 */
+[class*="blue"].color-w { border-color: transparent; }
+.outline:has([class*="blue"]) [class*="blue"] { background-color: transparent; }
+.outline:has([class*="blue"]):hover [class*="blue"] * { color: #FFF; }
+.blue-100, .outline.blue-100:hover { border-color: #CFE2FF; background-color: #CFE2FF; }
+.blue-200, .outline.blue-200:hover { border-color: #9EC5FE; background-color: #9EC5FE; }
+.blue-300, .outline.blue-300:hover { border-color: #6EA8FE; background-color: #6EA8FE; }
+.blue-400, .outline.blue-400:hover { border-color: #3D8BFD; background-color: #3D8BFD; }
+.blue-500, .outline.blue-500:hover { border-color: #0D6EFD; background-color: #0D6EFD; }
+.blue-600, .outline.blue-600:hover { border-color: #0A58CA; background-color: #0A58CA; }
+.blue-700, .outline.blue-700:hover { border-color: #084298; background-color: #084298; }
+.blue-800, .outline.blue-800:hover { border-color: #052C65; background-color: #052C65; }
+.blue-900, .outline.blue-900:hover { border-color: #031633; background-color: #031633; }
+/* 라인 버튼 */
+.outline { background-color: #FFF; }
+[class*="blue"].outline:hover { color: #FFF; }
+.outline.blue-100 { border-color: #CFE2FF; color: #CFE2FF; }
+.outline.blue-200 { border-color: #9EC5FE; color: #9EC5FE; }
+.outline.blue-300 { border-color: #6EA8FE; color: #6EA8FE; }
+.outline.blue-400 { border-color: #3D8BFD; color: #3D8BFD; }
+.outline.blue-500 { border-color: #0D6EFD; color: #0D6EFD; }
+.outline.blue-600 { border-color: #0A58CA; color: #0A58CA; }
+.outline.blue-700 { border-color: #084298; color: #084298; }
+.outline.blue-800 { border-color: #052C65; color: #052C65; }
+.outline.blue-900 { border-color: #031633; color: #031633; }
+
+/*    0.3.3    ICONS    */
+/* 아이콘 색상 */
+.bi.white * { color: #FFF; }
+.bi.blue-100 * { color: #CFE2FF; }
+.bi.blue-200 * { color: #9EC5FE; }
+.bi.blue-300 * { color: #6EA8FE; }
+.bi.blue-400 * { color: #3D8BFD; }
+.bi.blue-500 * { color: #0D6EFD; }
+.bi.blue-600 * { color: #0A58CA; }
+.bi.blue-700 * { color: #084298; }
+.bi.blue-800 * { color: #052C65; }
+.bi.blue-900 * { color: #031633; }
+
+/*----------------------------------------------------------------
+    1.1   WRAPPER
+----------------------------------------------------------------*/
+
+.wrapper {
+    margin: auto;
+}
+
+/*----------------------------------------------------------------
+    1.2   HEADER
+----------------------------------------------------------------*/
+
+/*    1.2.1    HEADER SETTING    */
+header { position: relative; }
+header::after { position: absolute; right: 0; left: 0; width: 100%; height: 2px; background-image: linear-gradient(to right, #678BD8, #DCCFDA); content: ""; }
+/* header .wrapper { display: flex; height: 80px; justify-content: space-between; align-items: center; } */
+/* header .user-btns button:not(:nth-child(odd)) { margin-left: 20px } */
+
+/*    1.2.2    NAVIGATION    */
+/* header nav a, */
+/* header .navbar a { font-size: 18px; color: #1A365D; padding: 0 !important; } */
+header nav a,
+header .navbar a { color: #1A365D; }
+/* header nav a:not(:last-child) { margin-right: 50px; } */
+/* header nav { width: 100%; } */
+/* header nav:not(.mobile-nav) > * { width: 100%; justify-content: space-between; } */
+
+/*    1.2.3    RESPONSIVE    */
+/* .menubar { } */
+
+/*----------------------------------------------------------------
+    1.3   FOOTER
+----------------------------------------------------------------*/
+/*    1.3.1    FOOTER SETTING    */
+footer { display: flex; align-items: center; min-height: 265px; padding: 40px 0; background-image: url("/public/images/footer_background.jpg"); background-size: 100% 100%; }
+footer ul { display: flex; flex-direction: row; flex-wrap: wrap; }
+footer span, footer p, footer a { color: #FFF; font-size: 13px; }
+
+/*    1.3.2    DESIGN    */
+.footer-img { display: flex; margin-bottom: 20px; padding: 0; }
+.footer-img .link-list { display: flex; align-items: center; justify-content: flex-end; }
+.footer-img a { width: 100%; max-width: 35px; }
+.footer-img a:not(:first-child) { margin-left: 40px; }
+.footer-list [class*="col"] { padding: 0; }
+.footer-list .nav-item { display: flex; position: relative; align-items: center; height: 13px; margin-bottom: 8px; padding: 0 13px; }
+.footer-list .nav-item > * { opacity: .6; }
+.footer-list .nav-item::after,
+.footer-list .nav-item::before { position: absolute; top: 0; width: 2px; height: 100%; background: #FFFFFF; content: ""; }
+.footer-list .nav-item::after { right: -2px; }
+.footer-list .nav-item::before { left: 0; }
+.footer-list .nav-link { display: inline-flex; padding: 0; color: #FFF; font-size: 13px; }
+.footer-list .nav-link:hover { opacity: 1; }
+
+/*    1.3.3    RESPONSIVE    */
+@media (min-width: 1400px) {
+
+}
+@media (max-width: 1399px) {
+    .footer-img a { max-width: 30px; }
+    .footer-img a:not(:first-child) { margin-left: 35px; }
+}
+@media (max-width: 1199px) {
+
+}
+@media (max-width: 991px) {
+    .container { padding: 0 20px; }
+}
+@media (max-width: 767px) {
+    .footer-img a { max-width: 25px; }
+    .footer-img a:not(:first-child) { margin-left: 30px; }
+}
+@media (max-width: 520px) {
+    footer p { text-align: center; }
+    .footer-img { flex-direction: column; align-items: center; }
+    .footer-img a { max-width: 20px; }
+    .footer-img a:not(:first-child) { margin-left: 25px; }
+    .footer-img .link-list { justify-content: center; margin-top: 40px; }
+    .footer-list .nav { flex-direction: column; flex-wrap: nowrap; align-items: center; margin: 40px 0; }
+    .footer-list .nav-item { margin-bottom: 15px; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

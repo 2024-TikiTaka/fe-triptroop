@@ -1,25 +1,28 @@
-import { Outlet } from "react-router-dom";
-import { ThemeProvider } from "react-bootstrap";
-import Header from "../components/common/Header";
-import Footer from "../components/common/Footer";
-import Wrapper from "../components/common/Wrapper";
+import { Outlet } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
+
+import Header from '../components/common/Header';
+import Footer from '../components/common/Footer';
+import { ToastContainer } from "react-toastify";
 
 function Layout() {
-
     return (
         <>
-            <ThemeProvider
-                breakpoints={[ 'xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs' ]}
-                minBreakpoint="xs"
-            >
-                <Header />
-                <main className="main">
-                    <Wrapper>
-                        <Outlet />
-                    </Wrapper>
-                </main>
-                <Footer />
-            </ThemeProvider>
+            <Header />
+            <main className="main">
+                <ToastContainer
+                    position="top-right"
+                    autoClose={1800}
+                    limit={1}
+                    closeOnClick={true}
+                    pauseOnFocusLoss={false}
+                />
+
+                <Container className="py-5">
+                    <Outlet />
+                </Container>
+            </main>
+            <Footer />
         </>
     );
 }
