@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SockJS from 'sockjs-client'
 import { Client } from '@stomp/stompjs'
-import { FormText, Button } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 
 const ChatRoom = ({ room, onBack }) => {
 	const [messages, setMessages] = useState([])
@@ -60,10 +60,16 @@ const ChatRoom = ({ room, onBack }) => {
 					</div>
 				))}
 			</div>
-			<FormText
+			<Form.Control
+				type="text" // FormText를 Form.Control로 변경
 				value={message}
 				onChange={e => setMessage(e.target.value)}
-				onPressEnter={sendMessage}
+				// onPressEnter 이벤트 대신 onKeyPress 이벤트를 사용하여 Enter 키를 감지
+				onKeyPress={e => {
+					if (e.key === 'Enter') {
+						sendMessage()
+					}
+				}}
 			/>
 			<Button onClick={sendMessage}>Send</Button>
 		</div>
