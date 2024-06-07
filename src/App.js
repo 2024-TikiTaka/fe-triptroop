@@ -9,6 +9,7 @@ import Layout from "./layouts/Layout";
 import Error from "./pages/error/Error";
 import Signup from "./pages/user/Signup";
 import Login from "./pages/user/Login";
+import SchedulesList from "./pages/schedule/SchedulesList";
 
 function App() {
     return (
@@ -18,7 +19,7 @@ function App() {
                     <Route path="/signup" element={<ProtectedRoute loginCheck={false}> <Signup /> </ProtectedRoute>} />
                     <Route path="/login" element={<ProtectedRoute loginCheck={false}> <Login /></ProtectedRoute>} />
                     <Route path="/travels" />
-                    <Route path="/schedules" />
+                    <Route path="/schedules" element={<ProtectedRoute loginCheck={false}> <SchedulesList /></ProtectedRoute>}/>
                     <Route path="/companions" />
                     <Route path="/inquiries" />
                 </Route>

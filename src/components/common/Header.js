@@ -38,7 +38,7 @@ function Header() {
                             <Nav.Link as={CustomNavLink} to="/travel">
                                 여행지 소개
                             </Nav.Link>
-                            <Nav.Link as={CustomNavLink} to="/schedule">
+                            <Nav.Link as={CustomNavLink} to="/schedules">
                                 일정
                             </Nav.Link>
                             <Nav.Link as={CustomNavLink} to="/companion">
@@ -83,7 +83,7 @@ function Header() {
                             <Nav.Link as={CustomNavLink} to="/travel">
                                 여행지 소개
                             </Nav.Link>
-                            <Nav.Link as={CustomNavLink} to="/schedule">
+                            <Nav.Link as={CustomNavLink} to="/schedules">
                                 일정
                             </Nav.Link>
                             <Nav.Link as={CustomNavLink} to="/companions">
