@@ -5,18 +5,14 @@ import { Chat, Person, } from "react-bootstrap-icons";
 import { Button, Card, Container, Dropdown, Form, Image, Nav, Navbar, NavDropdown, NavItem, } from "react-bootstrap";
 
 import { isLogin } from "../../utils/TokenUtils";
-
-import ChatBox from "../box/ChatBox";
 import { callLogoutAPI } from "../../apis/UserAPICalls";
 
+import ChatBox from "../box/ChatBox";
 
 const CustomNavLink = ({ to, children }) => (
     <NavLink
         to={to}
-        className={({ isActive }) =>
-            isActive ? "nav-link px-2 fs-5 active" : "nav-link px-2 fs-5"
-        }
-    >
+        className={({ isActive }) => isActive ? "nav-link px-2 fs-5 active" : "nav-link px-2 fs-5"}>
         {children}
     </NavLink>
 );
@@ -27,16 +23,12 @@ function Header() {
     const dispatch = useDispatch();
 
     const [ showChat, setShowChat ] = useState(false);
-    const handleChatShow = () => setShowChat(true);
-    const handleChatClose = () => setShowChat(false);
-
 
     function BeforeLogin() {
         return (
             <>
                 <Dropdown className="ms-3">
                     <Dropdown.Toggle
-                        as={Button}
                         variant="light"
                         data-bs-auto-close="outside" data-bs-display="static">
                         <Person size="22px" />
@@ -51,12 +43,15 @@ function Header() {
     }
 
     function AfterLogin() {
+        // const handleChatShow = () => setShowChat(true);
+        // const handleChatClose = () => setShowChat(false);
+
         return (
             <>
                 {/* Chat */}
-                <Navbar expand="lg">
+                <Navbar expand="md">
                     <Container>
-                        <Button variant="light" onClick={handleChatShow}>
+                        <Button variant="light" onClick={() => setShowChat(!showChat)}>
                             <Chat size="20px" /> 채팅
                         </Button>
 
@@ -74,8 +69,7 @@ function Header() {
                                     <div className="d-flex align-items-center">
                                         <div className="avatar me-3">
                                             <Image
-                                                src="https://i.namu.wiki/i/gOZDQxebNtnvUrysvLX6kWdeA9UgfpRkgRvzeuI0WclQ09q9FGkY12Ba5B5GcyCD8KEKtkQafSuPG49eoYDfX8yFg4qgidCo4z1QYD8OVosnPpnDAI2SbFA8bWYvxUTSIo_LbNjKiSnfWBqRz8xjWQ.webp"
-                                                roundedCircle
+                                                src="https://zrr.kr/Aat7" roundedCircle
                                                 className="avatar mx-auto d-block mb-3"
                                                 style={{ width: "50px", height: "50px" }}
                                             />
@@ -91,15 +85,11 @@ function Header() {
                                 <Dropdown.Item onClick={() => navigate(`/likes`)}>좋아요</Dropdown.Item>
                                 <Dropdown.Item onClick={() => navigate(`/settings`)}>설정</Dropdown.Item>
                                 <Dropdown.Divider />
-                                <Dropdown.Item onClick={() => dispatch(callLogoutAPI(), navigate(`/`))}>로그아웃</Dropdown.Item>
+                                <Dropdown.Item onClick={() => dispatch(callLogoutAPI())}>로그아웃</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </Container>
                 </Navbar>
-
-                {/* <ul className="nav flex-row align-items-center list-unstyled ms-xl-auto"> */}
-                {/*     <!-- Search dropdown START --> */}
-                {/*     <li className="nav-item dropdown nav-search me-3 d-none d-sm-block"> */}
             </>
         );
     }
@@ -124,7 +114,6 @@ function Header() {
                         aria-expanded="true"
                         aria-label="Toggle navigation"
                     >
-                        {/* <span className="d-none d-sm-inline-block small">Menu</span> */}
                     </Navbar.Toggle>
                     <Navbar.Collapse id="navbarCollapse">
                         <Nav className="me-auto">
@@ -143,9 +132,9 @@ function Header() {
                         </Nav>
                     </Navbar.Collapse>
 
-                    {/* 로그인 유무 */}
                     {!isLogin() ? BeforeLogin() : AfterLogin()}
-                    <ChatBox show={showChat} handleClose={handleChatClose} /> {/* ChatBox 컴포넌트를 추가 */}
+
+                    <ChatBox show={showChat} handleClose={() => setShowChat(false)} />
                 </Container>
             </Navbar>
         </header>
