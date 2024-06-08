@@ -55,3 +55,29 @@ export const callLogoutAPI = () => {
     };
 };
 
+
+export const callUserInfoAPI = () => {
+
+    return async (dispatch, getState) => {
+
+        const result = await authRequest.get(`/api/v1/users/me`);
+        console.log('callUserInfoAPI  : ', result);
+
+        if (result.status === 200) {
+            dispatch(getCurrentUser(result));
+        }
+    };
+};
+
+
+export const callUserProfileAPI = () => {
+
+    return async (dispatch, getState) => {
+        const result = await authRequest.get(`/api/v1/users/me/profile`);
+        console.log('callUserProfileAPI  : ', result);
+
+        if (result?.status === 200) {
+            dispatch(getCurrentProfile(result));
+        }
+    };
+};
