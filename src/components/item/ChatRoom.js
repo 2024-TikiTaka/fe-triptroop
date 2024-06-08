@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import SockJS from 'sockjs-client'
 import { Client } from '@stomp/stompjs'
 import { Form, Button } from 'react-bootstrap'
+import { getAccessTokenHeader, getUserId } from '../../utils/TokenUtils' // getUserId 추가
 
 const ChatRoom = ({ room, onBack }) => {
 	const [messages, setMessages] = useState([])
@@ -9,9 +10,12 @@ const ChatRoom = ({ room, onBack }) => {
 	const [stompClient, setStompClient] = useState(null)
 
 	useEffect(() => {
-		const socket = new SockJS('http://localhost:8080/ws')
+		const socket = new SockJS('http://localhost:8080/ws', null, { withCredentials: true });
 		const client = new Client({
 			webSocketFactory: () => socket,
+			connectHeaders: {
+				'Access-Token': getAccessTokenHeader()
+			},
 			onConnect: () => {
 				client.subscribe('/topic/public', msg => {
 					const receivedMessage = JSON.parse(msg.body)
@@ -37,7 +41,7 @@ const ChatRoom = ({ room, onBack }) => {
 	const sendMessage = () => {
 		if (stompClient && message.trim()) {
 			const chatMessage = {
-				sender: '사용자 이름', // 사용자 이름을 설정하세요
+				sender: getUserId(), // 사용자 ID를 Long 타입으로 전송
 				content: message,
 				type: 'CHAT',
 			}
@@ -61,10 +65,9 @@ const ChatRoom = ({ room, onBack }) => {
 				))}
 			</div>
 			<Form.Control
-				type="text" // FormText를 Form.Control로 변경
+				type="text"
 				value={message}
 				onChange={e => setMessage(e.target.value)}
-				// onPressEnter 이벤트 대신 onKeyPress 이벤트를 사용하여 Enter 키를 감지
 				onKeyPress={e => {
 					if (e.key === 'Enter') {
 						sendMessage()
