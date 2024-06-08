@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 
 import LoginForm from "../../components/form/LoginForm";
 import { reset } from "../../modules/UserModules";
@@ -25,11 +25,10 @@ function Login() {
     return (
         <>
             <div className="auth-content">
-                <LoginForm />
-                <Button
-                    onClick={onClickSignupHandler}>
-                    회원가입
-                </Button>
+                <Col lg={6} md={10} className="m-auto p-4 p-sm-7">
+                    <h2 className="fs-2 mb-5 text-center">로그인</h2>
+                    <LoginForm />
+                </Col>
             </div>
         </>
     );
