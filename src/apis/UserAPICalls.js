@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import { authRequest, request } from './api';
-import { success } from '../modules/UserModules';
-import { getEmail, removeToken, saveToken } from '../utils/TokenUtils';
+import { getCurrentProfile, getCurrentUser, success } from '../modules/UserModules';
+import { removeToken, saveToken } from '../utils/TokenUtils';
 
 export const callSignupAPI = ({ signupRequest }) => {
     return async (dispatch, getState) => {
@@ -11,10 +11,11 @@ export const callSignupAPI = ({ signupRequest }) => {
             { 'Content-Type': 'application/json' },
             JSON.stringify(signupRequest),
         );
+
         if (result?.status === 201) {
             dispatch(success());
         } else {
-            toast.error('오류가 발생했습니다.');
+            toast.error('회원가입 중 오류가 발생했습니다.');
         }
     };
 };
@@ -29,23 +30,28 @@ export const callLoginAPI = ({ loginRequest }) => {
         );
 
         if (result?.status === 200) {
-            toast.info('로그인이 완료되었습니다.');
-
             saveToken(result.headers);
             dispatch(success());
+
+            toast.info('로그인이 완료되었습니다.');
         } else {
-            toast.error('오류가 발생했습니다.');
+            console.error('Logout Error!');
         }
     };
 };
 
 export const callLogoutAPI = () => {
+
     return async (dispatch, getState) => {
         const result = await authRequest.post(`/api/v1/logout`);
 
-        if (result?.status === 204) {
-            removeToken();
+        if (result?.status === 200) {
             dispatch(success());
+        } else {
+            console.error('Logout Error!');
         }
+        removeToken();
+        window.location.reload();
     };
 };
+

@@ -11,14 +11,16 @@ const CustomInput = ({
                          message,
                          isValid = false,
                          isInvalid = false,
-                         required = false,
-
+                         required
                      }) => {
     return (
         <Form.Group className="mb-3" controlId={id}>
             <Row>
                 <Col>
-                    <Form.Label>{label}</Form.Label>
+                    <Form.Label>
+                        {label}
+                        {required && (<span className="text-danger">*</span>)}
+                    </Form.Label>
                 </Col>
                 <Col>
                     {message && (
