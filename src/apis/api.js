@@ -60,7 +60,7 @@ authRequest.interceptors.response.use(
 
 /* refresh token 전달하여 토큰 재발급 요청하는 api */
 export async function postRefreshToken() {
-    return await request('POST', '/api/v1/refresh-token', {
+    return await request('POST', '/api/v1/token/issue', {
         'Refresh-Token': getRefreshTokenHeader(),
     });
 }
