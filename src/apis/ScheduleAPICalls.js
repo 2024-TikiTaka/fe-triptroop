@@ -4,7 +4,7 @@ import {getSchedules,getSchedule,success} from "../modules/ScheduleModules";
 export const callScheduleListAPI = ({currentPage = 1}) => {
 
     return async (dispatch, getState) => {
-        const result = await request('GET', `/api/v1/schedules`)
+        const result = await request('GET', `/api/v1/schedules?page=${currentPage}`)
         console.log('callScheduleListAPI result : ', result);
 
         if (result.status === 200) {

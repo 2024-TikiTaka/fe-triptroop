@@ -11,19 +11,12 @@ function PagingBar({ pageInfo, setCurrentPage }) {
         <>
             <Pagination>
                 <Pagination.First
-                    onClick={() => setCurrentPage(1)}
+                    onClick={() => setCurrentPage(0)}
                 />
                 <Pagination.Prev
                     disabled={pageInfo.currentPage <= 1}
                     onClick={() => setCurrentPage(pageInfo.currentPage - 1)}
                 />
-                <button
-                    className="paging-btn"
-                    disabled={pageInfo.currentPage <= 1}
-                    onClick={() => setCurrentPage(pageInfo.currentPage - 1)}
-                >
-                    &lt;
-                </button>
 
                 {
                     pageNumber.map(num =>
