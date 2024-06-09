@@ -1,19 +1,17 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer } from "react-toastify";
 
 import { reset } from "../../modules/UserModules";
-
 import SignupForm from "../../components/form/SignupForm";
-import LoginForm from "../../components/form/LoginForm";
+import { Col } from "react-bootstrap";
 
 
 function Signup() {
 
-    const { success } = useSelector(state => state.userReducer);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { success } = useSelector(state => state.userReducer);
 
     useEffect(() => {
         if (success === true) {
@@ -25,7 +23,11 @@ function Signup() {
     return (
         <>
             <div className="auth-content">
-                <SignupForm />
+                <Col lg={6} md={10} className="m-auto p-4 p-sm-7">
+                    <h2 className="fs-2 mb-5 text-center">이메일로 가입하기</h2>
+
+                    <SignupForm />
+                </Col>
             </div>
         </>
     );

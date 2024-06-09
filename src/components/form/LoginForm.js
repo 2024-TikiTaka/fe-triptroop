@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { Button, Card, Col, Container, Dropdown, Form, Row, } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { callLoginAPI } from "../../apis/UserAPICalls";
 
 import CustomInput from "../custom/CustomInput";
@@ -53,10 +53,13 @@ function LoginForm() {
                 <Button
                     type="submit"
                     size="lg"
-                    className="fs-6 w-100 mb-0"
-                    onClick={onClickLoginHandler}>로그인</Button>
+                    className="fs-6 w-100 mb-0  blue-800"
+                    onClick={onClickLoginHandler}
+                >
+                    로그인
+                </Button>
                 <div className="mt-3 text-center">
-                    <Link to={"/find"}>회원이 아니신가요?</Link>
+                    <Link to={"/signup"}>회원이 아니신가요?</Link>
                 </div>
 
             </Form>
@@ -66,13 +69,13 @@ function LoginForm() {
 
             {/* Social Login Button */}
             <div className="d-grid gap-3">
-                <Button variant="light" className="mb-0">
-                    <Kakao width={"16"} />
-                    <span>카카오 아이디로 로그인</span>
+                <Button variant="light" className="mb-0 flex-row justify-content-center">
+                    <Kakao width={"18"} />
+                    <span className="ms-2">카카오 아이디로 로그인</span>
                 </Button>
-                <Button variant="light" className="mb-0">
-                    <Naver width={"16"} />
-                    <span>네이버 아이디로 로그인</span>
+                <Button variant="light" className="mb-0 flex-row justify-content-center">
+                    <Naver width={"18"} />
+                    <span className="ms-2">네이버 아이디로 로그인</span>
                 </Button>
             </div>
         </>
