@@ -5,8 +5,8 @@ import { Chat, Person, } from "react-bootstrap-icons";
 import { Button, Container, Dropdown, Image, Nav, Navbar } from "react-bootstrap";
 
 import { isLogin } from "../../utils/TokenUtils";
-import { callLogoutAPI } from "../../apis/UserAPICalls";
 import { reset } from "../../modules/UserModules";
+import { callLogoutAPI } from "../../apis/UserAPICalls";
 
 import ChatBox from "../box/ChatBox";
 
@@ -23,8 +23,8 @@ function Header() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const [ showChat, setShowChat ] = useState(false);
     const { success } = useSelector(state => state.userReducer);
+    const [ showChat, setShowChat ] = useState(false);
 
     useEffect(() => {
         if (success === true) {
