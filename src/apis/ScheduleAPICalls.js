@@ -51,7 +51,7 @@ export const callScheduleSearchListAPI = ({ keyword, currentPage = 1 }) => {
 
 
 // 상세 조회
-export const callScheduleDetailAPI = ({ scheduleId}) => {
+export const callScheduleDetailAPI = ({scheduleId}) => {
 
     return async (dispatch,getState) => {
         const result = await request('GET', `/api/v1/schedules/${scheduleId}`);

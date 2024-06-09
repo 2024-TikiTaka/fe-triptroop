@@ -1,10 +1,10 @@
-import Schedules from "../item/Schedules";
+import ScheduleListItem from "../item/ScheduleListItem";
 
 const ScheduleList = ({data}) => {
 
     return (
         <div className="schedule-div">
-            { data && data.map(schedule => <Schedules key={schedule.scheduleId} schedule={schedule}/>)}
+            { data && data.map(schedule => <ScheduleListItem key={schedule.scheduleId} schedule={schedule}/>)}
         </div>
     );
 }
