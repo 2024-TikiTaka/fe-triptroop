@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { Button, Card, Col, Container, Dropdown, Form, Row, } from "react-bootstrap";
 import { callLoginAPI } from "../../apis/UserAPICalls";
 
 import CustomInput from "../custom/CustomInput";
-import { Google, Line } from "react-bootstrap-icons";
-import { Link } from "react-router-dom";
 import CustomDivider from "../custom/CustomDivider";
+import { Kakao, Naver } from "../common/Icons";
+
 
 function LoginForm() {
 
@@ -54,6 +55,10 @@ function LoginForm() {
                     size="lg"
                     className="fs-6 w-100 mb-0"
                     onClick={onClickLoginHandler}>로그인</Button>
+                <div className="mt-3 text-center">
+                    <Link to={"/find"}>회원이 아니신가요?</Link>
+                </div>
+
             </Form>
 
             {/* Divider */}
@@ -62,10 +67,12 @@ function LoginForm() {
             {/* Social Login Button */}
             <div className="d-grid gap-3">
                 <Button variant="light" className="mb-0">
-                    카카오 아이디로 로그인
+                    <Kakao width={"16"} />
+                    <span>카카오 아이디로 로그인</span>
                 </Button>
                 <Button variant="light" className="mb-0">
-                    네이버 아이디로 로그인
+                    <Naver width={"16"} />
+                    <span>네이버 아이디로 로그인</span>
                 </Button>
             </div>
         </>
