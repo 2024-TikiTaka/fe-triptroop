@@ -4,27 +4,27 @@ import React from 'react';
  * Figma, Miro, Notion
  * Kakao, Naver
  */
-export const Figma = ({ width = "auto", height = "auto", fill = "#fff" }) => (
+export const Figma = ({ width, height, fill = "#fff" }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 23 35"
         fill="none"
         width={width} height={height}
     >
-        <path stroke-width="2.5" stroke={fill}
+        <path strokeWidth="2.5" stroke={fill}
               d="M12.6014 17.5001C12.6014 16.2736 13.0757 15.1041 13.9097 14.247C14.7424 13.3911 15.8645 12.9167 17.0271 12.9167C18.1896 12.9167 19.3117 13.3911 20.1445 14.247C20.9784 15.1041 21.4527 16.2736 21.4527 17.5001C21.4527 18.7265 20.9784 19.8961 20.1445 20.7532C19.3117 21.6091 18.1896 22.0834 17.0271 22.0834C15.8645 22.0834 14.7424 21.6091 13.9097 20.7532C13.0757 19.8961 12.6014 18.7265 12.6014 17.5001Z" />
-        <path stroke-width="2.5" stroke={fill}
+        <path strokeWidth="2.5" stroke={fill}
               d="M1.25 29.1666C1.25 27.9401 1.72436 26.7706 2.55827 25.9135C3.39105 25.0576 4.51314 24.5833 5.67568 24.5833H10.1014V29.1666C10.1014 30.393 9.62699 31.5626 8.79308 32.4197C7.9603 33.2756 6.83821 33.7499 5.67568 33.7499C4.51314 33.7499 3.39105 33.2756 2.55827 32.4197C1.72436 31.5626 1.25 30.393 1.25 29.1666Z" />
-        <path stroke-width="2.5" stroke={fill}
+        <path strokeWidth="2.5" stroke={fill}
               d="M17.0271 10.4167H12.6014V1.25H17.0271C18.1896 1.25 19.3117 1.72433 20.1445 2.58024C20.9784 3.43731 21.4527 4.60687 21.4527 5.83333C21.4527 7.05979 20.9784 8.22935 20.1445 9.08643C19.3117 9.94234 18.1896 10.4167 17.0271 10.4167Z" />
-        <path stroke-width="2.5" stroke={fill}
+        <path strokeWidth="2.5" stroke={fill}
               d="M10.1014 1.25V10.4167H5.67568C4.51314 10.4167 3.39105 9.94234 2.55827 9.08643C1.72436 8.22935 1.25 7.05979 1.25 5.83333C1.25 4.60688 1.72436 3.43731 2.55827 2.58024C3.39105 1.72433 4.51314 1.25 5.67568 1.25H10.1014Z" />
-        <path stroke-width="2.5" stroke={fill}
+        <path strokeWidth="2.5" stroke={fill}
               d="M2.55827 20.7532C1.72436 19.8961 1.25 18.7265 1.25 17.5001C1.25 16.2736 1.72436 15.1041 2.55827 14.247C3.39105 13.3911 4.51314 12.9167 5.67568 12.9167H10.1014V22.0834H5.67568C4.51314 22.0834 3.39105 21.6091 2.55827 20.7532Z" />
     </svg>
 );
 
-export const Miro = ({ width = "auto", height = "auto", fill = "#fff" }) => (
+export const Miro = ({ width, height, fill = "#fff" }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 35 35"
@@ -36,7 +36,7 @@ export const Miro = ({ width = "auto", height = "auto", fill = "#fff" }) => (
     </svg>
 );
 
-export const Notion = ({ width = "auto", height = "auto", fill = "#fff" }) => (
+export const Notion = ({ width, height, fill = "#fff" }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 35 35"
@@ -47,7 +47,7 @@ export const Notion = ({ width = "auto", height = "auto", fill = "#fff" }) => (
     </svg>
 );
 
-export const Naver = ({ width = "auto", height = "auto", fill = "#03c75a" }) => (
+export const Naver = ({ width, height, fill = "#03c75a" }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 512 512"
@@ -57,7 +57,7 @@ export const Naver = ({ width = "auto", height = "auto", fill = "#03c75a" }) => 
     </svg>
 );
 
-export const Kakao = ({ width = "auto", height = "auto", fill = "#000" }) => (
+export const Kakao = ({ width, height, fill = "#000" }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 512 512"
