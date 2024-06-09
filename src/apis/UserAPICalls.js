@@ -46,12 +46,11 @@ export const callLogoutAPI = () => {
         const result = await authRequest.post(`/api/v1/logout`);
 
         if (result?.status === 200) {
+            removeToken();
             dispatch(success());
         } else {
             console.error('Logout Error!');
         }
-        removeToken();
-        window.location.reload();
     };
 };
 
