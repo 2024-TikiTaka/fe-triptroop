@@ -16,7 +16,9 @@ export const request = async (method, url, headers, data) => {
         url: `${DEFAULT_URL}${url}`,
         headers,
         data,
-    }).catch(error => console.log(error));
+    }).catch(error => {
+        return error.response;
+    });
 };
 
 /* 인증 요청 */

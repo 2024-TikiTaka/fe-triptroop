@@ -1,121 +1,191 @@
-import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { callSignupAPI } from "../../apis/UserAPICalls";
-import { Button, Card, Col, Form, Row } from "react-bootstrap";
-import CustomInput from "../custom/CustomInput";
+import { useForm, useFormContext, useFormState } from "react-hook-form";
+import { Button, Card, Form } from "react-bootstrap";
+import { callCheckEmailAPI, callSignupAPI } from "../../apis/UserAPICalls";
+import { useEffect, useState } from "react";
 
 function SignupForm() {
 
     const dispatch = useDispatch();
-    const [ form, setForm ] = useState({});
+    const {
+        register,
+        formState: { errors, isValid },
+        handleSubmit,
+        setError,
+        clearErrors,
+        watch
+    } = useForm();
 
-    const onChangeHandler = e => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        });
+    const checkDuplicateEmail = async (email) => {
+        const result = await dispatch(callCheckEmailAPI({ email }));
+
+        if (result?.status === 200) {
+            clearErrors("email");
+            return true;
+        }
+        if (result?.status === 409) {
+            const errorMessage = result.data?.result?.message;
+            setError("email",
+                { message: errorMessage }
+            );
+            return false;
+        }
     };
 
-    const onClickSignupHandler = () => {
-        dispatch(callSignupAPI({ signupRequest: form }));
+    const onSubmit = (form) => {
+        if (checkDuplicateEmail(form.email)) {
+            dispatch(callSignupAPI({ signupRequest: form }));
+        }
     };
 
     return (
         <>
-            <Col lg={8} className="m-auto">
+            <Form onSubmit={handleSubmit(onSubmit)}>
                 <Card className="border">
                     <Card.Body>
-                        <Form>
-                            <CustomInput
-                                label="이메일"
-                                id="email"
+                        {/* 이메일 */}
+                        <Form.Group className="mb-3" controlId="email">
+                            <Form.Label>이메일 </Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="email"
+                                size="lg"
+                                className="fs-6"
                                 placeholder="이메일 입력"
-                                onChangeHandler={onChangeHandler}
-                                // message={!emailValid ? "Email already in use" : "사용가능한 이메일 입니다."}
-                                // isInvalid={!emailValid}
-                                // isValid={emailValid}
-                                required
+                                isInvalid={errors.email}
+                                onBlur={checkDuplicateEmail}
+                                {...register("email", {
+                                    required: '필수 항목입니다.',
+                                    pattern: {
+                                        value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                                        message: '이메일 형식이 올바르지 않습니다.'
+                                    },
+                                    validate: { checkDuplicateEmail }
+                                })}
                             />
-                            <CustomInput
+                            <Form.Control.Feedback type="invalid">
+                                {errors.email?.message}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        {/* 비밀번호 */}
+                        <Form.Group className="mb-3" controlId="password">
+                            <Form.Label>비밀번호</Form.Label>
+                            <Form.Control
                                 type="password"
-                                label="비밀번호"
-                                id="password"
-                                placeholder="비밀번호 입력 (8-20자, 대/소문자, 숫자, 특수문자 조합)"
-                                onChangeHandler={onChangeHandler}
-                                // message={!emailValid ? "Email already in use" : "사용가능한 이메일 입니다."}
-                                // isInvalid={!emailValid}
-                                // isValid={emailValid}
-                                required
+                                name="password"
+                                placeholder="비밀번호 입력"
+                                size="lg"
+                                className="fs-6"
+                                isInvalid={errors.password}
+                                {...register("password", {
+                                    required: '필수 항목입니다.',
+                                    minLength: {
+                                        value: 8,
+                                        message: "8자 이상으로 작성해주세요."
+                                    },
+                                    maxLength: {
+                                        value: 20,
+                                        message: "20자 이내로 작성해주세요."
+                                    },
+                                    pattern: {
+                                        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,20}$/,
+                                        message: "대문자, 소문자, 숫자를 모두 포함해주세요."
+                                    }
+                                })}
                             />
-                            <CustomInput
-                                type="repassword"
+                            <Form.Control.Feedback type="invalid">
+                                {errors.password?.message}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        {/* 비밀번호 확인 */}
+                        <Form.Group className="mb-3" controlId="confirmPassword">
+                            <Form.Label>비밀번호 확인</Form.Label>
+                            <Form.Control
+                                type="password"
+                                name="confirmPassword"
                                 label="비밀번호 확인"
-                                id="repassword"
                                 placeholder="비밀번호 확인 입력"
-                                onChangeHandler={onChangeHandler}
-                                // message={!emailValid ? "Email already in use" : "사용가능한 이메일 입니다."}
-                                // isInvalid={!emailValid}
-                                // isValid={emailValid}
-                                required
+                                size="lg"
+                                className="fs-6"
+                                isInvalid={errors.confirmPassword}
+                                {...register("confirmPassword", {
+                                    required: '필수 항목입니다.',
+                                    validate: (value => value === watch('password') || '비밀번호가 일치하지 않습니다.')
+                                })}
                             />
-                            <CustomInput
-                                label="이름"
-                                id="name"
+                            <Form.Control.Feedback type="invalid">
+                                {errors.confirmPassword?.message}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        {/* 이름 */}
+                        <Form.Group className="mb-3" controlId="name">
+                            <Form.Label>이름</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="name"
                                 placeholder="이름 입력"
-                                onChangeHandler={onChangeHandler}
-                                // message={!emailValid ? "Email already in use" : "사용가능한 이메일 입니다."}
-                                // isInvalid={!emailValid}
-                                // isValid={emailValid}
-                                required
+                                size="lg"
+                                className="fs-6"
+                                isInvalid={errors.name}
+                                {...register("name", { required: '필수 항목입니다.' })}
                             />
-                            <Form.Group className="mb-3" controlId="gender">
-                                <Row>
-                                    <Col>
-                                        <Form.Label>성별 <span className="text-danger">*</span></Form.Label>
-                                    </Col>
-                                    <Col>
-                                        <Form.Control.Feedback
-                                            // type={isInvalid ? "invalid" : "valid"} tooltip
-                                        >
-                                        </Form.Control.Feedback>
-                                    </Col>
-                                </Row>
-                                <Form.Select
-                                    id="gender"
-                                    className="fs-6"
-                                    onChange={onChangeHandler}
-                                    size="lg"
-                                    required
-                                >
-                                    <option>선택</option>
-                                    <option value="F">여자</option>
-                                    <option value="M">남자</option>
-                                </Form.Select>
-                            </Form.Group>
-                            <CustomInput
+                            <Form.Control.Feedback type="invalid">
+                                {errors.name?.message}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        {/* 성별 */}
+                        <Form.Group className="mb-3" controlId="gender">
+                            <Form.Label>성별</Form.Label>
+                            <Form.Select
+                                name="gender"
+                                size="lg"
+                                className="fs-6"
+                                {...register("gender", { required: '필수 항목입니다.' })}
+                                isInvalid={errors.gender}
+                            >
+                                <option>선택</option>
+                                <option value="F">여자</option>
+                                <option value="M">남자</option>
+                            </Form.Select>
+                            <Form.Control.Feedback type="invalid">
+                                {errors.gender?.message}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        {/* 생년월일 */}
+                        <Form.Group className="mb-3" controlId="birth">
+                            <Form.Label>생년월일</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="birth"
                                 label="생년월일"
-                                id="birth"
                                 placeholder="생년월일 입력 (8자리)"
-                                onChangeHandler={onChangeHandler}
-                                // message={!emailValid ? "Email already in use" : "사용가능한 이메일 입니다."}
-                                // isInvalid={!emailValid}
-                                // isValid={emailValid}
-                                required
+                                size="lg"
+                                className="fs-6"
+                                {...register("birth", {
+                                    required: '필수 항목입니다.',
+                                    pattern: {
+                                        value: /^\d{8}$/,
+                                        message: '생년월일의 형식이 올바르지 않습니다. (ex. 19960504)'
+                                    }
+                                })}
+                                isInvalid={errors.birth}
                             />
+                            <Form.Control.Feedback type="invalid">
+                                {errors.birth?.message}
+                            </Form.Control.Feedback>
+                        </Form.Group>
 
-                            <div className="text-end mt-4">
-                                <Button
-                                    type="submit"
-                                    size="lg"
-                                    className="fs-6 w-100 mb-0 blue-800"
-                                    onClick={onClickSignupHandler}>
-                                    회원가입
-                                </Button>
-                            </div>
-                        </Form>
+                        <div className="text-end mt-4">
+                            <Button
+                                type="submit"
+                                size="lg"
+                                className="fs-6 w-100 mb-0 blue-800">
+                                회원가입
+                            </Button>
+                        </div>
                     </Card.Body>
                 </Card>
-            </Col>
+            </Form>
         </>
     );
 }
