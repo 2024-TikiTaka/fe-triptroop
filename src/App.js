@@ -12,6 +12,8 @@ import AdminMain from "./pages/admin/AdminMain";
 import ErrorPage from "./pages/error/Error";
 import Signup from "./pages/user/Signup";
 import Login from "./pages/user/Login";
+import SchedulesList from "./pages/schedule/SchedulesList";
+import SearchScheduleList from "./pages/schedule/SearchScheduleList";
 
 function App() {
     return (
@@ -25,7 +27,9 @@ function App() {
                     {/* 회원 */}
                     <Route path="/users" element={<ProtectedRoute isAuthenticated></ProtectedRoute>}></Route>
                     <Route path="/travels" />
-                    <Route path="/schedules" />
+                    <Route path="/schedules" element={<ProtectedRoute loginCheck={false}> <SchedulesList /></ProtectedRoute>}>
+                        <Route path="search" element={<SearchScheduleList/>}/>
+                    </Route>
                     <Route path="/companions" />
                     <Route path="/inquiry" />
                     {/* 오류 */}
