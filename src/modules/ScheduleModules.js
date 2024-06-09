@@ -12,7 +12,7 @@ const SUCCESS = 'schedules/SUCCESS';
 // action function
 export const { schedules: { getSchedules, getSchedule, success } } = createActions({
     [GET_SCHEDULES]: result => ({ schedules: result.data.result }),
-    [GET_SCHEDULE]: result => ({ schedule: result.data }),
+    [GET_SCHEDULE]: result => ({ schedule: result.data.result}),
     [SUCCESS]: () => ({ success: true })
 });
 

@@ -13,6 +13,7 @@ import ErrorPage from "./pages/error/Error";
 import Signup from "./pages/user/Signup";
 import Login from "./pages/user/Login";
 import SchedulesList from "./pages/schedule/SchedulesList";
+import ScheduleDetail from "./pages/schedule/ScheduleDetail";
 
 
 function App() {
@@ -27,7 +28,10 @@ function App() {
                     {/* 회원 */}
                     <Route path="/users" element={<ProtectedRoute isAuthenticated></ProtectedRoute>}></Route>
                     <Route path="/travels" />
-                    <Route path="/schedules" element={<SchedulesList/>}>
+                    <Route path="/schedules"
+                           // element={<SchedulesList/>}
+                    >
+                        <Route path=":scheduleId" element={<ScheduleDetail/>}/>
                     </Route>
                     <Route path="/companions" />
                     <Route path="/inquiry" />

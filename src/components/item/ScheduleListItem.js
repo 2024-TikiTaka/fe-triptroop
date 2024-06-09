@@ -2,7 +2,7 @@ import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 
-function Schedules({schedule : { scheduleId,sido,count,startDate,endDate,title,views,imageUrl}}) {
+function ScheduleListItem({schedule : { scheduleId,sido,count,startDate,endDate,title,views,imageUrl}}) {
 
     const navigate = useNavigate();
     const [search, setSearch] = useState('');
@@ -36,4 +36,4 @@ function Schedules({schedule : { scheduleId,sido,count,startDate,endDate,title,v
 
 }
 
-export default Schedules;
+export default ScheduleListItem;
