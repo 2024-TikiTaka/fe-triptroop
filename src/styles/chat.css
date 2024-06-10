@@ -15,7 +15,7 @@
     border: 1px solid #ddd;
     background-color: white;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* 그림자 */
-    border-radius: 20px; /* 모서리를 둥글게 설정 */
+    border-radius: 10px; /* 모서리를 둥글게 설정 */
     position: relative; /* 닫기 버튼 위치 설정을 위해 position 추가 */
 }
 
@@ -34,7 +34,7 @@
 }
 
 /* 닫기 버튼 */
-.close-button {
+.chat-box .close-button {
     background: none;
     border: none;
     font-size: 24px;
@@ -45,7 +45,7 @@
     z-index: 1100; /* 닫기 버튼을 다른 요소보다 위로 설정 */
 }
 
-.close-button:hover {
+.chat-box .close-button:hover {
     color: #000; /* 마우스를 올렸을 때 색상 변경 */
 }
 
@@ -54,14 +54,14 @@
     font-family: Arial, sans-serif;
 }
 
-.modal-body {
+.chat-box .modal-body {
     flex-grow: 1;
     padding: 10px; /* 모달 바디의 여백 설정 */
     overflow-y: auto; /* 내용이 넘칠 경우 스크롤 가능하게 설정 */
 }
 
-.modal-footer {
-    padding: 0; /* 모달 푸터의 여백 설정 제거 */
+.chat-box .modal-footer {
+    padding-bottom: .5rem;
     border-top: none; /* 푸터 상단의 경계선 제거 */
     display: flex;
     justify-content: center;
@@ -69,7 +69,7 @@
     width: 100%;
 }
 
-.modal-footer button {
+.chat-box .modal-footer button {
     flex-grow: 1;
     margin: 0 5px; /* 버튼 간의 간격 조정 */
     padding: 10px; /* 버튼의 클릭 가능한 영역 넓히기 */
