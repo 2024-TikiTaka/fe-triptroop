@@ -1,17 +1,20 @@
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, Form, } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { callLoginAPI } from "../../apis/UserAPICalls";
-
-import CustomInput from "../custom/CustomInput";
+import { useState } from "react";
 
 function LoginForm() {
-
     const dispatch = useDispatch();
-    const [ form, setForm ] = useState({
-        email: "",
-        password: ""
-    });
+    const [ form, setForm ] = useState();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onClickLoginHandler();
+    };
+
+    const onClickLoginHandler = () => {
+        dispatch(callLoginAPI({ loginRequest: form }));
+    };
 
     const onChangeHandler = e => {
         setForm({
@@ -19,42 +22,45 @@ function LoginForm() {
             [e.target.name]: e.target.value,
         });
     };
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    };
-
-    const onClickLoginHandler = () => {
-        dispatch(callLoginAPI({ loginRequest: form }));
-    };
 
     return (
         <>
-            <h2 className="fs-1 fw-bold text-center mb-5">로그인</h2>
+            <Form onSubmit={handleSubmit} className="mt-4 text-start">
 
-            <Form onSubmit={handleSubmit}>
-                <CustomInput
-                    label="이메일"
-                    id="email"
-                    onChangeHandler={onChangeHandler}
-                    // message={!emailValid ? "Email already in use" : "사용가능한 이메일 입니다."}
-                    // isInvalid={!emailValid}
-                    // isValid={emailValid}
-                />
-                <CustomInput
-                    type="password"
-                    label="비밀번호"
-                    id="password"
-                    onChangeHandler={onChangeHandler}
-                    // message={!emailValid ? "Email already in use" : "사용가능한 이메일 입니다."}
-                    // isInvalid={!emailValid}
-                    // isValid={emailValid}
-                />
+                <Form.Group className="mb-3" controlId="email">
+                    <Form.Label>이메일</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="email"
+                        size="lg"
+                        className="fs-6"
+                        onChange={onChangeHandler}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="password">
+                    <Form.Label>비밀번호</Form.Label>
+                    <Form.Control
+                        type="password"
+                        name="password"
+                        size="lg"
+                        className="fs-6"
+                        onChange={onChangeHandler}
+                    />
+                </Form.Group>
+
+                {/* 비밀번호 찾기 */}
+                {/* <div className="mb-3 d-sm-flex justify-content-between"> */}
+                {/*     <Link to={"/find"}>비밀번호 찾기</Link> */}
+                {/* </div> */}
 
                 <Button
-                    type={"submit"}
+                    type="submit"
                     size="lg"
-                    className="fs-6"
-                    onClick={onClickLoginHandler}>로그인</Button>
+                    className="fs-6 w-100 mb-0  blue-800"
+                    onClick={onClickLoginHandler}
+                >
+                    로그인
+                </Button>
             </Form>
         </>
     );

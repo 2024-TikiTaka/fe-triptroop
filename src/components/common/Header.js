@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Chat, Person, } from "react-bootstrap-icons";
-import { Button, Card, Container, Dropdown, Form, Image, Nav, Navbar, NavDropdown, NavItem, } from "react-bootstrap";
+import { Button, Container, Dropdown, Image, Nav, Navbar } from "react-bootstrap";
 
 import { isLogin } from "../../utils/TokenUtils";
+import { reset } from "../../modules/UserModules";
 import { callLogoutAPI } from "../../apis/UserAPICalls";
 
 import ChatBox from "../box/ChatBox";
@@ -12,7 +13,7 @@ import ChatBox from "../box/ChatBox";
 const CustomNavLink = ({ to, children }) => (
     <NavLink
         to={to}
-        className={({ isActive }) => isActive ? "nav-link px-2 fs-5 active" : "nav-link px-2 fs-5"}>
+        className={({ isActive }) => isActive ? "px-2 fs-5 active" : "px-2 fs-5"}>
         {children}
     </NavLink>
 );
@@ -22,7 +23,15 @@ function Header() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const { success } = useSelector(state => state.userReducer);
     const [ showChat, setShowChat ] = useState(false);
+
+    useEffect(() => {
+        if (success === true) {
+            navigate(`/`);
+            dispatch(reset());
+        }
+    }, [ success ]);
 
     function BeforeLogin() {
         return (
@@ -43,9 +52,6 @@ function Header() {
     }
 
     function AfterLogin() {
-        // const handleChatShow = () => setShowChat(true);
-        // const handleChatClose = () => setShowChat(false);
-
         return (
             <>
                 {/* Chat */}
@@ -96,7 +102,7 @@ function Header() {
 
     return (
         <header className="header">
-            <Navbar expand="xl">
+            <Navbar expand="md">
                 <Container fluid>
                     {/* Logo */}
                     <Navbar.Brand
