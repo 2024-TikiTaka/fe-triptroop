@@ -11,13 +11,13 @@ const GET_TRAVEL = 'travel/GET_TRAVEL';
 /* 액션 함수 */
 export const { travel: { getTravels, getTravel } } = createActions({
     [GET_TRAVELS]: result => ({ travels: result.data.result }),
-    [GET_TRAVEL]: result => ({ travel: result.data.result, images: result.data.result.images  })
+    [GET_TRAVEL]: result => ({ travel: result.data.result })
 });
 
 /* 리듀서 함수 */
 const travelReducer = handleActions({
-    [GET_TRAVELS]: (state, { payload }) => ({ ...state, travels: payload.travels }),
-    [GET_TRAVEL]: (state, { payload }) => ({ ...state, travel: payload.travel, images: payload.images  })
+    [GET_TRAVELS]: (state, { payload }) => payload,
+    [GET_TRAVEL]: (state, { payload }) => payload
 }, initialState);
 
 export default travelReducer;

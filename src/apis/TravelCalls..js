@@ -18,16 +18,17 @@ export const callTravelListAPI = ({ currentPage = 1}) => {
 
 export const callTravelDetailAPI = ({ travelId }) => {
     return async (dispatch, getState) => {
-        console.log('travelId' ,travelId)
-        const result = await request('GET', `/api/v1/travels/${travelId}`);
-        console.log('callTravelDetailAPI result : ', result);
 
-        if (result?.status === 200) {
-            dispatch(getTravel(result));
-        } else {
-            toast.error("error")
+            const result = await request('GET', `/api/v1/travels/${travelId}`);
+            console.log('callTravelDetailAPI result : ', result);
+
+            if (result?.status === 200) {
+                dispatch(getTravel(result));
+            } else {
+                toast.error("error")
+            }
         }
-    }
+
 }
 
 

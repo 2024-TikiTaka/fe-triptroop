@@ -20,7 +20,7 @@ function App() {
                     <Route path="/signup" element={<ProtectedRoute loginCheck={false}> <Signup /> </ProtectedRoute>} />
                     <Route path="/login" element={<ProtectedRoute loginCheck={false}> <Login /></ProtectedRoute>} />
                     <Route path="/travels" element={<ProtectedRoute loginCheck={false} element={<TravelMain />}> <TravelMain /></ProtectedRoute>} />
-                    <Route path="/travel/:travelId" element={<ProtectedRoute loginCheck={false}> <TravelDetail /></ProtectedRoute>} />
+                    <Route path="/travels/:travelId" element={<ProtectedRoute loginCheck={false}> <TravelDetail /></ProtectedRoute>} />
                     <Route path="/schedules" />
                     <Route path="/companions" />
                     <Route path="/inquiries" />

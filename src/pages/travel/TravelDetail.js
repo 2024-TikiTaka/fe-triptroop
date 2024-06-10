@@ -7,19 +7,19 @@ import TravelItem from "../../components/item/TravelItem";
 function TravelDetail() {
     const dispatch = useDispatch();
     const { travelId } = useParams();
-    const { travel, images} = useSelector(state => state.travelReducer.travel);
+    const { travel} = useSelector(state => state.travelReducer);
 
     useEffect(() => {
         dispatch(callTravelDetailAPI({ travelId }));
     }, [dispatch, travelId]);
 
-    console.log(travel, images);  // travel 객체 출력
+    console.log(travel);  // travel 객체 출력
 
     return (
         <>
             {travel && (
                 <div className="detail-div">
-                    <TravelItem travel={travel} images={images} />
+                    <TravelItem travel={travel} />
                 </div>
             )}
         </>
