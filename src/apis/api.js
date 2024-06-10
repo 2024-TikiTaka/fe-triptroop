@@ -16,7 +16,9 @@ export const request = async (method, url, headers, data) => {
         url: `${DEFAULT_URL}${url}`,
         headers,
         data,
-    }).catch(error => console.log(error));
+    }).catch(error => {
+        return error.response;
+    });
 };
 
 /* 인증 요청 */
@@ -60,7 +62,7 @@ authRequest.interceptors.response.use(
 
 /* refresh token 전달하여 토큰 재발급 요청하는 api */
 export async function postRefreshToken() {
-    return await request('POST', '/api/v1/refresh-token', {
+    return await request('POST', '/api/v1/token/issue', {
         'Refresh-Token': getRefreshTokenHeader(),
     });
 }
