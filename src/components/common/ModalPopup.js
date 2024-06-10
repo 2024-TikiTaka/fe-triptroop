@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Container } from 'react-bootstrap';
 
 
 /**
@@ -11,16 +11,18 @@ import { Modal, Button } from 'react-bootstrap';
  *
  * <button onClick={onShow}>모달 열기\</button>
  *
- * <ModalForm show={showModal} onHide={onHide} title={"모달 제목에 들어갈 내용"}>
+ * <ModalPopup show={showModal} onHide={onHide} title={"모달 제목에 들어갈 내용"}>
  *    모달 컨텐츠에 표시될 내용
- * </ModalForm>
+ * </ModalPopup>
  *  */
-const Modal = ({ show, onHide, title, ...props }) => {
+const ModalPopup = ({ show, onHide, title, ...props }) => {
 
     return (
         <Modal
             {...props}
-            show={show} onHide={onHide}>
+            show={show}
+            onHide={onHide}
+            centered>
             <Modal.Header closeButton>
                 <Modal.Title>{title}</Modal.Title>
             </Modal.Header>
@@ -28,13 +30,11 @@ const Modal = ({ show, onHide, title, ...props }) => {
                 {props.children}
             </Modal.Body>
             <Modal.Footer>
-                <div>
-                    <Button variant="secondary" size={"sm"} onClick={onHide}>취소</Button>
-                    <Button variant="primary" onClick={onHide}>확인</Button>
-                </div>
+                <Button variant="secondary" onClick={onHide} className={"px-3"}>취소</Button>
+                <Button variant="primary" onClick={onHide} className={"px-4"}>확인</Button>
             </Modal.Footer>
         </Modal>
     );
 };
 
-export default Modal;
+export default ModalPopup;
