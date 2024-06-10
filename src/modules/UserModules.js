@@ -6,26 +6,25 @@ const initialState = {};
 /* 액션 타입 */
 const RESET = 'user/RESET';
 const SUCCESS = 'user/SUCCESS';
-const GET_CURRENT_USER = 'user/me/GET_USER_INFO';
-const GET_CURRENT_PROFILE = 'user/me/GET_PROFILE_INFO';
-
+const GET_USER = 'user/me/GET_USER';
+const GET_USER_PROFILE = 'user/me/GET_MY_PROFILE';
 
 /* 액션 함수 */
 export const {
-    user: { reset, success, getCurrentUser, getCurrentProfile },
+    user: { reset, success, getUserInfo, getProfileInfo },
 } = createActions({
     [RESET]: () => {},
     [SUCCESS]: () => ({ success: true }),
-    [GET_CURRENT_USER]: (result) => ({ currentUserInfo: result.data }),
-    [GET_CURRENT_PROFILE]: (result) => ({ currentUserProfileInfo: result.data })
+    [GET_USER]: (result) => ({ userInfo: result.data }),
+    [GET_USER_PROFILE]: (result) => ({ profileInfo: result.data })
 });
 
 /* 리듀서 함수 */
 const userReducer = handleActions({
         [RESET]: () => initialState,
         [SUCCESS]: (state, { payload }) => payload,
-        [GET_CURRENT_USER]: () => (state, { payload }) => payload,
-        [GET_CURRENT_PROFILE]: () => (state, { payload }) => payload,
+        [GET_USER]: () => (state, { payload }) => payload,
+        [GET_USER_PROFILE]: () => (state, { ...payload }) => payload,
     }, initialState
 );
 

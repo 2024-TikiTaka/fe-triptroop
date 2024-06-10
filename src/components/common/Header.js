@@ -3,12 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Chat, Person, } from "react-bootstrap-icons";
 import { Button, Container, Dropdown, Image, Nav, Navbar } from "react-bootstrap";
-
-import { isLogin } from "../../utils/TokenUtils";
 import { reset } from "../../modules/UserModules";
-import { callLogoutAPI } from "../../apis/UserAPICalls";
-
+import { callLogoutAPI, callProfileInfoAPI } from "../../apis/UserAPICalls";
+import { isLogin } from "../../utils/TokenUtils";
 import ChatBox from "../box/ChatBox";
+import HeaderAvatar from "./HeaderAvatar";
 
 const CustomNavLink = ({ to, children }) => (
     <NavLink
@@ -23,15 +22,19 @@ function Header() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const { success } = useSelector(state => state.userReducer);
+    const { success, profileInfo } = useSelector(state => state.userReducer);
     const [ showChat, setShowChat ] = useState(false);
 
     useEffect(() => {
+
         if (success === true) {
             navigate(`/`);
             dispatch(reset());
         }
-    }, [ success ]);
+
+        dispatch(callProfileInfoAPI());
+
+    }, [ dispatch, navigate, success ]);
 
     function BeforeLogin() {
         return (
@@ -73,17 +76,7 @@ function Header() {
                             <Dropdown.Menu className="dropdown-animation dropdown-menu-end shadow" aria-labelledby="profileDropdown">
                                 <Dropdown.Item as="div" className="px-3 mb-3">
                                     <div className="d-flex align-items-center">
-                                        <div className="avatar me-3">
-                                            <Image
-                                                src="https://zrr.kr/Aat7" roundedCircle
-                                                className="avatar mx-auto d-block mb-3"
-                                                style={{ width: "50px", height: "50px" }}
-                                            />
-                                        </div>
-                                        <div>
-                                            <a className="h6 mt-2 mt-sm-0">Lori Ferguson</a>
-                                            <p className="small m-0">example@gmail.com</p>
-                                        </div>
+                                        <HeaderAvatar />
                                     </div>
                                 </Dropdown.Item>
                                 <Dropdown.Divider />
@@ -138,7 +131,7 @@ function Header() {
                         </Nav>
                     </Navbar.Collapse>
 
-                    {!isLogin() ? BeforeLogin() : AfterLogin()}
+                    {!isLogin() ? BeforeLogin() : AfterLogin({ profileInfo })}
 
                     <ChatBox show={showChat} handleClose={() => setShowChat(false)} />
                 </Container>

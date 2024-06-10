@@ -1,7 +1,6 @@
-import { toast } from 'react-toastify';
 import { authRequest, request } from './api';
-import { getCurrentProfile, getCurrentUser, success } from '../modules/UserModules';
 import { removeToken, saveToken } from '../utils/TokenUtils';
+import { getUserInfo, getProfileInfo, success } from "../modules/UserModules";
 
 
 export const callCheckEmailAPI = ({ email }) => {
@@ -65,20 +64,21 @@ export const callUserInfoAPI = () => {
     return async (dispatch, getState) => {
         const result = await authRequest.get(`/api/v1/users/me`);
 
+        console.log(result);
         if (result.status === 200) {
-            dispatch(getCurrentUser(result));
+            dispatch(getUserInfo(result));
         }
     };
 };
 
 
-export const callUserProfileAPI = () => {
+export const callProfileInfoAPI = () => {
 
     return async (dispatch, getState) => {
         const result = await authRequest.get(`/api/v1/users/me/profile`);
 
         if (result?.status === 200) {
-            dispatch(getCurrentProfile(result));
+            dispatch(getProfileInfo(result));
         }
     };
 };
