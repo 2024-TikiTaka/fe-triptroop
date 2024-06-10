@@ -1,24 +1,15 @@
 function TravelItem({ travel }) {
-const {travels,images} = travel;
+    const { travels, images } = travel;
     return (
         <>
-
             <div className="img-div">
                 {images && images.length > 0 ? images.map(image => (
-                    <img key={images.imageId} src={images.fullPath} alt={travels.title}/>
+                    <img key={image.imageId} src={image.fullPath} alt={travels.title}/>
                 )) : <div>No Image</div>}
             </div>
             <div className="profile-div">
-                {/*<ul className="profile-list">*/}
-                {/*    <li>*/}
-                {/*        {travels.profileImage}*/}
-                {/*    </li>*/}
-                {/*    <li>*/}
-                {/*        {travels.nickname}*/}
-                {/*    </li>*/}
-                {/*</ul>*/}
                 <p>{travels.nickname}</p>
-                <p>{travels.profileImage}</p>
+                <p><img src={travels.profileImage} alt={`${travels.nickname}'s profile`} /></p>
             </div>
 
             <div className="detail">
@@ -33,7 +24,6 @@ const {travels,images} = travel;
             </div>
         </>
     );
-
 }
 
 export default TravelItem;

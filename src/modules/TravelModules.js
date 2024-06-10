@@ -14,10 +14,11 @@ export const { travel: { getTravels, getTravel } } = createActions({
     [GET_TRAVEL]: result => ({ travel: result.data.result })
 });
 
+
 /* 리듀서 함수 */
 const travelReducer = handleActions({
-    [GET_TRAVELS]: (state, { payload }) => payload,
-    [GET_TRAVEL]: (state, { payload }) => payload
+    [GET_TRAVELS] : (state, { payload }) => payload,
+    [GET_TRAVEL] : (state, { payload }) => payload
 }, initialState);
 
 export default travelReducer;
