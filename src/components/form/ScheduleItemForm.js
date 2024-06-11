@@ -41,11 +41,11 @@ function ScheduleItemForm() {
 
 
                 const searchPlaces = () => {
-                    console.log(keyword);
+                    console.log(!keyword);
                     if (!searchPlaces.executed) {
                         searchPlaces.executed = true;
                     }
-                    if (!keyword || !keyword.trim()) { // keyword 상태가 비어있는지 확인
+                    if (!keyword) { // keyword 상태가 비어있는지 확인
                         alert('키워드를 입력해주세요!');
                         return;
                     }
@@ -205,7 +205,7 @@ function ScheduleItemForm() {
                 document.getElementById('searchBtn').addEventListener('click', searchPlaces);
             });
         };
-    }, [keyword, markers]);
+    }, [ markers]);
 
 
     const onChangeHandler = e => {
@@ -244,7 +244,7 @@ function ScheduleItemForm() {
                         id="keyword"
                         placeholder="키워드를 입력하세요"
                         value={keyword}
-                        onChange={(e) => setKeyword(e.target.value)}
+                        onChange={(e) => {setKeyword(e.target.value);console.log(keyword);console.log(!keyword)}}
                     />
                     <Button
                         id="searchBtn"
