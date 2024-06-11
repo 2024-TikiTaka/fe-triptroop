@@ -13,7 +13,7 @@ function ScheduleItem({schedule}) {
             <div className="img-div">
                 {/*<img src={information.scheduleImage} alt={information.title}/>*/}
                 <img src={information.scheduleImage} alt={information.title}></img>
-
+jjj
             </div>
             <div className="info-div">
                 <p>제목: {information.title}</p>
