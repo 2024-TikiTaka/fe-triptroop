@@ -5,6 +5,7 @@ import {callCommentAPI, callTravelDetailAPI} from "../../apis/TravelCalls.";
 import TravelItem from "../../components/item/TravelItem";
 import TravelCommentList from "../../components/list/TravelCommentList";
 import PagingBar from "../../components/pagination/PagingBar";
+import KakaoMap from "./KakaoMap";
 
 function TravelDetail() {
     const dispatch = useDispatch();
@@ -41,6 +42,13 @@ function TravelDetail() {
                     <TravelItem travel={travel} />
                 </div>
             )}
+            {
+                <div>
+                    <KakaoMap />
+                </div>
+            }
+
+
             {comment && (
                 <div>
                     <TravelCommentList data={comment.data} />
