@@ -3,21 +3,13 @@ import { Container } from 'react-bootstrap';
 
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
-import { ToastContainer } from "react-toastify";
+import React from "react";
 
 function Layout() {
     return (
         <>
             <Header />
             <main className="main">
-                <ToastContainer
-                    position="top-right"
-                    autoClose={1800}
-                    limit={1}
-                    closeOnClick={true}
-                    pauseOnFocusLoss={false}
-                />
-
                 <Container className="py-5">
                     <Outlet />
                 </Container>

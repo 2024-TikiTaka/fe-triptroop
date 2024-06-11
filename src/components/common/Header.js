@@ -9,6 +9,7 @@ import { reset } from "../../modules/UserModules";
 import { callLogoutAPI } from "../../apis/UserAPICalls";
 
 import ChatBox from "../box/ChatBox";
+import { DefaultProfile } from "./Icons";
 
 const CustomNavLink = ({ to, children }) => (
     <NavLink
@@ -23,7 +24,7 @@ function Header() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const { success } = useSelector(state => state.userReducer);
+    const { success, profileInfo } = useSelector(state => state.userReducer);
     const [ showChat, setShowChat ] = useState(false);
 
     useEffect(() => {
@@ -31,6 +32,11 @@ function Header() {
             navigate(`/`);
             dispatch(reset());
         }
+
+        // if (isLogin()) {
+        //     dispatch(callProfileInfoAPI({ profileInfo }));
+        // }
+
     }, [ success ]);
 
     function BeforeLogin() {
@@ -61,7 +67,6 @@ function Header() {
                             <Chat size="20px" /> 채팅
                         </Button>
 
-
                         {/* Profile */}
                         <Dropdown className="ms-3">
                             <Dropdown.Toggle
@@ -71,17 +76,16 @@ function Header() {
                                 <Person size="22px" />
                             </Dropdown.Toggle>
                             <Dropdown.Menu className="dropdown-animation dropdown-menu-end shadow" aria-labelledby="profileDropdown">
-                                <Dropdown.Item as="div" className="px-3 mb-3">
+                                <Dropdown.Item as="div">
                                     <div className="d-flex align-items-center">
-                                        <div className="avatar me-3">
-                                            <Image
-                                                src="https://zrr.kr/Aat7" roundedCircle
+                                        <div className=" me-3 rounded overflow-hidden">
+                                            <DefaultProfile
                                                 className="avatar mx-auto d-block mb-3"
-                                                style={{ width: "50px", height: "50px" }}
+                                                width="50px" height="50px"
                                             />
                                         </div>
                                         <div>
-                                            <a className="h6 mt-2 mt-sm-0">Lori Ferguson</a>
+                                            <p className="small m-0">닉네임</p>
                                             <p className="small m-0">example@gmail.com</p>
                                         </div>
                                     </div>

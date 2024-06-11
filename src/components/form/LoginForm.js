@@ -4,29 +4,29 @@ import { callLoginAPI } from "../../apis/UserAPICalls";
 import { useState } from "react";
 
 function LoginForm() {
+
     const dispatch = useDispatch();
-    const [ form, setForm ] = useState();
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onClickLoginHandler();
-    };
-
-    const onClickLoginHandler = () => {
-        dispatch(callLoginAPI({ loginRequest: form }));
-    };
+    const [ form, setForm ] = useState({});
+    const [ formChanged, setFormChanged ] = useState(false);
 
     const onChangeHandler = e => {
+        setFormChanged(true);
         setForm({
             ...form,
             [e.target.name]: e.target.value,
         });
     };
 
+    const onClickLoginHandler = () => {
+        if (formChanged) {
+            dispatch(callLoginAPI({ loginRequest: form }));
+            setFormChanged(false);
+        }
+    };
+
     return (
         <>
-            <Form onSubmit={handleSubmit} className="mt-4 text-start">
-
+            <Form className="mt-4 text-start">
                 <Form.Group className="mb-3" controlId="email">
                     <Form.Label>이메일</Form.Label>
                     <Form.Control
@@ -54,7 +54,6 @@ function LoginForm() {
                 {/* </div> */}
 
                 <Button
-                    type="submit"
                     size="lg"
                     className="fs-6 w-100 mb-0  blue-800"
                     onClick={onClickLoginHandler}

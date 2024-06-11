@@ -1,6 +1,5 @@
 import {authRequest,request} from "./api";
 import {getSchedules,getSchedule,success} from "../modules/ScheduleModules";
-import axios from "axios";
 
 export const callScheduleListAPI = ({currentPage = 1}) => {
 
