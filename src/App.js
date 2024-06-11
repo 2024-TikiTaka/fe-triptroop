@@ -12,10 +12,11 @@ import AdminMain from "./pages/admin/AdminMain";
 import ErrorPage from "./pages/error/Error";
 import Signup from "./pages/user/Signup";
 import Login from "./pages/user/Login";
-import ScheduleDetail from "./pages/schedule/ScheduleDetail";
 import UserInfo from "./pages/user/UserInfo";
 import KakaoAuth from "./pages/user/KakaoAuth";
-
+import SchedulesList from "./pages/schedule/SchedulesList";
+import ScheduleDetail from "./pages/schedule/ScheduleDetail";
+import ScheduleForm from "./components/form/ScheduleForm";
 
 function App() {
     return (
@@ -36,11 +37,9 @@ function App() {
                         <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} />
                     </Route>
                     <Route path="/travels" />
-                    <Route path="/schedules"
-                        // element={<SchedulesList/>}
-                    >
-                        <Route path=":scheduleId" element={<ScheduleDetail />} />
-                    </Route>
+                    <Route path="/schedules" element={<SchedulesList />} />
+                    <Route path="/schedules/:scheduleId" element={<ScheduleDetail/>} />
+                    <Route path="/schedules/regist" element={<ScheduleForm/>} />
                     <Route path="/companions" />
                     <Route path="/inquiry" />
                     {/* 오류 */}

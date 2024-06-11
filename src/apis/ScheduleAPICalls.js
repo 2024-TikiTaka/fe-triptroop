@@ -63,5 +63,35 @@ export const callScheduleDetailAPI = ({scheduleId}) => {
     }
 };
 
+//일정 등록
+// export const callScheduleRegistAPI = ({registRequest}) => {
+//
+//     return async (dispatch, getState) => {
+//         const result = await authRequest.post(`/api/v1/schedules/regist`,registRequest);
+//         console.log('callScheduleRegistAPI result : ' , result);
+//
+//         if (result.status === 201) {
+//             dispatch(success());
+//         }
+//
+//     };
+// };
+
+export const callScheduleRegistAPI = ({ registRequest }) => {
+    return async (dispatch, getState) => {
+        const result = await authRequest.post(`/api/v1/schedules/regist`, registRequest);
+        console.log('callScheduleRegistAPI result : ', result);
+
+        if (result.status === 201) {
+            dispatch(success());
+        }
+
+    }
+};
+
+
+
+
+
 
 
