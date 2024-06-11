@@ -34,7 +34,9 @@ function Header() {
             dispatch(reset());
         }
 
-        dispatch(callProfileAPI());
+        if (isLogin()) {
+            dispatch(callProfileAPI());
+        }
     }, [ success ]);
 
     function BeforeLogin() {

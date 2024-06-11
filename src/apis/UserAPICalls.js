@@ -73,7 +73,6 @@ export const callUserInfoAPI = () => {
     return async (dispatch, getState) => {
         const result = await authRequest.get(`/api/v1/users/me`,);
 
-        console.log(result);
         if (result.status === 200) {
             dispatch(getUserInfo(result));
         }
@@ -83,10 +82,12 @@ export const callUserInfoAPI = () => {
 
 export const callProfileAPI = () => {
     return async (dispatch, getState) => {
-        const result = await authRequest.get(`/api/v1/users/me/profile`);
-
-        if (result.status === 200) {
-            dispatch(getProfile(result.data.result));
-        }
+        return await authRequest.get(`/api/v1/users/me/profile`)
+                                .then(response => {
+                                    dispatch(getProfile(response.data.result));
+                                })
+                                .catch(error => {
+                                    console.log(error);
+                                });
     };
 };
