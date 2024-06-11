@@ -1,3 +1,5 @@
+
+import "//dapi.kakao.com/v2/maps/sdk.js?appkey=c832e4b58ba1a41ba6ae7d694e9e37e5&libraries=services,clusterer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'react-toastify/dist/ReactToastify.css';
 import "./styles/common.css";
@@ -8,7 +10,7 @@ import ProtectedRoute from "./components/router/ProtectedRoute";
 import Layout from "./layouts/Layout";
 import AdminLayout from "./layouts/AdminLayout";
 import Main from "./pages/main/Main";
-import AdminMain from "./pages/admin/main/AdminMain";
+import AdminMain from "./pages/admin/AdminMain";
 import ErrorPage from "./pages/error/Error";
 import Signup from "./pages/user/Signup";
 import Login from "./pages/user/Login";
@@ -63,7 +65,7 @@ function App() {
                     {/* 오류 */}
                     <Route path="*" element={<ErrorPage/>}/>
                 </Route>
-                {/* 관리자 */}
+                {/* 관리자 */}`
                 <Route path="/admin" element={<ProtectedRoute isAuthenticated={true} isAdminOnly={true}> <AdminLayout/>
                 </ProtectedRoute>}>
                     <Route index element={<AdminMain/>}/>

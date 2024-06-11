@@ -1,7 +1,7 @@
 
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {callTravelListAPI} from "../../apis/TravelCalls.";
+import {callTravelListAPI} from "../../apis/TravelCallsAPI";
 import TravelList from "../../components/list/TravelList";
 import PagingBar from "../../components/pagination/PagingBar";
 import JobPostingsStatus from "./TravelNavber";

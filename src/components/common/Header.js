@@ -8,7 +8,7 @@ import { isLogin } from "../../utils/TokenUtils";
 import { reset } from "../../modules/UserModules";
 import { callLogoutAPI } from "../../apis/UserAPICalls";
 
-import ChatBox from "../box/ChatBox";
+import ChatBox from "../item/ChatBox";
 import { DefaultProfile } from "./Icons";
 
 const CustomNavLink = ({ to, children }) => (
