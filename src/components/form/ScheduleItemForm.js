@@ -39,8 +39,13 @@ function ScheduleItemForm() {
                 const ps = new window.kakao.maps.services.Places();
                 const infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
 
+
                 const searchPlaces = () => {
-                    if (!keyword.trim()) {
+                    console.log(keyword);
+                    if (!searchPlaces.executed) {
+                        searchPlaces.executed = true;
+                    }
+                    if (!keyword || !keyword.trim()) { // keyword 상태가 비어있는지 확인
                         alert('키워드를 입력해주세요!');
                         return;
                     }
@@ -48,19 +53,28 @@ function ScheduleItemForm() {
                     ps.keywordSearch(keyword, placesSearchCB);
                 };
 
+
                 const placesSearchCB = (data, status, pagination) => {
-                    removeAllChildNodes(document.getElementById('placesList'));
-                    removeAllChildNodes(document.getElementById('pagination'));
+                    const placesList = document.getElementById('placesList');
+                    const paginationEl = document.getElementById('pagination');
+
+                    removeAllChildNodes(placesList);
+                    removeAllChildNodes(paginationEl);
 
                     if (status === window.kakao.maps.services.Status.OK) {
                         displayPlaces(data);
                         displayPagination(pagination);
                     } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
-                        alert('검색 결과가 존재하지 않습니다.');
+                        // 검색 결과가 없을 때 사용자에게 메시지를 보여줍니다.
+                        placesList.innerHTML = '<p>검색 결과가 없습니다.</p>';
                     } else if (status === window.kakao.maps.services.Status.ERROR) {
-                        alert('검색 결과 중 오류가 발생했습니다.');
+                        // 오류가 발생했을 때 사용자에게 메시지를 보여줍니다.
+                        placesList.innerHTML = '<p>검색 중 오류가 발생했습니다.</p>';
                     }
                 };
+                const searchBtn = document.getElementById('searchBtn');
+                searchBtn.removeEventListener('click', searchPlaces); // 기존에 등록된 이벤트 핸들러 제거
+                searchBtn.addEventListener('click', searchPlaces); // 새로운 이벤트 핸들러 등록
 
                 const displayPlaces = (places) => {
                     const listEl = document.getElementById('placesList');
@@ -193,6 +207,7 @@ function ScheduleItemForm() {
         };
     }, [keyword, markers]);
 
+
     const onChangeHandler = e => {
         setForm({
             ...form,
@@ -220,6 +235,7 @@ function ScheduleItemForm() {
             <h2 className="fs-1 fw-bold text-center mb-5">일정 계획 등록</h2>
 
             <Form>
+
                 <div ref={mapContainer} style={{ width: "500px", height: "400px" }}></div>
                 <div id="clickLatlng" style={{ padding: "10px 0" }}></div>
                 <Form.Group className="mb-3">
