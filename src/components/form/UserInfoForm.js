@@ -3,26 +3,10 @@ import { useDispatch } from 'react-redux';
 import { Button, Card, Col, Form, Image, OverlayTrigger, Tooltip, } from "react-bootstrap";
 import { callUserInfoAPI } from "../../apis/UserAPICalls";
 
-import CustomInput from "../custom/CustomInput";
-
-function LoginForm() {
+function UserInfoForm() {
 
     const dispatch = useDispatch();
-    const [ form, setForm ] = useState();
 
-    const onChangeHandler = e => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value,
-        });
-    };
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    };
-
-    const onClickLoginHandler = () => {
-        dispatch(callUserInfoAPI());
-    };
 
     return (
         <>
@@ -35,11 +19,6 @@ function LoginForm() {
                 <Card.Body>
                     <Form className="row g-3">
                         <Col xs={12}>
-                            <CustomInput
-                                label="이메일"
-                                id="email"
-                                onChangeHandler={onChangeHandler}
-                            />
 
                             <Form.Label>
                                 프로필 이미지
@@ -160,4 +139,4 @@ function LoginForm() {
 }
 
 
-export default LoginForm;
+export default UserInfoForm;
