@@ -1,20 +1,36 @@
 import '../../styles/user.css';
-import React from "react";
-import { Button, Col } from "react-bootstrap";
+
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { reset } from "../../modules/UserModules";
+import { Col } from "react-bootstrap";
 
 import LoginForm from "../../components/form/LoginForm";
 import CustomDivider from "../../components/custom/CustomDivider";
-import { Kakao, Naver } from "../../components/common/Icons";
-import { Link } from "react-router-dom";
+import KakaoButton from "../../components/button/KakaoButton";
+import NaverButton from "../../components/button/NaverButton";
 
 function Login() {
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { success } = useSelector(state => state.userReducer);
+
+    useEffect(() => {
+        if (success === true) {
+            navigate('/');
+            dispatch(reset());
+        }
+    }, [ success ]);
 
     return (
         <>
             <div className="auth-content">
-                <Col lg={6} md={10} className="m-auto p-4 p-sm-7">
-                    <h2 className="fs-2 mb-5 text-center">로그인</h2>
+                <h2 className="fs-2 mb-5 text-center">로그인</h2>
 
+                <Col xl={4} lg={6} md={8} sm={10} xs={11} className="m-auto">
+                    {/* LoginForm */}
                     <LoginForm />
 
                     <div className="mt-3 text-center">
@@ -26,14 +42,8 @@ function Login() {
 
                     {/* Social Login Button */}
                     <div className="d-grid gap-3">
-                        <Button variant="light" className="mb-0 ">
-                            <Kakao width={"18"} />
-                            <span className="ms-2">카카오 아이디로 로그인</span>
-                        </Button>
-                        <Button variant="light" className="mb-0 ">
-                            <Naver width={"18"} />
-                            <span className="ms-2">네이버 아이디로 로그인</span>
-                        </Button>
+                        <KakaoButton />
+                        <NaverButton />
                     </div>
                 </Col>
             </div>
