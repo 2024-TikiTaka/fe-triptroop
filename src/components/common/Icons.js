@@ -68,4 +68,13 @@ export const Kakao = ({ width, height, fill = "#000" }) => (
     </svg>
 );
 
-
+export const DefaultProfile = ({ width, height }) => (
+    <svg xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 258.8 258.8"
+         width={width} height={height}
+    >
+        <path fill="#ededed" d="M0 0h258.8v258.8H0z" />
+        <circle cx="129.4" cy="87.5" r="51.7" fill="#c9c7c7" />
+        <path d="M129.4 165.1a93.7 93.7 0 0 0-93.7 93.7h187.4c0-51.8-42-93.7-93.7-93.7z" fill="#c9c7c7" />
+    </svg>
+);
