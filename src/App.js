@@ -31,7 +31,7 @@ function App() {
                     <Route path="/travels" />
                     <Route path="/schedules" element={<SchedulesList />} />
                     <Route path="/schedules/:scheduleId" element={<ScheduleDetail/>} />
-                    <Route path="/schedules/regist" element={<ProtectedRoute isAuthenticated><ScheduleForm/></ProtectedRoute>} />
+                    <Route path="/schedules/regist" element={<ScheduleForm/>} />
                     <Route path="/companions" />
                     <Route path="/inquiry" />
                     {/* 오류 */}

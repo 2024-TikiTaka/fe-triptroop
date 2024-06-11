@@ -2,7 +2,6 @@
 import {useRef, useState} from "react";
 import {useDispatch} from "react-redux";
 import {Badge, Button, Col, Form, Row} from "react-bootstrap";
-import CustomInput from "../custom/CustomInput";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {ko} from "date-fns/locale/ko";
@@ -19,14 +18,13 @@ function ScheduleForm() {
         endDate: endDate
     });
     const imageInput = useRef();
-    // const [image, setImage] = useState(null);
 
     const dispatch = useDispatch();
 
     const onChangeHandler = e => {
         setForm({
             ...form,
-            [e.target.name]: e.target.value,
+            [e.target.id]: e.target.value,
         });
     };
     const handleEndDateChange = (date) => {
@@ -74,24 +72,22 @@ function ScheduleForm() {
                     <Form.Label>썸네일을 등록해주세요.</Form.Label>
                     <Form.Control    type="file"
                                      accept="image/*" ref={imageInput}/>
-                </Form.Group>
-                <CustomInput
+                <Form.Control
                     label="제목"
                     type="text"
                     id="title"
                     placeholder="제목 입력"
-                    onChangeHandler={onChangeHandler}
-                    required
+                    onChange={onChangeHandler}
                 />
-                <CustomInput
+                <Form.Control
                     type="text"
                     label="인원"
                     id="count"
                     placeholder="인원 수를 입력하세요"
-                    onChangeHandler={onChangeHandler}
-
-                    required
+                    onChange={onChangeHandler}
                 />
+                </Form.Group>
+
                 <Form.Select aria-label="Default select example" required=""
                              className="fs-6 form-select form-select-lg"
                              id="areaId"
