@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Chat, Person, } from "react-bootstrap-icons";
-import { Badge, Button, Container, Dropdown, Image, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Dropdown, Image, Nav, Navbar } from "react-bootstrap";
 
 import { isLogin } from "../../utils/TokenUtils";
 import { reset } from "../../modules/UserModules";
-import { callLogoutAPI, callProfileAPI, callProfileInfoAPI } from "../../apis/UserAPICalls";
+import { callLogoutAPI, callProfileAPI } from "../../apis/UserAPICalls";
 
-import ChatBox from "../box/ChatBox";
+import ChatBox from "../item/ChatBox";
 import { DefaultProfile } from "./Icons";
 
 const CustomNavLink = ({ to, children }) => (
