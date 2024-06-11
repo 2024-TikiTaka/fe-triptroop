@@ -68,7 +68,7 @@ function ScheduleForm() {
             <h2 className="fs-1 fw-bold text-center mb-5">일정 등록</h2>
 
             <Form>
-                <Form.Group id="image" className="mb-3">
+                <Form.Group id="schedule" className="mb-3">
                     <Form.Label>썸네일을 등록해주세요.</Form.Label>
                     <Form.Control    type="file"
                                      accept="image/*" ref={imageInput}/>

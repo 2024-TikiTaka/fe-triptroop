@@ -17,6 +17,7 @@ import KakaoAuth from "./pages/user/KakaoAuth";
 import SchedulesList from "./pages/schedule/SchedulesList";
 import ScheduleDetail from "./pages/schedule/ScheduleDetail";
 import ScheduleForm from "./components/form/ScheduleForm";
+import ScheduleRegist from "./pages/schedule/ScheduleRegist";
 
 function App() {
     return (
@@ -39,7 +40,7 @@ function App() {
                     <Route path="/travels" />
                     <Route path="/schedules" element={<SchedulesList />} />
                     <Route path="/schedules/:scheduleId" element={<ScheduleDetail/>} />
-                    <Route path="/schedules/regist" element={<ScheduleForm/>} />
+                    <Route path="/schedules/regist" element={<ScheduleRegist/>} />
                     <Route path="/companions" />
                     <Route path="/inquiry" />
                     {/* 오류 */}
