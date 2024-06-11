@@ -1,6 +1,7 @@
 import { authRequest, request } from './api';
 import { removeToken, saveToken } from '../utils/TokenUtils';
-import { getUserInfo, getProfileInfo, success } from "../modules/UserModules";
+import { getProfileInfo, getUserInfo, success } from "../modules/UserModules";
+import { toast } from "react-toastify";
 
 
 export const callCheckEmailAPI = ({ email }) => {
@@ -42,6 +43,14 @@ export const callLoginAPI = ({ loginRequest }) => {
         if (result?.status === 200) {
             saveToken(result.headers);
             dispatch(success());
+        } else if (result?.status === 401) {
+            toast.error("로그인 정보가 일치하지 않습니다.", {
+                toastId: 'loginFailed'
+            });
+        } else {
+            toast.error("오류가 발생하였습니다.", {
+                toastId: 'loginFailed'
+            });
         }
     };
 };
@@ -62,7 +71,7 @@ export const callLogoutAPI = () => {
 export const callUserInfoAPI = () => {
 
     return async (dispatch, getState) => {
-        const result = await authRequest.get(`/api/v1/users/me`);
+        const result = await authRequest.get(`/api/v1/users/me`,);
 
         console.log(result);
         if (result.status === 200) {
@@ -72,13 +81,12 @@ export const callUserInfoAPI = () => {
 };
 
 
-export const callProfileInfoAPI = () => {
-
+export const callProfileInfoAPI = ({ profileInfo }) => {
     return async (dispatch, getState) => {
         const result = await authRequest.get(`/api/v1/users/me/profile`);
 
         if (result?.status === 200) {
-            dispatch(getProfileInfo(result));
+            dispatch(getProfileInfo(result?.data?.profile));
         }
     };
 };

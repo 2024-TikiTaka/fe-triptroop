@@ -15,8 +15,8 @@ export const {
 } = createActions({
     [RESET]: () => {},
     [SUCCESS]: () => ({ success: true }),
-    [GET_USER]: (result) => ({ userInfo: result.data }),
-    [GET_USER_PROFILE]: (result) => ({ profileInfo: result.data })
+    [GET_USER]: (result) => ({ userInfo: result.data.result }),
+    [GET_USER_PROFILE]: (result) => ({ profileInfo: result.data.result })
 });
 
 /* 리듀서 함수 */
@@ -24,7 +24,7 @@ const userReducer = handleActions({
         [RESET]: () => initialState,
         [SUCCESS]: (state, { payload }) => payload,
         [GET_USER]: () => (state, { payload }) => payload,
-        [GET_USER_PROFILE]: () => (state, { ...payload }) => payload,
+        [GET_USER_PROFILE]: () => (state, { payload }) => payload,
     }, initialState
 );
 
