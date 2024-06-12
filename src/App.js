@@ -29,6 +29,7 @@ import AdminInquiryRegist from "./pages/admin/inquiry/AdminInquiryRegist";
 import AdminCategories from "./pages/admin/category/AdminCategories";
 import AdminCategoryRegist from "./pages/admin/category/AdminCategoryRegist";
 import AdminCategoryModify from "./pages/admin/category/AdminCategoryModify";
+import TravelRegist from "./pages/travel/TravelRegist";
 
 function App() {
     return (
@@ -51,15 +52,14 @@ function App() {
                         <Route path="settings"
                                element={<ProtectedRoute isAuthenticated={true}> <UserInfo/> </ProtectedRoute>}/>
                     </Route>
-                    <Route path="/travels" element={<ProtectedRoute loginCheck={false} element={<TravelMain/>}>
-                        <TravelMain/></ProtectedRoute>}/>
-                    <Route path="/travel/:travelId"
-                           element={<ProtectedRoute loginCheck={false}> <TravelDetail/></ProtectedRoute>}/>
-                    <Route path="/schedules" element={<SchedulesList/>}/>
-                    <Route path="/schedules/:scheduleId" element={<ScheduleDetail/>}/>
-                    <Route path="/schedules/regist" element={<ScheduleRegist/>}/>
-                    <Route path="/companions"/>
-                    <Route path="/inquiry"/>
+                    <Route path="/travels" element={ <TravelMain />} />
+                    <Route path="/travel/:travelId" element={ <TravelDetail />} />
+                    <Route path="/travels/regist" element={ <TravelRegist />} />
+                    <Route path="/schedules" element={<SchedulesList />} />
+                    <Route path="/schedules/:scheduleId" element={<ScheduleDetail/>} />
+                    <Route path="/schedules/regist" element={<ScheduleRegist/>} />
+                    <Route path="/companions" />
+                    <Route path="/inquiry" />
                     {/* 오류 */}
                     <Route path="*" element={<ErrorPage/>}/>
                 </Route>
