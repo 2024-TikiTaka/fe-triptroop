@@ -19,7 +19,7 @@ export const request = async (method, url, headers, data) => {
 };
 
 /* 인증 요청 */
-export const authRequest = isLogin() && axios.create({
+export const authRequest = axios.create({
     baseURL: DEFAULT_URL,
 });
 

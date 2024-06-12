@@ -49,27 +49,14 @@ function App() {
                     <Route path="/mypage" index element={<ProtectedRoute isAuthenticated={true}> <MyPageHome /></ProtectedRoute>}>
                         {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
                     </Route>
-                    {/* 설정 */}
+                    {/* 설정/ */}
                     <Route path="/settings" index element={<ProtectedRoute isAuthenticated={true}> <MyUserInfo /></ProtectedRoute>}>
                         {/* <Route index element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
                         {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
-                    <Route path="/signup"
-                           element={<ProtectedRoute isAuthenticated={false}> <Signup/> </ProtectedRoute>}/>
-                    <Route path="/login" element={<ProtectedRoute isAuthenticated={false}> <Login/></ProtectedRoute>}/>
-                    <Route path="/login/oauth2/code/kakao"
-                           element={<ProtectedRoute isAuthenticated={false}> <KakaoAuth/></ProtectedRoute>}/>
-
-                    {/* 회원 */}
-                    <Route path="/mypage">
-                        <Route index element={<ProtectedRoute isAuthenticated={true}> <UserInfo/> </ProtectedRoute>}/>
-                        <Route path="settings"
-                               element={<ProtectedRoute isAuthenticated={true}> <UserInfo/> </ProtectedRoute>}/>
                     </Route>
                     {/* 여행지 소개 */}
-                    <Route path="/travels" element={<ProtectedRoute loginCheck={false} element={<TravelMain/>}>
-                        <TravelMain/></ProtectedRoute>}/>
-                    <Route path="/travel/:travelId"
-                           element={<ProtectedRoute loginCheck={false}> <TravelDetail/></ProtectedRoute>}/>
+                    <Route path="/travels" element={<TravelMain/>}/>
+                    <Route path="/travel/:travelId" element={<TravelDetail/>}/>
                     {/* 일정 */}
                     <Route path="/schedules" element={<SchedulesList/>}/>
                     <Route path="/schedules/:scheduleId" element={<ScheduleDetail/>}/>
@@ -83,8 +70,7 @@ function App() {
                 </Route>
 
                 {/* 관리자 ============================= */}
-                <Route path="/admin" element={<ProtectedRoute isAuthenticated={true} isAdminOnly={true}> <AdminLayout/>
-                </ProtectedRoute>}>
+                <Route path="/admin" element={<ProtectedRoute isAuthenticated={true} isAdminOnly={true}> <AdminLayout/> </ProtectedRoute>}>
                     <Route index element={<AdminMain/>}/>
                     <Route path="users">
                         <Route index element={<AdminUsers/>}/>

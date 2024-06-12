@@ -6,13 +6,7 @@ import { BoxArrowRight, Key, PencilSquare, Person, Sliders, Trash } from "react-
 import { callProfileAPI } from "../../apis/UserAPICalls";
 import { isLogin } from "../../utils/TokenUtils";
 import { DefaultProfile } from "./Icons";
-import * as PropTypes from "prop-types";
 
-function Keygen(props) {
-    return null;
-}
-
-Keygen.propTypes = { className: PropTypes.string };
 function SettingsNavbar() {
 
     const navigate = useNavigate();
