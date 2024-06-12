@@ -1,25 +1,32 @@
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {callCommentAPI, callTravelDetailAPI} from "../../apis/TravelCalls.";
+import {callCommentAPI, callPlaceAPI, callTravelDetailAPI} from "../../apis/TravelCalls.";
 import TravelItem from "../../components/item/TravelItem";
 import TravelCommentList from "../../components/list/TravelCommentList";
 import PagingBar from "../../components/pagination/PagingBar";
-import KakaoMap from "./KakaoMap";
+import KakaoMapTest from "./kakaoMapTest";
+
 
 function TravelDetail() {
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
     const [isTravelDetailLoaded, setIsTravelDetailLoaded] = useState(false); // 추가된 상태
     const { travelId } = useParams();
-    const { travel } = useSelector(state => state.travelReducer);
+    const { travel ,place} = useSelector(state => state.travelReducer);
     const { comment } = useSelector(state => state.commentReducer);
+    // const { place } = useSelector(state => state.placeReducer);
 
     useEffect(() => {
+        console.log('useParams로부터 가져온 travelId:', travelId); // travelId 확인
+
         const fetchTravelDetail = async () => {
-            await dispatch(callTravelDetailAPI({ travelId }));
-            setIsTravelDetailLoaded(true); // 상태 업데이트
-            dispatch(callCommentAPI({ travelId, currentPage }));
+            if (travelId) {
+                await dispatch(callTravelDetailAPI({ travelId }));
+                setIsTravelDetailLoaded(true); // 상태 업데이트
+            } else {
+                console.error('travelId가 유효하지 않습니다.');
+            }
         };
 
         fetchTravelDetail();
@@ -31,9 +38,9 @@ function TravelDetail() {
         }
     }, [dispatch, travelId, currentPage, isTravelDetailLoaded]);
 
-
-        console.log("디테일Travel Details:", travel);
-        console.log("디테일Travel Comments:", comment);
+    console.log("디테일Travel Details:", travel);
+    console.log("디테일Travel Comments:", comment);
+    console.log("디테일 place" , place);
 
     return (
         <>
@@ -42,13 +49,11 @@ function TravelDetail() {
                     <TravelItem travel={travel} />
                 </div>
             )}
-            {
+            {travel && travel.place && (
                 <div>
-                    <KakaoMap />
+                    <KakaoMapTest place={travel.place} />
                 </div>
-            }
-
-
+            )}
             {comment && (
                 <div>
                     <TravelCommentList data={comment.data} />

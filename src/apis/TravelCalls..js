@@ -2,6 +2,7 @@ import {request} from "./api";
 import {getTravels, getTravel} from "../modules/TravelModules";
 import {toast} from "react-toastify";
 import {getComments} from "../modules/TravelCommentModules";
+import {getPlace} from "../modules/PlaceModules";
 
 
 export const callTravelListAPI = ({ currentPage = 1}) => {
@@ -39,6 +40,19 @@ export const callCommentAPI = ({ travelId ,currentPage = 1}) => {
 
         if (result?.status === 200) {
             dispatch(getComments(result));
+        } else {
+            toast.error("error");
+        }
+    }
+}
+
+export const callPlaceAPI = ({ travelId }) => {
+    return async (dispatch, getState) => {
+        const result = await request('GET', `/api/v1/travels/${travelId}/place`);
+        console.log('API 호출 callPlaceAPI : ' , result);
+
+        if (result?.status === 200) {
+            dispatch(getPlace(result));
         } else {
             toast.error("error");
         }

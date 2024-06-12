@@ -7,6 +7,7 @@ const KakaoMap = () => {
     useEffect(() => {
         const fetchLocations = async () => {
             try {
+
                 const response = await fetch('/api/v1/travel/{travelId}/place');
                 const data = await response.json();
                 setLocations(data);
@@ -82,4 +83,4 @@ const KakaoMap = () => {
     );
 };
 
-export default KakaoMap;
+// export default KakaoMap;
