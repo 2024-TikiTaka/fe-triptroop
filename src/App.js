@@ -16,6 +16,7 @@ import KakaoAuth from "./pages/user/KakaoAuth";
 import SchedulesList from "./pages/schedule/SchedulesList";
 import ScheduleDetail from "./pages/schedule/ScheduleDetail";
 import ScheduleForm from "./components/form/ScheduleForm";
+import ScheduleRegist from "./pages/schedule/ScheduleRegist";
 import UserSettings from "./pages/settings/UserSettings";
 import MyPageHome from "./pages/mypage/MyPage";
 
@@ -40,14 +41,13 @@ function App() {
                     </Route>
                     <Route path="/travels" />
                     <Route path="/schedules" element={<SchedulesList />} />
-                    <Route path="/schedules/:scheduleId" element={<ScheduleDetail />} />
-                    <Route path="/schedules/regist" element={<ScheduleForm />} />
+                    <Route path="/schedules/:scheduleId" element={<ScheduleDetail/>} />
+                    <Route path="/schedules/regist" element={<ScheduleRegist/>} />
                     <Route path="/companions" />
                     <Route path="/inquiry" />
                     {/* 오류 */}
                     <Route path="*" element={<ErrorPage />} />
                 </Route>
-
                 {/* 관리자 */}
                 <Route path="/admin" element={<ProtectedRoute isAuthenticated={true} isAdminOnly={true}> <AdminLayout /> </ProtectedRoute>}>
                     <Route index element={<AdminMain />} />

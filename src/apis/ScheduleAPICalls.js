@@ -1,5 +1,6 @@
 import {authRequest,request} from "./api";
 import {getSchedules,getSchedule,success} from "../modules/ScheduleModules";
+import axios from "axios";
 
 export const callScheduleListAPI = ({currentPage = 1}) => {
 
@@ -76,10 +77,10 @@ export const callScheduleDetailAPI = ({scheduleId}) => {
 //
 //     };
 // };
-
+// 일정 등록
 export const callScheduleRegistAPI = ({ registRequest }) => {
     return async (dispatch, getState) => {
-        const result = await authRequest.post(`/api/v1/schedules/regist`, registRequest);
+        const result = await authRequest.post('/api/v1/schedules/regist', registRequest);
         console.log('callScheduleRegistAPI result : ', result);
 
         if (result.status === 201) {
@@ -88,6 +89,19 @@ export const callScheduleRegistAPI = ({ registRequest }) => {
 
     }
 };
+
+// 일정 계획 등록
+// export const callScheduleItemRegistAPI = ({ scheduleId,registRequest }) => {
+//     return async (dispatch, getState) => {
+//         const result = await authRequest.post(`/api/v1/schedules/regist`, registRequest);
+//         console.log('callScheduleItemRegistAPI result : ', result);
+//
+//         if (result.status === 201) {
+//             dispatch(success());
+//         }
+//
+//     }
+// };
 
 
 
