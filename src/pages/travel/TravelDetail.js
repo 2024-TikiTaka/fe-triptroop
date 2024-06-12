@@ -1,7 +1,7 @@
-import {useParams} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
-import {callCommentAPI, callPlaceAPI, callTravelDetailAPI} from "../../apis/TravelCallsAPI";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { callCommentAPI, callTravelDetailAPI } from "../../apis/TravelAPICalls";
 import TravelItem from "../../components/item/TravelItem";
 import TravelCommentList from "../../components/list/TravelCommentList";
 import PagingBar from "../../components/pagination/PagingBar";
@@ -10,10 +10,10 @@ import KakaoMapTest from "./kakaoMapTest";
 
 function TravelDetail() {
     const dispatch = useDispatch();
-    const [currentPage, setCurrentPage] = useState(1);
-    const [isTravelDetailLoaded, setIsTravelDetailLoaded] = useState(false); // 추가된 상태
+    const [ currentPage, setCurrentPage ] = useState(1);
+    const [ isTravelDetailLoaded, setIsTravelDetailLoaded ] = useState(false); // 추가된 상태
     const { travelId } = useParams();
-    const { travel ,place} = useSelector(state => state.travelReducer);
+    const { travel, place } = useSelector(state => state.travelReducer);
     const { comment } = useSelector(state => state.commentReducer);
     // const { place } = useSelector(state => state.placeReducer);
 
@@ -30,17 +30,17 @@ function TravelDetail() {
         };
 
         fetchTravelDetail();
-    }, [dispatch, travelId]);
+    }, [ dispatch, travelId ]);
 
     useEffect(() => {
         if (isTravelDetailLoaded) {
             dispatch(callCommentAPI({ travelId, currentPage }));
         }
-    }, [dispatch, travelId, currentPage, isTravelDetailLoaded]);
+    }, [ dispatch, travelId, currentPage, isTravelDetailLoaded ]);
 
     console.log("디테일Travel Details:", travel);
     console.log("디테일Travel Comments:", comment);
-    console.log("디테일 place" , place);
+    console.log("디테일 place", place);
 
     return (
         <>

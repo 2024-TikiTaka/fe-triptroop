@@ -31,6 +31,7 @@ import AdminCategoryRegist from "./pages/admin/category/AdminCategoryRegist";
 import AdminCategoryModify from "./pages/admin/category/AdminCategoryModify";
 import MyPageLayout from "./layouts/MyPageLayout";
 import MyPageMain from "./pages/mypage/MyPageMain";
+import TravelRegist from "./pages/travel/TravelRegist";
 
 function App() {
     return (
@@ -47,12 +48,13 @@ function App() {
                     {/* 회원 ============================= */}
 
                     {/* 여행지 소개 */}
-                    <Route path="/travels" element={<TravelMain />} />
-                    <Route path="/travel/:travelId" element={<TravelDetail />} />
+                    <Route path="/travels" element={ <TravelMain />} />
+                    <Route path="/travel/:travelId" element={ <TravelDetail />} />
+                    <Route path="/travels/regist" element={ <TravelRegist />} />
                     {/* 일정 */}
                     <Route path="/schedules" element={<SchedulesList />} />
-                    <Route path="/schedules/:scheduleId" element={<ScheduleDetail />} />
-                    <Route path="/schedules/regist" element={<ScheduleRegist />} />
+                    <Route path="/schedules/:scheduleId" element={<ScheduleDetail/>} />
+                    <Route path="/schedules/regist" element={<ScheduleRegist/>} />
                     {/* 동행 */}
                     <Route path="/companions" />
                     {/* 문의 */}
@@ -70,9 +72,6 @@ function App() {
                 {/* 설정/ */}
                 <Route path="/settings" element={<ProtectedRoute isAuthenticated={true}> <MyPageLayout /></ProtectedRoute>}>
                     <Route index element={<MyUserInfo />} />
-
-                    {/* <Route index element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
-                    {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
                 </Route>
 
                 {/* 관리자 ============================= */}
