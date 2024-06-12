@@ -22,7 +22,6 @@ function ScheduleRegist () {
                 <button onClick={ () => navigate(-1) }>돌아가기</button>
             </div>
             <ScheduleForm/>
-            <ScheduleItemForm/>
         </>
     );
 }
