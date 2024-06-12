@@ -1,6 +1,6 @@
 import { authRequest, request } from './api';
 import { removeToken, saveToken } from '../utils/TokenUtils';
-import { getProfile, getUserInfo, success } from "../modules/UserModules";
+import { getProfile, getUser, success } from "../modules/UserModules";
 import { toast } from "react-toastify";
 
 
@@ -74,7 +74,7 @@ export const callUserInfoAPI = () => {
         const result = await authRequest.get(`/api/v1/users/me`,);
 
         if (result.status === 200) {
-            dispatch(getUserInfo(result));
+            dispatch(getUser(result.data.result));
         }
     };
 };

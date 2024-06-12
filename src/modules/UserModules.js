@@ -11,12 +11,12 @@ const GET_PROFILE = 'user/GET_PROFILE';
 
 /* 액션 함수 */
 export const {
-    user: { reset, success, getUserInfo, getProfile },
+    user: { reset, success, getUser, getProfile },
 } = createActions({
     [RESET]: () => {},
     [SUCCESS]: () => ({ success: true }),
-    [GET_USER]: result => ({ user: result }),
-    [GET_PROFILE]: result => ({ profileInfo: result })
+    [GET_USER]: result => ({ userInfo: result }),
+    [GET_PROFILE]: result => ({ profileInfo: result }),
 });
 
 /* 리듀서 함수 */
