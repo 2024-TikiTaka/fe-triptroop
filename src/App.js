@@ -15,10 +15,11 @@ import Login from "./pages/user/Login";
 import KakaoAuth from "./pages/user/KakaoAuth";
 import SchedulesList from "./pages/schedule/SchedulesList";
 import ScheduleDetail from "./pages/schedule/ScheduleDetail";
-import ScheduleForm from "./components/form/ScheduleForm";
 import ScheduleRegist from "./pages/schedule/ScheduleRegist";
 import UserSettings from "./pages/settings/UserSettings";
 import MyPageHome from "./pages/mypage/MyPage";
+import TravelMain from "./pages/travel/TravelMain";
+import TravelDetail from "./pages/travel/TravelDetail";
 
 function App() {
     return (
@@ -39,7 +40,8 @@ function App() {
                         {/* <Route index element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
                         {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
                     </Route>
-                    <Route path="/travels" />
+                    <Route path="/travels" element={<ProtectedRoute loginCheck={false} element={<TravelMain />}> <TravelMain /></ProtectedRoute>} />
+                    <Route path="/travel/:travelId" element={<ProtectedRoute loginCheck={false}> <TravelDetail /></ProtectedRoute>} />
                     <Route path="/schedules" element={<SchedulesList />} />
                     <Route path="/schedules/:scheduleId" element={<ScheduleDetail/>} />
                     <Route path="/schedules/regist" element={<ScheduleRegist/>} />
