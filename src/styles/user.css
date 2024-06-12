@@ -1,1 +1,7 @@
 .auth-content {margin-top: 4rem; margin-bottom: 3rem}
+.settings-nav .card-header {display: flex; align-items: center; justify-content: center; text-align: center}
+.settings-nav .profile-image {overflow: hidden; width: 12rem; height: 12rem; border-radius: 12rem; background: #fff }
+.settings-nav .profile-image .avatar {width: 100%; height: 100%; }
+.settings-nav .nickname { font-weight: bold; font-size: 1.2rem; margin: 1rem auto .5rem}
+.settings-nav .nav-list .list-group-item {background-color: inherit; color: inherit}
+.settings-nav .nav-list .list-group-item.active {border-color: #dee2e6}

@@ -6,7 +6,7 @@ import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
 import '../../styles/chat.css';
 import ChatList from '../list/ChatList';
-import ChatRoom from '../item/ChatRoom';
+import ChatRoom from './ChatRoom';
 import NoticeList from '../list/NoticeList';
 import FriendList from '../list/FriendList';
 
