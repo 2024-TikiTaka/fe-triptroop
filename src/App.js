@@ -12,12 +12,13 @@ import AdminMain from "./pages/admin/AdminMain";
 import ErrorPage from "./pages/error/Error";
 import Signup from "./pages/user/Signup";
 import Login from "./pages/user/Login";
-import UserInfo from "./pages/user/UserInfo";
 import KakaoAuth from "./pages/user/KakaoAuth";
 import SchedulesList from "./pages/schedule/SchedulesList";
 import ScheduleDetail from "./pages/schedule/ScheduleDetail";
 import ScheduleForm from "./components/form/ScheduleForm";
 import ScheduleRegist from "./pages/schedule/ScheduleRegist";
+import UserSettings from "./pages/settings/UserSettings";
+import MyPageHome from "./pages/mypage/MyPage";
 
 function App() {
     return (
@@ -29,13 +30,14 @@ function App() {
                     <Route path="/signup" element={<ProtectedRoute isAuthenticated={false}> <Signup /> </ProtectedRoute>} />
                     <Route path="/login" element={<ProtectedRoute isAuthenticated={false}> <Login /></ProtectedRoute>} />
                     <Route path="/login/oauth2/code/kakao" element={<ProtectedRoute isAuthenticated={false}> <KakaoAuth /></ProtectedRoute>} />
-
-                    {/* 회원 */}
-                    {/* settings/ */}
-                    {/* mypage : 프로필 정보.. 내가 작성한 목록 등? */}
-                    <Route path="/mypage">
-                        <Route index element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} />
-                        <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} />
+                    {/* 마이페이지 */}
+                    <Route path="/mypage" index element={<ProtectedRoute isAuthenticated={true}> <MyPageHome /></ProtectedRoute>}>
+                        {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
+                    </Route>
+                    {/* 설정/ */}
+                    <Route path="/settings" index element={<ProtectedRoute isAuthenticated={true}> <UserSettings /></ProtectedRoute>}>
+                        {/* <Route index element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
+                        {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
                     </Route>
                     <Route path="/travels" />
                     <Route path="/schedules" element={<SchedulesList />} />
