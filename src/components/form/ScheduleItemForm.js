@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useState, useEffect } from "react";
 import { Badge, Form } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -14,35 +14,36 @@ function ScheduleItemForm({ onFormChange }) {
         planDate: new Date(),
         content: ''
     });
-    useEffect(() => {
-        onFormChange(form); // 폼 변경 시 콜백 호출
-    }, [form, onFormChange]);
-
 
     const onChangeHandler = e => {
-        const { id, value } = e.target;
-        setForm(prevState => ({
-            ...prevState,
-            [id]: value,
-        }));
+        const updatedForm = {
+            ...form,
+            [e.target.id]: e.target.value,
+        };
+        setForm(updatedForm);
     };
 
-
     const handlePlanDateChange = (date) => {
-        setForm({
+        const updatedForm = {
             ...form,
             planDate: date
-        });
+        };
+        setForm(updatedForm);
     };
 
     const handlePlaceSelect = (place) => {
-        setForm({
+        const updatedForm = {
             ...form,
             address: place.address,
             name: place.name
-        });
+        };
+        setForm(updatedForm);
     };
 
+    // useEffect to call onFormChange when form changes
+    useEffect(() => {
+        onFormChange(form);
+    }, [form, onFormChange]); // Ensure onFormChange is stable or use a callback version
 
     return (
         <>
@@ -96,7 +97,9 @@ function ScheduleItemForm({ onFormChange }) {
                         dateFormat="yyyy.MM.dd (eee)"
                         showPopperArrow={false}
                         minDate={new Date()}
-                        customInput={<Form.Control as="textarea" rows={1} style={{ width: "250px" }} />}
+                        customInput={
+                            <Form.Control as="textarea" rows={1} style={{ width: "250px" }} />
+                        }
                     />
                 </div>
             </Form.Group>
