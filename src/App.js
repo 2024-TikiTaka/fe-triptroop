@@ -1,7 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'react-toastify/dist/ReactToastify.css';
 import "./styles/common.css";
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/router/ProtectedRoute";
 
@@ -20,6 +19,7 @@ import UserSettings from "./pages/settings/UserSettings";
 import MyPageHome from "./pages/mypage/MyPage";
 import TravelMain from "./pages/travel/TravelMain";
 import TravelDetail from "./pages/travel/TravelDetail";
+import TravelRegist from "./pages/travel/TravelRegist";
 
 function App() {
     return (
@@ -40,8 +40,9 @@ function App() {
                         {/* <Route index element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
                         {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
                     </Route>
-                    <Route path="/travels" element={<ProtectedRoute loginCheck={false} element={<TravelMain />}> <TravelMain /></ProtectedRoute>} />
-                    <Route path="/travel/:travelId" element={<ProtectedRoute loginCheck={false}> <TravelDetail /></ProtectedRoute>} />
+                    <Route path="/travels" element={ <TravelMain />} />
+                    <Route path="/travel/:travelId" element={ <TravelDetail />} />
+                    <Route path="/travels/regist" element={ <TravelRegist />} />
                     <Route path="/schedules" element={<SchedulesList />} />
                     <Route path="/schedules/:scheduleId" element={<ScheduleDetail/>} />
                     <Route path="/schedules/regist" element={<ScheduleRegist/>} />
