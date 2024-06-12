@@ -6,7 +6,7 @@ import { Button, Container, Dropdown, Image, Nav, Navbar } from "react-bootstrap
 
 import { isLogin } from "../../utils/TokenUtils";
 import { reset } from "../../modules/UserModules";
-import { callLogoutAPI } from "../../apis/UserAPICalls";
+import { callLogoutAPI, callProfileAPI } from "../../apis/UserAPICalls";
 
 import ChatBox from "../item/ChatBox";
 import { DefaultProfile } from "./Icons";
@@ -28,15 +28,15 @@ function Header() {
     const [ showChat, setShowChat ] = useState(false);
 
     useEffect(() => {
+
         if (success === true) {
             navigate(`/`);
             dispatch(reset());
         }
 
-        // if (isLogin()) {
-        //     dispatch(callProfileInfoAPI({ profileInfo }));
-        // }
-
+        if (isLogin()) {
+            dispatch(callProfileAPI());
+        }
     }, [ success ]);
 
     function BeforeLogin() {
@@ -58,6 +58,7 @@ function Header() {
     }
 
     function AfterLogin() {
+
         return (
             <>
                 {/* Chat */}
@@ -78,15 +79,23 @@ function Header() {
                             <Dropdown.Menu className="dropdown-animation dropdown-menu-end shadow" aria-labelledby="profileDropdown">
                                 <Dropdown.Item as="div">
                                     <div className="d-flex align-items-center">
-                                        <div className=" me-3 rounded overflow-hidden">
-                                            <DefaultProfile
-                                                className="avatar mx-auto d-block mb-3"
-                                                width="50px" height="50px"
-                                            />
+                                        <div className=" me-3 rounded-5 overflow-hidden border">
+                                            {!profileInfo ?
+                                                (
+                                                    <DefaultProfile
+                                                        className="avatar mx-auto d-block mb-3"
+                                                        width="50px" height="50px"
+                                                    />)
+                                                : <Image src={profileInfo?.profile.profileImage} width="50px" height="50px" />
+                                            }
                                         </div>
                                         <div>
-                                            <p className="small m-0">닉네임</p>
-                                            <p className="small m-0">example@gmail.com</p>
+                                            <p className="small m-0">
+                                                {profileInfo?.profile.nickname}
+                                            </p>
+                                            <p className="small m-0">
+
+                                            </p>
                                         </div>
                                     </div>
                                 </Dropdown.Item>
@@ -112,6 +121,7 @@ function Header() {
                     <Navbar.Brand
                         className="logo-btn"
                         onClick={() => navigate(`/`)}>
+
                         <Image src="/images/logo.svg" fluid />
                     </Navbar.Brand>
 
@@ -142,7 +152,7 @@ function Header() {
                         </Nav>
                     </Navbar.Collapse>
 
-                    {!isLogin() ? BeforeLogin() : AfterLogin()}
+                    {!isLogin() ? <BeforeLogin /> : <AfterLogin />}
 
                     <ChatBox show={showChat} handleClose={() => setShowChat(false)} />
                 </Container>

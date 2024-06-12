@@ -1,10 +1,8 @@
-
-import "//dapi.kakao.com/v2/maps/sdk.js?appkey=c832e4b58ba1a41ba6ae7d694e9e37e5&libraries=services,clusterer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'react-toastify/dist/ReactToastify.css';
 import "./styles/common.css";
 
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/router/ProtectedRoute";
 
 import Layout from "./layouts/Layout";
@@ -14,10 +12,12 @@ import AdminMain from "./pages/admin/AdminMain";
 import ErrorPage from "./pages/error/Error";
 import Signup from "./pages/user/Signup";
 import Login from "./pages/user/Login";
-import UserInfo from "./pages/user/UserInfo";
 import KakaoAuth from "./pages/user/KakaoAuth";
 import SchedulesList from "./pages/schedule/SchedulesList";
 import ScheduleDetail from "./pages/schedule/ScheduleDetail";
+import ScheduleForm from "./components/form/ScheduleForm";
+import MyUserInfo from "./pages/settings/MyUserInfo";
+import MyPageHome from "./pages/mypage/MyPage";
 import ScheduleRegist from "./pages/schedule/ScheduleRegist";
 import TravelMain from "./pages/travel/TravelMain";
 import TravelDetail from "./pages/travel/TravelDetail";
@@ -38,7 +38,21 @@ function App() {
             <Routes>
                 <Route path="/" element={<Layout/>}>
                     <Route index element={<Main/>}/>
-                    {/* 비회원  */}
+
+                    {/* 비회원 ============================= */}
+                    <Route path="/signup" element={<ProtectedRoute isAuthenticated={false}> <Signup /> </ProtectedRoute>} />
+                    <Route path="/login" element={<ProtectedRoute isAuthenticated={false}> <Login /></ProtectedRoute>} />
+                    <Route path="/login/oauth2/code/kakao" element={<ProtectedRoute isAuthenticated={false}> <KakaoAuth /></ProtectedRoute>} />
+
+                    {/* 비회원 ============================= */}
+                    {/* 마이페이지 */}
+                    <Route path="/mypage" index element={<ProtectedRoute isAuthenticated={true}> <MyPageHome /></ProtectedRoute>}>
+                        {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
+                    </Route>
+                    {/* 설정 */}
+                    <Route path="/settings" index element={<ProtectedRoute isAuthenticated={true}> <MyUserInfo /></ProtectedRoute>}>
+                        {/* <Route index element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
+                        {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
                     <Route path="/signup"
                            element={<ProtectedRoute isAuthenticated={false}> <Signup/> </ProtectedRoute>}/>
                     <Route path="/login" element={<ProtectedRoute isAuthenticated={false}> <Login/></ProtectedRoute>}/>
@@ -46,26 +60,29 @@ function App() {
                            element={<ProtectedRoute isAuthenticated={false}> <KakaoAuth/></ProtectedRoute>}/>
 
                     {/* 회원 */}
-                    {/* settings/ */}
-                    {/* mypage : 프로필 정보.. 내가 작성한 목록 등? */}
                     <Route path="/mypage">
                         <Route index element={<ProtectedRoute isAuthenticated={true}> <UserInfo/> </ProtectedRoute>}/>
                         <Route path="settings"
                                element={<ProtectedRoute isAuthenticated={true}> <UserInfo/> </ProtectedRoute>}/>
                     </Route>
+                    {/* 여행지 소개 */}
                     <Route path="/travels" element={<ProtectedRoute loginCheck={false} element={<TravelMain/>}>
                         <TravelMain/></ProtectedRoute>}/>
                     <Route path="/travel/:travelId"
                            element={<ProtectedRoute loginCheck={false}> <TravelDetail/></ProtectedRoute>}/>
+                    {/* 일정 */}
                     <Route path="/schedules" element={<SchedulesList/>}/>
                     <Route path="/schedules/:scheduleId" element={<ScheduleDetail/>}/>
                     <Route path="/schedules/regist" element={<ScheduleRegist/>}/>
+                    {/* 동행 */}
                     <Route path="/companions"/>
+                    {/* 문의 */}
                     <Route path="/inquiry"/>
                     {/* 오류 */}
                     <Route path="*" element={<ErrorPage/>}/>
                 </Route>
-                {/* 관리자 */}`
+
+                {/* 관리자 ============================= */}
                 <Route path="/admin" element={<ProtectedRoute isAuthenticated={true} isAdminOnly={true}> <AdminLayout/>
                 </ProtectedRoute>}>
                     <Route index element={<AdminMain/>}/>
@@ -86,9 +103,6 @@ function App() {
                         <Route path="regist" element={<AdminCategoryRegist/>}/>
                     </Route>
                     <Route path="notices"/>
-
-                    {/* 오류 */}
-                    <Route path="*" element={<ErrorPage/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

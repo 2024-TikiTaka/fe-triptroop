@@ -109,7 +109,7 @@
     text-decoration: none;
     vertical-align: baseline;
     word-break: break-word;
-    transition: ease .5s;
+    /* transition: ease .5s; */
 }
 
 ol, ul, dl { margin: 0; padding: 0; }

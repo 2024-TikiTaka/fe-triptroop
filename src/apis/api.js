@@ -1,9 +1,5 @@
 import axios from 'axios';
-import {
-    getAccessTokenHeader,
-    getRefreshTokenHeader,
-    saveToken,
-} from '../utils/TokenUtils';
+import { getAccessTokenHeader, getRefreshTokenHeader, isLogin, saveToken, } from '../utils/TokenUtils';
 
 const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -23,7 +19,7 @@ export const request = async (method, url, headers, data) => {
 };
 
 /* 인증 요청 */
-export const authRequest = axios.create({
+export const authRequest = isLogin() && axios.create({
     baseURL: DEFAULT_URL,
 });
 
