@@ -16,7 +16,7 @@ import KakaoAuth from "./pages/user/KakaoAuth";
 import SchedulesList from "./pages/schedule/SchedulesList";
 import ScheduleDetail from "./pages/schedule/ScheduleDetail";
 import ScheduleForm from "./components/form/ScheduleForm";
-import UserSettings from "./pages/settings/UserSettings";
+import MyUserInfo from "./pages/settings/MyUserInfo";
 import MyPageHome from "./pages/mypage/MyPage";
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
                         {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
                     </Route>
                     {/* 설정/ */}
-                    <Route path="/settings" index element={<ProtectedRoute isAuthenticated={true}> <UserSettings /></ProtectedRoute>}>
+                    <Route path="/settings" index element={<ProtectedRoute isAuthenticated={true}> <MyUserInfo /></ProtectedRoute>}>
                         {/* <Route index element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
                         {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
                     </Route>

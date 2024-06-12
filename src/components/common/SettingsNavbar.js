@@ -1,13 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
-import { Image } from "react-bootstrap";
+import { Image, Nav } from 'react-bootstrap';
+import { BoxArrowRight, Key, PencilSquare, Person, Sliders, Trash } from "react-bootstrap-icons";
 import { callProfileAPI } from "../../apis/UserAPICalls";
 import { isLogin } from "../../utils/TokenUtils";
 import { DefaultProfile } from "./Icons";
-import { PencilSquare, Sliders } from "react-bootstrap-icons";
+import * as PropTypes from "prop-types";
 
+function Keygen(props) {
+    return null;
+}
+
+Keygen.propTypes = { className: PropTypes.string };
 function SettingsNavbar() {
 
     const navigate = useNavigate();
@@ -39,7 +44,7 @@ function SettingsNavbar() {
                                 </a>
                             </div>
 
-                            <div className="card-header p-3">
+                            <div className="card-header p-3 bg-white">
                                 <div className="text-center">
                                     <div className="avatar avatar-xl mb-2 profile-image">
                                         {!profileInfo ?
@@ -57,33 +62,34 @@ function SettingsNavbar() {
 
                             </div>
 
-                            <div className="card-body ">
-                                <ul className="nav nav-pills-primary-soft flex-column">
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="account-profile.html"><i className="bi bi-person fa-fw me-2"></i>My Profile</a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="account-bookings.html"><i className="bi bi-ticket-perforated fa-fw me-2"></i>My Bookings</a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="account-travelers.html"><i className="bi bi-people fa-fw me-2"></i>Travelers</a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="account-payment-details.html"><i className="bi bi-wallet fa-fw me-2"></i>Payment Details</a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link active" href="account-wishlist.html"><i className="bi bi-heart fa-fw me-2"></i>Wishlist</a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="account-settings.html"><i className="bi bi-gear fa-fw me-2"></i>Settings</a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="account-delete.html"><i className="bi bi-trash fa-fw me-2"></i>Delete Profile</a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link text-danger bg-danger-soft-hover" href="#"><i className="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out</a>
-                                    </li>
-                                </ul>
+                            <div className="card-body bg-white">
+                                <Nav className="nav-pills-primary-soft flex-column text-decoration-none">
+                                    <Nav.Item>
+                                        <Nav.Link className="text-none ">
+                                            <Person className="me-2" />계정
+                                        </Nav.Link>
+                                    </Nav.Item>
+                                    {/* <Nav.Item> */}
+                                    {/*     <Nav.Link> */}
+                                    {/*         <Person className="me-2" />프로필 */}
+                                    {/*     </Nav.Link> */}
+                                    {/* </Nav.Item> */}
+                                    <Nav.Item>
+                                        <Nav.Link>
+                                            <Key className="me-2" />비밀번호
+                                        </Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link>
+                                            <Trash className="me-2" />회원 탈퇴
+                                        </Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link className="">
+                                            <BoxArrowRight className="me-2" />로그아웃
+                                        </Nav.Link>
+                                    </Nav.Item>
+                                </Nav>
                             </div>
                         </div>
                     </div>
