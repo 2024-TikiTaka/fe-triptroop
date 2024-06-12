@@ -1,7 +1,8 @@
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { callCommentAPI, callTravelDetailAPI } from "../../apis/TravelAPICalls";
+import {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+
+import {callCommentAPI, callPlaceAPI, callTravelDetailAPI} from "../../apis/TravelAPICalls";
 import TravelItem from "../../components/item/TravelItem";
 import TravelCommentList from "../../components/list/TravelCommentList";
 import PagingBar from "../../components/pagination/PagingBar";
