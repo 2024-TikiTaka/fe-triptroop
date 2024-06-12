@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { isLogin } from "../../utils/TokenUtils";
 import { success } from "../../modules/UserModules";
-import SettingsContent from "../../components/content/SettingsContent";
+import SettingContent from "../../components/content/SettingContent";
 import UserInfoForm from "../../components/form/UserInfoForm";
 
 import { callUserInfoAPI } from "../../apis/UserAPICalls";
@@ -22,9 +22,9 @@ const UserSettings = () => {
 
     return (
         <>
-            <SettingsContent>
+            <SettingContent>
                 <UserInfoForm userInfo={userInfo} />
-            </SettingsContent>
+            </SettingContent>
         </>
     );
 };

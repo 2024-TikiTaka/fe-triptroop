@@ -7,7 +7,7 @@ import { callProfileAPI } from "../../apis/UserAPICalls";
 
 import MyPageContent from "../../components/content/MyPageContent";
 
-const MyPageHome = () => {
+const MyPageMain = () => {
 
     const dispatch = useDispatch();
     const { profileInfo } = useSelector(state => state.userReducer);
@@ -28,4 +28,4 @@ const MyPageHome = () => {
     );
 };
 
-export default MyPageHome;
+export default MyPageMain;

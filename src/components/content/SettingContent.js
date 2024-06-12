@@ -1,15 +1,15 @@
-import React, { children } from "react";
-import SettingsNavbar from "../common/SettingsNavbar";
+import React from "react";
+import SettingNavbar from "../common/SettingNavbar";
 
-function SettingsContent({ children }) {
+function SettingContent({ children }) {
     return (
         <>
-            <div className="settings-content">
+            <div className="setting-content">
                 <section className="pt-3">
                     <div className="container">
                         <div className="row">
 
-                            <SettingsNavbar />
+                            <SettingNavbar />
 
                             <div className="col-lg-8 col-xl-9">
                                 {children}
@@ -21,4 +21,4 @@ function SettingsContent({ children }) {
         </>
     );
 }
-export default SettingsContent;
+export default SettingContent;

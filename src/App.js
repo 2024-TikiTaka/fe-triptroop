@@ -15,9 +15,7 @@ import Login from "./pages/user/Login";
 import KakaoAuth from "./pages/user/KakaoAuth";
 import SchedulesList from "./pages/schedule/SchedulesList";
 import ScheduleDetail from "./pages/schedule/ScheduleDetail";
-import ScheduleForm from "./components/form/ScheduleForm";
 import MyUserInfo from "./pages/settings/MyUserInfo";
-import MyPageHome from "./pages/mypage/MyPage";
 import ScheduleRegist from "./pages/schedule/ScheduleRegist";
 import TravelMain from "./pages/travel/TravelMain";
 import TravelDetail from "./pages/travel/TravelDetail";
@@ -31,64 +29,72 @@ import AdminInquiryRegist from "./pages/admin/inquiry/AdminInquiryRegist";
 import AdminCategories from "./pages/admin/category/AdminCategories";
 import AdminCategoryRegist from "./pages/admin/category/AdminCategoryRegist";
 import AdminCategoryModify from "./pages/admin/category/AdminCategoryModify";
+import MyPageLayout from "./layouts/MyPageLayout";
+import MyPageMain from "./pages/mypage/MyPageMain";
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Layout/>}>
-                    <Route index element={<Main/>}/>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Main />} />
 
                     {/* 비회원 ============================= */}
                     <Route path="/signup" element={<ProtectedRoute isAuthenticated={false}> <Signup /> </ProtectedRoute>} />
                     <Route path="/login" element={<ProtectedRoute isAuthenticated={false}> <Login /></ProtectedRoute>} />
                     <Route path="/login/oauth2/code/kakao" element={<ProtectedRoute isAuthenticated={false}> <KakaoAuth /></ProtectedRoute>} />
 
-                    {/* 비회원 ============================= */}
-                    {/* 마이페이지 */}
-                    <Route path="/mypage" index element={<ProtectedRoute isAuthenticated={true}> <MyPageHome /></ProtectedRoute>}>
-                        {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
-                    </Route>
-                    {/* 설정/ */}
-                    <Route path="/settings" index element={<ProtectedRoute isAuthenticated={true}> <MyUserInfo /></ProtectedRoute>}>
-                        {/* <Route index element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
-                        {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
-                    </Route>
+                    {/* 회원 ============================= */}
+
                     {/* 여행지 소개 */}
-                    <Route path="/travels" element={<TravelMain/>}/>
-                    <Route path="/travel/:travelId" element={<TravelDetail/>}/>
+                    <Route path="/travels" element={<TravelMain />} />
+                    <Route path="/travel/:travelId" element={<TravelDetail />} />
                     {/* 일정 */}
-                    <Route path="/schedules" element={<SchedulesList/>}/>
-                    <Route path="/schedules/:scheduleId" element={<ScheduleDetail/>}/>
-                    <Route path="/schedules/regist" element={<ScheduleRegist/>}/>
+                    <Route path="/schedules" element={<SchedulesList />} />
+                    <Route path="/schedules/:scheduleId" element={<ScheduleDetail />} />
+                    <Route path="/schedules/regist" element={<ScheduleRegist />} />
                     {/* 동행 */}
-                    <Route path="/companions"/>
+                    <Route path="/companions" />
                     {/* 문의 */}
-                    <Route path="/inquiry"/>
+                    <Route path="/inquiry" />
                     {/* 오류 */}
-                    <Route path="*" element={<ErrorPage/>}/>
+                    <Route path="*" element={<ErrorPage />} />
+                </Route>
+
+                {/* 마이페이지 */}
+                <Route path="/mypage" element={<ProtectedRoute isAuthenticated={true}> <MyPageLayout /></ProtectedRoute>}>
+                    <Route index element={<MyPageMain />} />
+
+                    {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
+                </Route>
+                {/* 설정/ */}
+                <Route path="/settings" element={<ProtectedRoute isAuthenticated={true}> <MyPageLayout /></ProtectedRoute>}>
+                    <Route index element={<MyUserInfo />} />
+
+                    {/* <Route index element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
+                    {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
                 </Route>
 
                 {/* 관리자 ============================= */}
-                <Route path="/admin" element={<ProtectedRoute isAuthenticated={true} isAdminOnly={true}> <AdminLayout/> </ProtectedRoute>}>
-                    <Route index element={<AdminMain/>}/>
+                <Route path="/admin" element={<ProtectedRoute isAuthenticated={true} isAdminOnly={true}> <AdminLayout /> </ProtectedRoute>}>
+                    <Route index element={<AdminMain />} />
                     <Route path="users">
-                        <Route index element={<AdminUsers/>}/>
-                        <Route path="detail" element={<AdminUserDetail/>}/>
-                        <Route path="regist" element={<AdminUserRegist/>}/>
-                        <Route path="delete" element={<AdminUserDelete/>}/>
+                        <Route index element={<AdminUsers />} />
+                        <Route path="detail" element={<AdminUserDetail />} />
+                        <Route path="regist" element={<AdminUserRegist />} />
+                        <Route path="delete" element={<AdminUserDelete />} />
                     </Route>
                     <Route path="inquires">
-                        <Route index element={<AdminInquiries/>}/>
-                        <Route path="detail" element={<AdminInquiryDetail/>}/>
-                        <Route path="regist" element={<AdminInquiryRegist/>}/>
+                        <Route index element={<AdminInquiries />} />
+                        <Route path="detail" element={<AdminInquiryDetail />} />
+                        <Route path="regist" element={<AdminInquiryRegist />} />
                     </Route>
                     <Route path="categories">
-                        <Route index element={<AdminCategories/>}/>
-                        <Route path="detail" element={<AdminCategoryModify/>}/>
-                        <Route path="regist" element={<AdminCategoryRegist/>}/>
+                        <Route index element={<AdminCategories />} />
+                        <Route path="detail" element={<AdminCategoryModify />} />
+                        <Route path="regist" element={<AdminCategoryRegist />} />
                     </Route>
-                    <Route path="notices"/>
+                    <Route path="notices" />
                 </Route>
             </Routes>
         </BrowserRouter>

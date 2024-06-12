@@ -7,7 +7,7 @@ import { callProfileAPI } from "../../apis/UserAPICalls";
 import { isLogin } from "../../utils/TokenUtils";
 import { DefaultProfile } from "./Icons";
 
-function SettingsNavbar() {
+function SettingNavbar() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -98,4 +98,4 @@ function SettingsNavbar() {
     );
 }
 
-export default SettingsNavbar;
+export default SettingNavbar;

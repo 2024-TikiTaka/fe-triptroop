@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { success } from "../../modules/UserModules";
-import SettingsContent from "../../components/content/SettingsContent";
+import SettingContent from "../../components/content/SettingContent";
 
 const UserSettings = () => {
 
@@ -14,9 +14,9 @@ const UserSettings = () => {
 
     return (
         <>
-            <SettingsContent>
+            <SettingContent>
                 비밀번호 변경
-            </SettingsContent>
+            </SettingContent>
         </>
     );
 };

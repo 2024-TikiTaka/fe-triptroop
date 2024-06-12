@@ -16,37 +16,24 @@ function ProfileInfoForm() {
                     <Form className="row g-3">
                         {/* 이미지 */}
                         <Col md={12}>
-                            <Form.Group className="mb-3" controlId="email">
-                                <Form.Label>이메일</Form.Label>
+                            <Form.Group className="mb-3" controlId="profileImage">
+                                <Form.Label>프로필 이미지</Form.Label>
                                 <Form.Control />
                             </Form.Group>
                         </Col>
                         <Col md={12}>
-                            {/* 비밀번호 */}
-                            <Form.Group className="mb-3" controlId="password">
-                                <Form.Label>비밀번호</Form.Label>
+                            {/* 닉네임 */}
+                            <Form.Group className="mb-3" controlId="nickname">
+                                <Form.Label>닉네임</Form.Label>
+                                <Form.Control plaintext readOnly defaultValue={profileInfo?.nickname} />
                                 <Button />
                             </Form.Group>
                         </Col>
                         <Col md={12}>
-                            {/* 이름 */}
-                            <Form.Group className="mb-3" controlId="name">
-                                <Form.Label>이름</Form.Label>
-                                <Form.Control plaintext readOnly defaultValue={profileInfo?.name} />
-                            </Form.Group>
-                        </Col>
-                        <Col md={12}>
-                            {/* 성별 */}
-                            <Form.Group className="mb-3" controlId="gender">
-                                <Form.Label>성별</Form.Label>
-                                <Form.Control plaintext readOnly defaultValue={profileInfo?.gender == 'F' ? '여자' : userInfo?.gender == 'M' ? '남자' : ''} />
-                            </Form.Group>
-                        </Col>
-                        <Col md={12}>
-                            {/* 생년월일 */}
-                            <Form.Group className="mb-3" controlId="birth">
-                                <Form.Label>생년월일</Form.Label>
-                                <Form.Control plaintext readOnly defaultValue={userInfo?.birth} />
+                            {/* 자기소개 */}
+                            <Form.Group className="mb-3" controlId="introduction">
+                                <Form.Label>자기소개</Form.Label>
+                                <Form.Control plaintext readOnly defaultValue={profileInfo?.introduction} />
                             </Form.Group>
                         </Col>
 
