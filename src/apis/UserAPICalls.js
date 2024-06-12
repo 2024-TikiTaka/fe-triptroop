@@ -40,6 +40,7 @@ export const callLoginAPI = ({ loginRequest }) => {
             JSON.stringify(loginRequest),
         );
 
+        console.warn(result?.status)
         if (result?.status === 200) {
             saveToken(result.headers);
             dispatch(success());

@@ -5,9 +5,9 @@ function ProtectedRoute({ isAuthenticated, isAdminOnly, children }) {
 
     if (isAuthenticated) {
         /* 관리자 */
-        if (isAdminOnly) {
-            return isAdmin() ? children : <Navigate to="/" />;
-        }
+        // if (isAdminOnly) {
+        //     return isAdmin() ? children : <Navigate to="/" />;
+        // }
 
         return isLogin() ? children : <Navigate to="/login" />;
 
