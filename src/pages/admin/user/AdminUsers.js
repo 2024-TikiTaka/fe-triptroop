@@ -2,13 +2,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {callAdminUserListAPI} from "../../../apis/AdminAPICalls";
 import AdminUserList from "../../../components/list/AdminUserList";
-import {getList} from "../../../modules/AdminModules";
 
 
 function AdminUsers() {
     const dispatch = useDispatch();
-    const admin = useSelector(state => state.getList);
-    console.log("admin : ", getList.data);
+    const {admin} = useSelector(state => state.adminReducer);
+    //console.log("admin.getList 값 : ", admin.data);
 
     useEffect(() => {
         dispatch(callAdminUserListAPI())
@@ -16,7 +15,11 @@ function AdminUsers() {
 
     return (
         <>
-            <AdminUserList data={getList.data}/>
+            {admin && (
+                <>
+                    <AdminUserList data={admin.data}/>
+                </>
+            )}
         </>
     );
 }
