@@ -1,4 +1,4 @@
-import { createActions, handleActions } from 'redux-actions';
+import {createActions, handleActions} from 'redux-actions';
 
 // 초기값
 const initialState = {};
@@ -10,10 +10,10 @@ const GET_SCHEDULE = 'schedules/GET_SCHEDULE';
 const SUCCESS = 'schedules/SUCCESS';
 
 // action function
-export const { schedules: { getSchedules, getSchedule, success } } = createActions({
-    [GET_SCHEDULES]: result => ({ schedules: result.data.result }),
-    [GET_SCHEDULE]: result => ({ schedule: result.data.result}),
-    [SUCCESS]: () => ({ success: true })
+export const {schedules: {getSchedules, getSchedule, success}} = createActions({
+    [GET_SCHEDULES]: result => ({schedules: result.data.result}),
+    [GET_SCHEDULE]: result => ({schedule: result.data.result}),
+    [SUCCESS]: () => ({success: true})
 });
 
 // reducer Function

@@ -1,6 +1,6 @@
 import { authRequest, request } from './api';
 import { removeToken, saveToken } from '../utils/TokenUtils';
-import { getProfile, getUser, success } from "../modules/UserModules";
+import { getProfileInfo, getUserInfo, success } from "../modules/UserModules";
 import { toast } from "react-toastify";
 
 
@@ -40,6 +40,7 @@ export const callLoginAPI = ({ loginRequest }) => {
             JSON.stringify(loginRequest),
         );
 
+        console.warn(result?.status)
         if (result?.status === 200) {
             saveToken(result.headers);
             dispatch(success());
@@ -73,21 +74,20 @@ export const callUserInfoAPI = () => {
     return async (dispatch, getState) => {
         const result = await authRequest.get(`/api/v1/users/me`,);
 
+        console.log(result);
         if (result.status === 200) {
-            dispatch(getUser(result.data.result));
+            dispatch(getUserInfo(result));
         }
     };
 };
 
 
-export const callProfileAPI = () => {
+export const callProfileInfoAPI = ({ profileInfo }) => {
     return async (dispatch, getState) => {
-        return await authRequest.get(`/api/v1/users/me/profile`)
-                                .then(response => {
-                                    dispatch(getProfile(response.data.result));
-                                })
-                                .catch(error => {
-                                    console.log(error);
-                                });
+        const result = await authRequest.get(`/api/v1/users/me/profile`);
+
+        if (result?.status === 200) {
+            dispatch(getProfileInfo(result?.data?.profile));
+        }
     };
 };
