@@ -6,9 +6,18 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/router/ProtectedRoute";
 
 import Layout from "./layouts/Layout";
-import Error from "./pages/error/Error";
+import AdminLayout from "./layouts/AdminLayout";
+import Main from "./pages/main/Main";
+import AdminMain from "./pages/admin/AdminMain";
+import ErrorPage from "./pages/error/Error";
 import Signup from "./pages/user/Signup";
 import Login from "./pages/user/Login";
+import KakaoAuth from "./pages/user/KakaoAuth";
+import SchedulesList from "./pages/schedule/SchedulesList";
+import ScheduleDetail from "./pages/schedule/ScheduleDetail";
+import ScheduleRegist from "./pages/schedule/ScheduleRegist";
+import UserSettings from "./pages/settings/UserSettings";
+import MyPageHome from "./pages/mypage/MyPage";
 import TravelMain from "./pages/travel/TravelMain";
 import TravelDetail from "./pages/travel/TravelDetail";
 
@@ -17,16 +26,34 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Layout />}>
-                    <Route path="/signup" element={<ProtectedRoute loginCheck={false}> <Signup /> </ProtectedRoute>} />
-                    <Route path="/login" element={<ProtectedRoute loginCheck={false}> <Login /></ProtectedRoute>} />
+                    <Route index element={<Main />} />
+                    {/* 비회원  */}
+                    <Route path="/signup" element={<ProtectedRoute isAuthenticated={false}> <Signup /> </ProtectedRoute>} />
+                    <Route path="/login" element={<ProtectedRoute isAuthenticated={false}> <Login /></ProtectedRoute>} />
+                    <Route path="/login/oauth2/code/kakao" element={<ProtectedRoute isAuthenticated={false}> <KakaoAuth /></ProtectedRoute>} />
+                    {/* 마이페이지 */}
+                    <Route path="/mypage" index element={<ProtectedRoute isAuthenticated={true}> <MyPageHome /></ProtectedRoute>}>
+                        {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
+                    </Route>
+                    {/* 설정/ */}
+                    <Route path="/settings" index element={<ProtectedRoute isAuthenticated={true}> <UserSettings /></ProtectedRoute>}>
+                        {/* <Route index element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
+                        {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
+                    </Route>
                     <Route path="/travels" element={<ProtectedRoute loginCheck={false} element={<TravelMain />}> <TravelMain /></ProtectedRoute>} />
                     <Route path="/travel/:travelId" element={<ProtectedRoute loginCheck={false}> <TravelDetail /></ProtectedRoute>} />
-                    <Route path="/schedules" />
+                    <Route path="/schedules" element={<SchedulesList />} />
+                    <Route path="/schedules/:scheduleId" element={<ScheduleDetail/>} />
+                    <Route path="/schedules/regist" element={<ScheduleRegist/>} />
                     <Route path="/companions" />
-                    <Route path="/inquiries" />
+                    <Route path="/inquiry" />
+                    {/* 오류 */}
+                    <Route path="*" element={<ErrorPage />} />
                 </Route>
-
-                <Route path="*" element={<Error />} />
+                {/* 관리자 */}
+                <Route path="/admin" element={<ProtectedRoute isAuthenticated={true} isAdminOnly={true}> <AdminLayout /> </ProtectedRoute>}>
+                    <Route index element={<AdminMain />} />
+                </Route>
             </Routes>
         </BrowserRouter>
     );

@@ -189,7 +189,9 @@ header::after { position: absolute; right: 0; left: 0; width: 100%; height: 2px;
 /* header nav a, */
 /* header .navbar a { font-size: 18px; color: #1A365D; padding: 0 !important; } */
 header nav a,
-header .navbar a { color: #1A365D; }
+header .navbar a { color: #1A365D; text-decoration: none }
+header nav a.active,
+header .navbar a.active { font-weight: 600; }
 /* header nav a:not(:last-child) { margin-right: 50px; } */
 /* header nav { width: 100%; } */
 /* header nav:not(.mobile-nav) > * { width: 100%; justify-content: space-between; } */
@@ -209,6 +211,7 @@ footer span, footer p, footer a { color: #FFF; font-size: 13px; }
 .footer-img { display: flex; margin-bottom: 20px; padding: 0; }
 .footer-img .link-list { display: flex; align-items: center; justify-content: flex-end; }
 .footer-img a { width: 100%; max-width: 35px; }
+.footer-img a:hover {opacity: .8}
 .footer-img a:not(:first-child) { margin-left: 40px; }
 .footer-list [class*="col"] { padding: 0; }
 .footer-list .nav-item { display: flex; position: relative; align-items: center; height: 13px; margin-bottom: 8px; padding: 0 13px; }
@@ -225,8 +228,8 @@ footer span, footer p, footer a { color: #FFF; font-size: 13px; }
 
 }
 @media (max-width: 1399px) {
-    .footer-img a { max-width: 30px; }
-    .footer-img a:not(:first-child) { margin-left: 35px; }
+    /* .footer-img a { max-width: 30px; } */
+    /* .footer-img a:not(:first-child) { margin-left: 35px; } */
 }
 @media (max-width: 1199px) {
 
@@ -236,13 +239,13 @@ footer span, footer p, footer a { color: #FFF; font-size: 13px; }
 }
 @media (max-width: 767px) {
     .footer-img a { max-width: 25px; }
-    .footer-img a:not(:first-child) { margin-left: 30px; }
+    /* .footer-img a:not(:first-child) { margin-left: 30px; } */
 }
 @media (max-width: 520px) {
     footer p { text-align: center; }
     .footer-img { flex-direction: column; align-items: center; }
     .footer-img a { max-width: 20px; }
-    .footer-img a:not(:first-child) { margin-left: 25px; }
+    /* .footer-img a:not(:first-child) { margin-left: 25px; } */
     .footer-img .link-list { justify-content: center; margin-top: 40px; }
     .footer-list .nav { flex-direction: column; flex-wrap: nowrap; align-items: center; margin: 40px 0; }
     .footer-list .nav-item { margin-bottom: 15px; }

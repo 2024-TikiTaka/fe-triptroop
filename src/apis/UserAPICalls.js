@@ -1,7 +1,18 @@
-import { toast } from 'react-toastify';
 import { authRequest, request } from './api';
-import { success } from '../modules/UserModules';
-import { getEmail, removeToken, saveToken } from '../utils/TokenUtils';
+import { removeToken, saveToken } from '../utils/TokenUtils';
+import { getProfile, getUser, success } from "../modules/UserModules";
+import { toast } from "react-toastify";
+
+
+export const callCheckEmailAPI = ({ email }) => {
+    return async (dispatch, getState) => {
+        return await request(
+            'GET',
+            `/api/v1/check/email?email=${email}`,
+            { 'Content-Type': 'application/json' }
+        );
+    };
+};
 
 export const callSignupAPI = ({ signupRequest }) => {
     return async (dispatch, getState) => {
@@ -11,10 +22,11 @@ export const callSignupAPI = ({ signupRequest }) => {
             { 'Content-Type': 'application/json' },
             JSON.stringify(signupRequest),
         );
+
         if (result?.status === 201) {
             dispatch(success());
         } else {
-            toast.error('오류가 발생했습니다.');
+            return result;
         }
     };
 };
@@ -29,23 +41,53 @@ export const callLoginAPI = ({ loginRequest }) => {
         );
 
         if (result?.status === 200) {
-            toast.info('로그인이 완료되었습니다.');
-
             saveToken(result.headers);
             dispatch(success());
+        } else if (result?.status === 401) {
+            toast.error("로그인 정보가 일치하지 않습니다.", {
+                toastId: 'loginFailed'
+            });
         } else {
-            toast.error('오류가 발생했습니다.');
+            toast.error("오류가 발생하였습니다.", {
+                toastId: 'loginFailed'
+            });
         }
     };
 };
 
 export const callLogoutAPI = () => {
+
     return async (dispatch, getState) => {
         const result = await authRequest.post(`/api/v1/logout`);
 
-        if (result?.status === 204) {
+        if (result?.status === 200) {
             removeToken();
             dispatch(success());
         }
+    };
+};
+
+
+export const callUserInfoAPI = () => {
+
+    return async (dispatch, getState) => {
+        const result = await authRequest.get(`/api/v1/users/me`,);
+
+        if (result.status === 200) {
+            dispatch(getUser(result.data.result));
+        }
+    };
+};
+
+
+export const callProfileAPI = () => {
+    return async (dispatch, getState) => {
+        return await authRequest.get(`/api/v1/users/me/profile`)
+                                .then(response => {
+                                    dispatch(getProfile(response.data.result));
+                                })
+                                .catch(error => {
+                                    console.log(error);
+                                });
     };
 };
