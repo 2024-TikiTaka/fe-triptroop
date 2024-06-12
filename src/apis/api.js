@@ -7,6 +7,7 @@ import {
 
 const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
+
 const DEFAULT_URL = `http://${SERVER_IP}:${SERVER_PORT}`;
 
 /* 미인증 요청 */

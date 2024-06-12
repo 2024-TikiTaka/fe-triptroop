@@ -56,8 +56,8 @@ jjj
                 <ul>
                     {scheduleItemInfoResponse.map((item, index) => (
                         <li key={index}>
-                            <p>장소: {item.placeName}</p>
-                            <p>주소: {item.placeAddress}</p>
+                            <p>장소: {item.name}</p>
+                            <p>주소: {item.address}</p>
                             <p>계획일: {item.planDate}</p>
                             <p>구분: {item.kind}</p>
                             <p>가격: {item.cost}</p>
