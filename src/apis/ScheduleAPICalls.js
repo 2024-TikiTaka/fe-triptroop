@@ -88,19 +88,46 @@ export const callScheduleRegistAPI = ({ registRequest }) => {
 
     }
 };
+// 일정 수정
+export const callScheduleUpdateAPI = ({ scheduleId,modifyRequest }) => {
+    return async (dispatch, getState) => {
+        const result = await authRequest.put(`/api/v1/schedules/${scheduleId}/modify`, modifyRequest);
+        console.log('callScheduleUpdateAPI result : ', result);
 
-// 일정 계획 등록
-// export const callScheduleItemRegistAPI = ({ scheduleId,registRequest }) => {
-//     return async (dispatch, getState) => {
-//         const result = await authRequest.post(`/api/v1/schedules/regist`, registRequest);
-//         console.log('callScheduleItemRegistAPI result : ', result);
-//
-//         if (result.status === 201) {
-//             dispatch(success());
-//         }
-//
-//     }
-// };
+        if (result.status === 201) {
+            dispatch(success());
+        }
+
+    }
+};
+/// 일정 계획 수정
+export const callScheduleItemUpdateAPI = (scheduleItemId, modifyRequest) => {
+    return async (dispatch, getState) => {
+        try {
+            const result = await authRequest.put(`/api/v1/schedules/${scheduleItemId}/item`, modifyRequest);
+            console.log('callScheduleItemUpdateAPI result : ', result);
+
+            if (result.status === 201) {
+                dispatch(success());
+            }
+        } catch (error) {
+            console.error('callScheduleItemUpdateAPI error:', error);
+            throw error; // 예외를 다시 던져서 상위에서 처리할 수 있도록 함
+        }
+    };
+};
+// // 일정 계획 등록
+// // export const callScheduleItemRegistAPI = ({ scheduleId,registRequest }) => {
+// //     return async (dispatch, getState) => {
+// //         const result = await authRequest.post(`/api/v1/schedules/regist`, registRequest);
+// //         console.log('callScheduleItemRegistAPI result : ', result);
+// //
+// //         if (result.status === 201) {
+// //             dispatch(success());
+// //         }
+// //
+// //     }
+// // };
 
 
 

@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale/ko";
 import KaKaoMapAPI from "../map/KaKaoMapAPI";
 
-function ScheduleItemForm({ onFormChange }) {
+function ScheduleItemForm({ index, onFormChange }) {
     const [form, setForm] = useState({
         address: '',
         name: '',
@@ -40,10 +40,9 @@ function ScheduleItemForm({ onFormChange }) {
         setForm(updatedForm);
     };
 
-    // useEffect to call onFormChange when form changes
     useEffect(() => {
-        onFormChange(form);
-    }, [form, onFormChange]); // Ensure onFormChange is stable or use a callback version
+        onFormChange(index, form);
+    }, [form, index, onFormChange]);
 
     return (
         <>

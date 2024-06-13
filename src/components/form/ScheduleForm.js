@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { Badge, Button, Form } from "react-bootstrap";
 import DatePicker from "react-datepicker";
@@ -17,14 +17,14 @@ function ScheduleForm() {
         startDate: startDate,
         endDate: endDate
     });
-    const [scheduleItemForm, setScheduleItemForm] = useState({
+    const [scheduleItemForms, setScheduleItemForms] = useState([{
         address: '',
         name: '',
         kind: '',
         cost: '',
         planDate: new Date(),
         content: ''
-    });
+    }]);
     const imageInput = useRef();
 
     const dispatch = useDispatch();
@@ -57,15 +57,32 @@ function ScheduleForm() {
         });
     };
 
-    const onScheduleItemFormChange = (formData) => {
-        setScheduleItemForm(formData);
+    const onScheduleItemFormChange = useCallback((index, formData) => {
+        setScheduleItemForms(prevForms => {
+            const newForms = [...prevForms];
+            newForms[index] = formData;
+            return newForms;
+        });
+    }, []);
+
+    const addScheduleItemForm = () => {
+        setScheduleItemForms(prevForms => [
+            ...prevForms, {
+                address: '',
+                name: '',
+                kind: '',
+                cost: '',
+                planDate: new Date(),
+                content: ''
+            }
+        ]);
     };
 
     const onClickScheduleRegistHandler = () => {
         const formData = new FormData();
         formData.append('image', imageInput.current.files[0]);
         formData.append('scheduleRequest', new Blob([JSON.stringify(scheduleForm)], { type: 'application/json' }));
-        formData.append('scheduleItemRequest', new Blob([JSON.stringify(scheduleItemForm)], { type: 'application/json' }));
+        formData.append('scheduleItemRequest', new Blob([JSON.stringify(scheduleItemForms)], { type: 'application/json' }));
 
         dispatch(callScheduleRegistAPI({ registRequest: formData }))
             .then(response => {
@@ -155,7 +172,16 @@ function ScheduleForm() {
                         }
                     />
                 </div>
-                <ScheduleItemForm onFormChange={onScheduleItemFormChange} />
+
+                {scheduleItemForms.map((form, index) => (
+                    <ScheduleItemForm
+                        key={index}
+                        index={index}
+                        onFormChange={onScheduleItemFormChange}
+                    />
+                ))}
+
+                <Button onClick={addScheduleItemForm}>추가</Button> {/* 추가 버튼 */}
 
                 <Button
                     size="lg"

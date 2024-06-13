@@ -41,7 +41,7 @@ function ScheduleItem({schedule}) {
                 {/*<p>평점: {participantProfile.reviewPoint}</p>*/}
                 {/*<img src={participantProfile.profileImage} alt="porofileImage"></img>*/}
                 <ul>
-                    {participantProfile.map((profile, index) => (
+                    {schedule.participantProfile.map((profile, index) => (
                         <li key={index}>
                             <p>닉네임: {profile.nickname}</p>
                             <p>MBTI: {profile.mbti}</p>
@@ -55,7 +55,7 @@ function ScheduleItem({schedule}) {
             </div>
             <div className="item-div">
                 <ul>
-                    {scheduleItemInfoResponse.map((item, index) => (
+                    {schedule.scheduleItemInfoResponse.map((item, index) => (
                         <li key={index}>
                             <p>장소: {item.name}</p>
                             <p>주소: {item.address}</p>

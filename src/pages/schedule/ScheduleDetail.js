@@ -34,6 +34,7 @@ function ScheduleDetail() {
                 <div className="detail-div">
                     {schedule.scheduleItemInfoResponse.map(item => (
                         <KakaoMapSelect key={item.id} place={item} />
+
                     ))}
                     <ScheduleItem schedule={schedule} />
                 </div>

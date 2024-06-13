@@ -32,6 +32,9 @@ import AdminCategoryModify from "./pages/admin/category/AdminCategoryModify";
 import MyPageLayout from "./layouts/MyPageLayout";
 import MyPageMain from "./pages/mypage/MyPageMain";
 import TravelRegist from "./pages/travel/TravelRegist";
+import ScheduleUpdate from "./pages/schedule/ScheduleUpdate";
+import ScheduleItemForm from "./components/form/ScheduleItemForm";
+import ScheduleItemUpdate from "./pages/schedule/ScheduleItemUpdate";
 
 function App() {
     return (
@@ -54,6 +57,8 @@ function App() {
                     {/* 일정 */}
                     <Route path="/schedules" element={<SchedulesList />} />
                     <Route path="/schedules/:scheduleId" element={<ScheduleDetail/>} />
+                    <Route path="/schedules/:scheduleId/modify" element={<ScheduleUpdate/>} />
+                    <Route path="/schedules/:scheduleItemId/item" element={<ScheduleItemUpdate/>} />
                     <Route path="/schedules/regist" element={<ScheduleRegist/>} />
                     {/* 동행 */}
                     <Route path="/companions" />
