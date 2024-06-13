@@ -12,7 +12,7 @@ function MyPageLayout() {
         <>
             <Header />
             <main className="main mypage-main">
-                <Container>
+                <Container fluid={"md"}>
                     <Outlet />
                 </Container>
             </main>
