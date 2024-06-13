@@ -7,7 +7,7 @@ import { Button, Container, Dropdown, Image, Navbar } from "react-bootstrap";
 import { isLogin } from "../../../utils/TokenUtils";
 import { reset } from "../../../modules/UserModules";
 import { callLogoutAPI } from "../../../apis/UserAPICalls";
-import ChatBox from "../../box/ChatBox";
+import ChatBox from "../../item/ChatBox";
 
 function AdminHeader() {
     const navigate = useNavigate();
