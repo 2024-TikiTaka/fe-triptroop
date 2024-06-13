@@ -1,8 +1,7 @@
 import { useDispatch } from "react-redux";
-import { useForm, useFormContext, useFormState } from "react-hook-form";
-import { Button, Card, Form } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { Button, Card, Form, InputGroup } from "react-bootstrap";
 import { callCheckEmailAPI, callSignupAPI } from "../../apis/UserAPICalls";
-import { useEffect, useState } from "react";
 
 function SignupForm() {
 
@@ -32,6 +31,21 @@ function SignupForm() {
         }
     };
 
+    const sendVerificationCode = async (email) => {
+        const result = await dispatch(callCheckEmailAPI({ email }));
+
+        if (result?.status === 200) {
+            clearErrors("email");
+            return true;
+        }
+        if (result?.status === 409) {
+            const errorMessage = result.data?.result?.message;
+            setError("email",
+                { message: errorMessage }
+            );
+            return false;
+        }
+    };
     const onSubmit = (form) => {
         if (checkDuplicateEmail(form.email)) {
             dispatch(callSignupAPI({ signupRequest: form }));
@@ -45,23 +59,41 @@ function SignupForm() {
                     <Card.Body>
                         {/* 이메일 */}
                         <Form.Group className="mb-3" controlId="email">
-                            <Form.Label>이메일 </Form.Label>
+                            <Form.Label>이메일</Form.Label>
+                            <InputGroup className="mb-3">
+                                <Form.Control
+                                    type="text"
+                                    name="email"
+                                    size="lg"
+                                    className="fs-6"
+                                    placeholder="이메일 입력"
+                                    isInvalid={errors.email}
+                                    onBlur={checkDuplicateEmail}
+                                    {...register("email", {
+                                        required: '필수 항목입니다.',
+                                        pattern: {
+                                            value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                                            message: '이메일 형식이 올바르지 않습니다.'
+                                        },
+                                        validate: { checkDuplicateEmail }
+                                    })}
+                                />
+                                <Button variant="primary"
+                                        onClick={sendVerificationCode}>
+                                    인증
+                                </Button>
+                            </InputGroup>
+                            <Form.Control.Feedback type="invalid">
+                                {errors.email?.message}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        {/* 이메일 인증 번호 */}
+                        <Form.Group className="mb-3" controlId="code">
                             <Form.Control
-                                type="text"
-                                name="email"
+                                name="code"
+                                placeholder="인증번호 입력"
                                 size="lg"
                                 className="fs-6"
-                                placeholder="이메일 입력"
-                                isInvalid={errors.email}
-                                onBlur={checkDuplicateEmail}
-                                {...register("email", {
-                                    required: '필수 항목입니다.',
-                                    pattern: {
-                                        value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                                        message: '이메일 형식이 올바르지 않습니다.'
-                                    },
-                                    validate: { checkDuplicateEmail }
-                                })}
                             />
                             <Form.Control.Feedback type="invalid">
                                 {errors.email?.message}

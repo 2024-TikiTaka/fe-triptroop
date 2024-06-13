@@ -14,6 +14,29 @@ export const callCheckEmailAPI = ({ email }) => {
     };
 };
 
+export const callSendVerificationCodeAPI = ({ email }) => {
+    return async (dispatch, getState) => {
+        return await request(
+            'POST',
+            `/api/v1/mail/send`,
+            { 'Content-Type': 'application/x-www-form-urlencoded' },
+            new URLSearchParams({ email: email })
+        );
+    };
+};
+
+export const callCheckVerificationCodeAPI = ({ token, email, code }) => {
+    return async (dispatch, getState) => {
+        return await request(
+            'POST',
+            `/api/v1/check/email?email=${email}`,
+            { 'Content-Type': 'application/x-www-form-urlencoded' },
+            new URLSearchParams({ email: email })
+        );
+    };
+};
+
+
 export const callSignupAPI = ({ signupRequest }) => {
     return async (dispatch, getState) => {
         const result = await request(
@@ -40,7 +63,7 @@ export const callLoginAPI = ({ loginRequest }) => {
             JSON.stringify(loginRequest),
         );
 
-        console.warn(result?.status)
+        console.warn(result?.status);
         if (result?.status === 200) {
             saveToken(result.headers);
             dispatch(success());

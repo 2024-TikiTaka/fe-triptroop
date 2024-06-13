@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { MapMarker, Map } from "react-kakao-maps-sdk";
-import {useSelector} from "react-redux";
+import { Map, MapMarker } from "react-kakao-maps-sdk";
 
 const KakaoMapTest = ({ place }) => {
-    const [position, setPosition] = useState(null);
+    const [ position, setPosition ] = useState(null);
 
 
     useEffect(() => {
         const script = document.createElement('script');
-        script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=c832e4b58ba1a41ba6ae7d694e9e37e5&libraries=services&autoload=false`;
+        script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_MAP_API_KEY}&libraries=services&autoload=false`;
         script.async = true;
         document.head.appendChild(script);
 
@@ -40,7 +39,7 @@ const KakaoMapTest = ({ place }) => {
         return () => {
             document.head.removeChild(script);
         };
-    }, [place]);
+    }, [ place ]);
 
     return (
         <div>
