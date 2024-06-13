@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
 import {callCommentAPI, callPlaceAPI, callTravelDetailAPI} from "../../apis/TravelAPICalls";
@@ -11,33 +11,37 @@ import KakaoMapTest from "./kakaoMapTest";
 
 function TravelDetail() {
     const dispatch = useDispatch();
-    const [ currentPage, setCurrentPage ] = useState(1);
-    const [ isTravelDetailLoaded, setIsTravelDetailLoaded ] = useState(false); // 추가된 상태
+    const navigate = useNavigate(); // useNavigate 훅을 사용합니다.
+    const [currentPage, setCurrentPage] = useState(1);
+    const [isTravelDetailLoaded, setIsTravelDetailLoaded] = useState(false);
     const { travelId } = useParams();
-    const { travel, place } = useSelector(state => state.travelReducer);
-    const { comment } = useSelector(state => state.commentReducer);
-    // const { place } = useSelector(state => state.placeReducer);
+    const { travel, place } = useSelector((state) => state.travelReducer);
+    const { comment } = useSelector((state) => state.commentReducer);
 
     useEffect(() => {
-        console.log('useParams로부터 가져온 travelId:', travelId); // travelId 확인
+        console.log('useParams로부터 가져온 travelId:', travelId);
 
         const fetchTravelDetail = async () => {
             if (travelId) {
                 await dispatch(callTravelDetailAPI({ travelId }));
-                setIsTravelDetailLoaded(true); // 상태 업데이트
+                setIsTravelDetailLoaded(true);
             } else {
                 console.error('travelId가 유효하지 않습니다.');
             }
         };
 
         fetchTravelDetail();
-    }, [ dispatch, travelId ]);
+    }, [dispatch, travelId]);
 
     useEffect(() => {
         if (isTravelDetailLoaded) {
             dispatch(callCommentAPI({ travelId, currentPage }));
         }
-    }, [ dispatch, travelId, currentPage, isTravelDetailLoaded ]);
+    }, [dispatch, travelId, currentPage, isTravelDetailLoaded]);
+
+    const handleEditClick = () => {
+        navigate(`/travels/modify/${travelId}`);
+    };
 
     console.log("디테일Travel Details:", travel);
     console.log("디테일Travel Comments:", comment);
@@ -48,6 +52,7 @@ function TravelDetail() {
             {travel && (
                 <div className="detail-div">
                     <TravelItem travel={travel} />
+                    <button onClick={handleEditClick}>수정</button>
                 </div>
             )}
             {travel && travel.place && (
@@ -64,5 +69,6 @@ function TravelDetail() {
         </>
     );
 }
+
 
 export default TravelDetail;

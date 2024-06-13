@@ -59,11 +59,29 @@ export const callPlaceAPI = ({ travelId }) => {
     }
 }
 
+    /* 여행지 등록 */
 export const callTravelInsertAPI = ({ registRequest }) => {
 
     return async (dispatch, getState) => {
         const result = await authRequest.post('api/v1/travels', registRequest);
         console.log('callTravelInsertAPI result: ' , result);
+
+        if (result.status === 201) {
+            dispatch(success());
+        }
+    }
+};
+
+/* 여행지 소개 수정 */
+export const callTravelModifyAPI = ({ travelId, modifyRequest }) => {
+
+    return async (dispatch, getState) => {
+        console.log("11111111111",modifyRequest)
+
+
+
+        const result = await authRequest.put(`/api/v1/travels/${travelId}`, modifyRequest)
+        console.log(`callTravelModifyAPI  result : ` , (result));
 
         if (result.status === 201) {
             dispatch(success());
