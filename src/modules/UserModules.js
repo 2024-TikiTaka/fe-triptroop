@@ -11,7 +11,9 @@ const GET_PROFILE = 'user/GET_PROFILE';
 
 /* 액션 함수 */
 export const {
-    user: { reset, success, getUser, getProfile },
+    user: {
+        reset, success, getUser, getProfile
+    },
 } = createActions({
     [RESET]: () => {},
     [SUCCESS]: () => ({ success: true }),

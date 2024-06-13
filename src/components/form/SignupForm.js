@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Button, Card, Form, InputGroup } from "react-bootstrap";
-import { callCheckEmailAPI, callSignupAPI } from "../../apis/UserAPICalls";
+import { callCheckEmailAPI, callSignupAPI } from "../../apis/AuthAPICalls";
 
 function SignupForm() {
 

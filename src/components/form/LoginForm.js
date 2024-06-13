@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { Button, Form } from "react-bootstrap";
-import { callLoginAPI } from "../../apis/UserAPICalls";
+import { callLoginAPI } from "../../apis/AuthAPICalls";
 
 function LoginForm() {
 

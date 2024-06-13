@@ -2,9 +2,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Card, Col, Form, Image, OverlayTrigger, Tooltip, } from "react-bootstrap";
 
-function ProfileForm() {
+function ProfileForm({ profileInfo }) {
 
     const dispatch = useDispatch();
+    // const profile = !profileInfo && useSelector("profile")
 
     return (
         <>
