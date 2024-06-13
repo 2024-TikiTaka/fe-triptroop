@@ -69,21 +69,22 @@ function App() {
                     <Route index element={<AdminMain/>}/>
                     <Route path="users">
                         <Route index element={<AdminUsers/>}/>
-                        <Route path="detail" element={<AdminUserDetail/>}/>
+                        <Route path=":userId" element={<AdminUserDetail/>}/>
                         <Route path="regist" element={<AdminUserRegist/>}/>
                         <Route path="delete" element={<AdminUserDelete/>}/>
                     </Route>
                     <Route path="inquires">
                         <Route index element={<AdminInquiries/>}/>
-                        <Route path="detail" element={<AdminInquiryDetail/>}/>
+                        <Route path="inquiryId" element={<AdminInquiryDetail/>}/>
                         <Route path="regist" element={<AdminInquiryRegist/>}/>
                     </Route>
                     <Route path="categories">
                         <Route index element={<AdminCategories/>}/>
-                        <Route path="detail" element={<AdminCategoryModify/>}/>
+                        <Route path="categoryId" element={<AdminCategoryModify/>}/>
                         <Route path="regist" element={<AdminCategoryRegist/>}/>
                     </Route>
                     <Route path="notices"/>
+                    {/*<Route path="test" element={<TestDl/>}/>*/}
 
                     {/* 오류 */}
                     <Route path="*" element={<ErrorPage/>}/>

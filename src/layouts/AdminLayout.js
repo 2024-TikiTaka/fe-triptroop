@@ -5,25 +5,20 @@ import {Outlet} from 'react-router-dom';
 import AdminHeader from '../components/common/admin/AdminHeader';
 import AdminNav from '../components/common/admin/AdminNav';
 import Footer from '../components/common/Footer';
-import {ToastContainer} from "react-toastify";
+import {Container} from "react-bootstrap";
 
 function AdminLayout() {
     return (
-        <>
+        <div className="admin-layout">
             <AdminHeader/>
             <AdminNav/>
             <main className="admin-main">
-                <ToastContainer
-                    position="top-right"
-                    autoClose={1800}
-                    limit={1}
-                    closeOnClick={true}
-                    pauseOnFocusLoss={false}
-                />
-                <Outlet/>
+                <Container>
+                    <Outlet/>
+                </Container>
             </main>
             <Footer/>
-        </>
+        </div>
     );
 }
 

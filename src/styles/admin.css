@@ -25,6 +25,7 @@ html:has(.admin-main) {
 
 .admin-main {
     padding-top: 100px;
+    padding-left: 310px;
 }
 
 .admin-header,
@@ -81,3 +82,18 @@ html:has(.admin-main) {
 }
 
 
+.description-row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.description-term,
+.description-definition {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
