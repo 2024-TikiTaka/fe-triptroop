@@ -36,6 +36,7 @@ function SignupForm() {
 
         if (result?.status === 200) {
             clearErrors("email");
+            console.log("발송됨");
             return true;
         }
         if (result?.status === 409) {
@@ -46,6 +47,8 @@ function SignupForm() {
             return false;
         }
     };
+
+
     const onSubmit = (form) => {
         if (checkDuplicateEmail(form.email)) {
             dispatch(callSignupAPI({ signupRequest: form }));

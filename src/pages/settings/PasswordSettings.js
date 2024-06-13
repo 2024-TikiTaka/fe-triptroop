@@ -1,32 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { isLogin } from "../../utils/TokenUtils";
 import { success } from "../../modules/UserModules";
 import SettingContent from "../../components/content/SettingContent";
-import UserInfoForm from "../../components/form/UserInfoForm";
 
-import { callUserInfoAPI } from "../../apis/UserAPICalls";
-
-const MyUserInfo = () => {
+const PasswordSettings = () => {
 
     const dispatch = useDispatch();
     const { userInfo } = useSelector(state => state.userReducer);
 
     useEffect(() => {
 
-        if (isLogin()) {
-            dispatch(callUserInfoAPI());
-        }
-
     }, [ success ]);
 
     return (
         <>
             <SettingContent>
-                <UserInfoForm userInfo={userInfo} />
+                비밀번호 변경
             </SettingContent>
         </>
     );
 };
 
-export default MyUserInfo;
+export default PasswordSettings;

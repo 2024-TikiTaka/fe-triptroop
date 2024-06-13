@@ -15,7 +15,6 @@ import Login from "./pages/user/Login";
 import KakaoAuth from "./pages/user/KakaoAuth";
 import SchedulesList from "./pages/schedule/SchedulesList";
 import ScheduleDetail from "./pages/schedule/ScheduleDetail";
-import MyUserInfo from "./pages/settings/MyUserInfo";
 import ScheduleRegist from "./pages/schedule/ScheduleRegist";
 import TravelMain from "./pages/travel/TravelMain";
 import TravelDetail from "./pages/travel/TravelDetail";
@@ -30,8 +29,16 @@ import AdminCategories from "./pages/admin/category/AdminCategories";
 import AdminCategoryRegist from "./pages/admin/category/AdminCategoryRegist";
 import AdminCategoryModify from "./pages/admin/category/AdminCategoryModify";
 import MyPageLayout from "./layouts/MyPageLayout";
-import MyPageMain from "./pages/mypage/MyPageMain";
 import TravelRegist from "./pages/travel/TravelRegist";
+import UserSettings from "./pages/settings/UserSettings";
+import ProfileSettings from "./pages/settings/ProfileSettings";
+import PasswordSettings from "./pages/settings/PasswordSettings";
+import Withdrawal from "./pages/settings/Withdrawal";
+import MyHome from "./pages/mypage/MyHome";
+import MyLikes from "./pages/mypage/MyLikes";
+import MySchedules from "./pages/mypage/MySchedules";
+import MyTravels from "./pages/mypage/MyTravels";
+import ReportSettings from "./pages/settings/ReportSettings";
 
 function App() {
     return (
@@ -48,13 +55,13 @@ function App() {
                     {/* 회원 ============================= */}
 
                     {/* 여행지 소개 */}
-                    <Route path="/travels" element={ <TravelMain />} />
-                    <Route path="/travel/:travelId" element={ <TravelDetail />} />
-                    <Route path="/travels/regist" element={ <TravelRegist />} />
+                    <Route path="/travels" element={<TravelMain />} />
+                    <Route path="/travel/:travelId" element={<TravelDetail />} />
+                    <Route path="/travels/regist" element={<TravelRegist />} />
                     {/* 일정 */}
                     <Route path="/schedules" element={<SchedulesList />} />
-                    <Route path="/schedules/:scheduleId" element={<ScheduleDetail/>} />
-                    <Route path="/schedules/regist" element={<ScheduleRegist/>} />
+                    <Route path="/schedules/:scheduleId" element={<ScheduleDetail />} />
+                    <Route path="/schedules/regist" element={<ScheduleRegist />} />
                     {/* 동행 */}
                     <Route path="/companions" />
                     {/* 문의 */}
@@ -65,13 +72,18 @@ function App() {
 
                 {/* 마이페이지 */}
                 <Route path="/mypage" element={<ProtectedRoute isAuthenticated={true}> <MyPageLayout /></ProtectedRoute>}>
-                    <Route index element={<MyPageMain />} />
-
-                    {/* <Route path="settings" element={<ProtectedRoute isAuthenticated={true}> <UserInfo /> </ProtectedRoute>} /> */}
+                    <Route path="home" element={<MyHome />} />
+                    <Route path="travels" element={<MyTravels />} />
+                    <Route path="schedules" element={<MySchedules />} />
+                    <Route path="likes" element={<MyLikes />} />
                 </Route>
                 {/* 설정/ */}
                 <Route path="/settings" element={<ProtectedRoute isAuthenticated={true}> <MyPageLayout /></ProtectedRoute>}>
-                    <Route index element={<MyUserInfo />} />
+                    <Route index element={<UserSettings />} />
+                    <Route path="profile" element={<ProfileSettings />} />
+                    <Route path="password" element={<PasswordSettings />} />
+                    <Route path="report" element={<ReportSettings />} />
+                    <Route path="withdrawal" element={<Withdrawal />} />
                 </Route>
 
                 {/* 관리자 ============================= */}
