@@ -1,7 +1,7 @@
 function AdminUserRegist() {
 
     return (
-        <>
+        <>Admin USer Regist
         </>
     );
 }
