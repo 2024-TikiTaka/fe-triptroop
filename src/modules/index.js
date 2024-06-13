@@ -15,4 +15,4 @@ const rootReducer = combineReducers({
     adminReducer
 })
 
-export default rootReducer
+export default rootReducer;

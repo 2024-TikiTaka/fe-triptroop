@@ -25,7 +25,7 @@ const KakaoMap = () => {
             callback();
         } else {
             const script = document.createElement('script');
-            script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_RESTAPI_KAKAO_SECRET}&autoload=false`;
+            script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=c832e4b58ba1a41ba6ae7d694e9e37e5&autoload=false`;
             script.async = true;
             script.onload = () => {
                 window.kakao.maps.load(callback);
