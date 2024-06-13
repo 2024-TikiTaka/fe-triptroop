@@ -32,6 +32,7 @@ import AdminCategoryModify from "./pages/admin/category/AdminCategoryModify";
 import MyPageLayout from "./layouts/MyPageLayout";
 import MyPageMain from "./pages/mypage/MyPageMain";
 import TravelRegist from "./pages/travel/TravelRegist";
+import TravelModifyForm from "./components/form/TravelModifyForm";
 
 function App() {
     return (
@@ -51,6 +52,7 @@ function App() {
                     <Route path="/travels" element={ <TravelMain />} />
                     <Route path="/travel/:travelId" element={ <TravelDetail />} />
                     <Route path="/travels/regist" element={ <TravelRegist />} />
+                    <Route path="/travels/modify/:travelId" element={<TravelModifyForm/>} />
                     {/* 일정 */}
                     <Route path="/schedules" element={<SchedulesList />} />
                     <Route path="/schedules/:scheduleId" element={<ScheduleDetail/>} />

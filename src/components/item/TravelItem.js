@@ -1,5 +1,6 @@
 function TravelItem({ travel }) {
     const { travels, images, place } = travel;
+    console.log(place)
     return (
         <>
             <div className="img-div">

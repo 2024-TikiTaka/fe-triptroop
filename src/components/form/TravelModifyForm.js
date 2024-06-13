@@ -1,23 +1,51 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Form } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { callTravelDetailAPI, callTravelModifyAPI } from "../../apis/TravelAPICalls";
 import KaKaoMapAPI from "../map/KaKaoMapAPI";
-import { callTravelInsertAPI } from "../../apis/TravelAPICalls";
-import { useDispatch } from "react-redux";
-import {useNavigate} from "react-router-dom";
 
-const TravelRegistration = () => {
+function TravelModifyForm() {
+    const { travelId } = useParams();
     const [formData, setFormData] = useState({
         categoryId: '',
         areaId: '',
-        placeId: '',
+        address: '',
+        name: '',
         title: '',
         content: '',
-        images: []
+        images: [],
+        status: 'PUBLIC' // 기본 상태를 PUBLIC으로 설정합니다.
     });
-
+    const [existingImages, setExistingImages] = useState([]);
     const imageInput = useRef();
     const dispatch = useDispatch();
-    const navigate = useNavigate(); // useNavigate 훅을 사용합니다.
+    const navigate = useNavigate();
+    const { travel } = useSelector(state => state.travelReducer);
+
+    useEffect(() => {
+        const fetchTravelDetail = async () => {
+            await dispatch(callTravelDetailAPI({ travelId }));
+        };
+
+        fetchTravelDetail();
+    }, [dispatch, travelId]);
+
+    useEffect(() => {
+        if (travel && travelId == travel.id) {
+            setFormData({
+                categoryId: travel.categoryId || '',
+                areaId: travel.areaId || '',
+                address: travel.address || '',
+                name: travel.name || '',
+                title: travel.title || '',
+                content: travel.content || '',
+                images: [],
+                status: travel.status || 'PUBLIC'
+            });
+            setExistingImages(travel.images || []);
+        }
+    }, [travel, travelId]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -50,6 +78,10 @@ const TravelRegistration = () => {
         });
     };
 
+    const handleStatusChange = (e) => {
+        setFormData({ ...formData, status: e.target.checked ? 'PUBLIC' : 'PRIVATE' });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = new FormData();
@@ -60,22 +92,18 @@ const TravelRegistration = () => {
             name: formData.name,
             title: formData.title,
             content: formData.content,
+            status: formData.status
         })], { type: 'application/json' }));
 
-        if (formData.images.length > 0) {
-            for (let i = 0; i < formData.images.length; i++) {
-                data.append('images', formData.images[i]);
-            }
-        } else if (imageInput.current.files.length > 0) {
-            for (let i = 0; i < imageInput.current.files.length; i++) {
-                data.append('images', imageInput.current.files[i]);
-            }
-        }
+        formData.images.forEach(image => {
+            console.log("이미지의 정보",image);
+            data.append('image', image);
+        });
 
         try {
-            const response = await dispatch(callTravelInsertAPI({ registRequest: data }));
-            console.log("요청 성공:", response);
-            navigate('/travels'); // 등록 성공 후 이동할 페이지로 navigate를 사용합니다.
+            const response = await dispatch(callTravelModifyAPI({ travelId, modifyRequest: data }));
+            console.log("수정 성공:", response);
+            navigate('/travels');
         } catch (error) {
             if (error.response) {
                 console.error("서버 응답 오류:", error.response.data);
@@ -137,9 +165,15 @@ const TravelRegistration = () => {
                 <label>이미지:</label>
                 <Form.Control type="file" accept="image/*" ref={imageInput} onChange={handleFileChange} multiple />
             </div>
-            <button type="submit">등록</button>
+            <div>
+                <label>
+                    <input type="checkbox" checked={formData.status === 'PUBLIC'} onChange={handleStatusChange} />
+                    {formData.status === 'PUBLIC' ? '공개 (Public)' : '비공개 (Private)'}
+                </label>
+            </div>
+            <button type="submit">수정</button>
         </form>
     );
 };
 
-export default TravelRegistration;
+export default TravelModifyForm;
