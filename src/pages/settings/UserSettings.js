@@ -7,7 +7,7 @@ import UserInfoForm from "../../components/form/UserInfoForm";
 
 import { callUserInfoAPI } from "../../apis/UserAPICalls";
 
-const UserSettings = () => {
+function UserSettings() {
 
     const dispatch = useDispatch();
     const { userInfo } = useSelector(state => state.userReducer);
@@ -15,7 +15,7 @@ const UserSettings = () => {
     useEffect(() => {
 
         if (isLogin()) {
-            dispatch(callUserInfoAPI());
+            !userInfo && dispatch(callUserInfoAPI());
         }
 
     }, [ success ]);

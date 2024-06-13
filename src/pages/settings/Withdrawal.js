@@ -1,21 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { success } from "../../modules/UserModules";
 import SettingContent from "../../components/content/SettingContent";
+import WithdrawalForm from "../../components/form/WithdrawalForm";
 
-const Withdrawal = () => {
+function Withdrawal() {
 
     const dispatch = useDispatch();
     const { userInfo } = useSelector(state => state.userReducer);
 
-    useEffect(() => {
-
-    }, [ success ]);
-
     return (
         <>
             <SettingContent>
-                탈퇴
+                <WithdrawalForm />
             </SettingContent>
         </>
     );

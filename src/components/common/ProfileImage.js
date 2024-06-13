@@ -2,15 +2,15 @@ import React, { useEffect } from 'react';
 import { DefaultProfile } from "./Icons";
 import { Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { callProfileAPI } from "../../apis/UserAPICalls";
 
-function ProfileImage({ profileImages, size = "50px", children }) {
+function ProfileImage({ size = "50px" }) {
+
     const dispatch = useDispatch();
     const { profileInfo } = useSelector(state => state.userReducer);
 
     useEffect(() => {
-        dispatch(callProfileAPI());
-    }, []);
+   
+    }, [ profileInfo ]);
 
     return (
         <div
@@ -21,13 +21,15 @@ function ProfileImage({ profileImages, size = "50px", children }) {
             }}
         >
             {!profileInfo ?
-                (
-                    <DefaultProfile
-                        className="avatar mx-auto d-block mb-3" />)
-                : <Image src={profileInfo} />
+                <DefaultProfile className="avatar mx-auto d-block mb-3"
+                                style={{ "width": size, "height": size }}
+                />
+                : <Image src={profileInfo?.profileImage}
+                         style={{ "width": size, "height": size }}
+                />
             }
         </div>
     );
-};
+}
 
 export default ProfileImage;

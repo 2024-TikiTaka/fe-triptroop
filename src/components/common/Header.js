@@ -36,9 +36,9 @@ function Header() {
         }
 
         if (isLogin()) {
-            dispatch(callProfileAPI());
+            !profileInfo && dispatch(callProfileAPI());
         }
-    }, [ success ]);
+    }, [ success, profileInfo ]);
 
     function BeforeLogin() {
         return (
@@ -85,7 +85,7 @@ function Header() {
                                         </div>
                                         <div>
                                             <p className="small m-0">
-                                                {profileInfo?.profile.nickname}
+                                                {profileInfo?.nickname}
                                             </p>
                                             <p className="small m-0">
 
@@ -94,7 +94,7 @@ function Header() {
                                     </div>
                                 </Dropdown.Item>
                                 <Dropdown.Divider />
-                                <Dropdown.Item onClick={() => navigate(`/mypage`)}>마이페이지 </Dropdown.Item>
+                                <Dropdown.Item onClick={() => navigate(`/mypage`)}>마이페이지</Dropdown.Item>
                                 <Dropdown.Item onClick={() => navigate(`/likes`)}>좋아요</Dropdown.Item>
                                 <Dropdown.Item onClick={() => navigate(`/settings`)}>설정</Dropdown.Item>
                                 <Dropdown.Divider />

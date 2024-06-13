@@ -1,26 +1,24 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { Image, Nav } from 'react-bootstrap';
+import React from "react";
+import { Nav } from 'react-bootstrap';
 import { BoxArrowRight, Key, PencilSquare, Person, Sliders, Trash } from "react-bootstrap-icons";
-import { callProfileAPI } from "../../apis/UserAPICalls";
-import { isLogin } from "../../utils/TokenUtils";
-import { DefaultProfile } from "./Icons";
+import ProfileImage from "./ProfileImage";
+import { NavLink } from "react-router-dom";
+import { callLogoutAPI } from "../../apis/AuthAPICalls";
+import { useDispatch } from "react-redux";
 
-function SettingNavbar() {
+const CustomNavLink = ({ to, children }) => {
 
-    const navigate = useNavigate();
+    return (
+        <NavLink
+            to={to}
+            className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+            {children}
+        </NavLink>
+    );
+};
+function SettingNavbar({ profileInfo }) {
+
     const dispatch = useDispatch();
-
-    const { profileInfo } = useSelector(state => state.userReducer);
-
-    useEffect(() => {
-        if (isLogin()) {
-            dispatch(callProfileAPI());
-        }
-    }, []);
-
-
     return (
         <>
             <div className="settings-nav col-lg-4 col-xl-3">
@@ -40,18 +38,9 @@ function SettingNavbar() {
 
                             <div className="card-header p-3 bg-white">
                                 <div className="text-center">
-                                    <div className="avatar avatar-xl mb-2 profile-image">
-                                        {!profileInfo ?
-                                            (
-                                                <DefaultProfile
-                                                    className="avatar mx-auto d-block"
-
-                                                />)
-                                            : <Image src={profileInfo?.profile.profileImage} className="avatar" />
-                                        }
-                                    </div>
-                                    <p className="nickname">{profileInfo?.profile.nickname}</p>
-                                    {/* <p className="email">hello@gmail.com</p> */}
+                                    <ProfileImage size={"7.5rem"} />
+                                    <p className="nickname">{profileInfo?.nickname}</p>
+                                    <p className="email"></p>
                                 </div>
 
                             </div>
@@ -59,27 +48,27 @@ function SettingNavbar() {
                             <div className="card-body bg-white">
                                 <Nav className="nav-pills-primary-soft flex-column text-decoration-none">
                                     <Nav.Item>
-                                        <Nav.Link className="text-none ">
-                                            <Person className="me-2" />계정
+                                        <Nav.Link as={CustomNavLink} to="/settings/profile">
+                                            <Person className="me-2" />프로필 관리
                                         </Nav.Link>
                                     </Nav.Item>
-                                    {/* <Nav.Item> */}
-                                    {/*     <Nav.Link> */}
-                                    {/*         <Person className="me-2" />프로필 */}
-                                    {/*     </Nav.Link> */}
-                                    {/* </Nav.Item> */}
                                     <Nav.Item>
-                                        <Nav.Link>
+                                        <Nav.Link as={CustomNavLink} to="/settings/user">
+                                            <Person className="me-2" />계정 설정
+                                        </Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link as={CustomNavLink} to="/settings/password">
                                             <Key className="me-2" />비밀번호
                                         </Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link>
+                                        <Nav.Link as={CustomNavLink} to="/settings/withdrawal">
                                             <Trash className="me-2" />회원 탈퇴
                                         </Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link className="">
+                                        <Nav.Link onClick={() => dispatch(callLogoutAPI())}>
                                             <BoxArrowRight className="me-2" />로그아웃
                                         </Nav.Link>
                                     </Nav.Item>

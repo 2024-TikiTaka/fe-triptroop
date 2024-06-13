@@ -2,7 +2,7 @@ import React from "react";
 
 import MyPageContent from "../../components/content/MyPageContent";
 
-const MyLikes = () => {
+function MyLikes() {
 
     return (
         <>

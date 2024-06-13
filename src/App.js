@@ -72,6 +72,7 @@ function App() {
 
                 {/* 마이페이지 */}
                 <Route path="/mypage" element={<ProtectedRoute isAuthenticated={true}> <MyPageLayout /></ProtectedRoute>}>
+                    <Route index element={<MyHome />} />
                     <Route path="home" element={<MyHome />} />
                     <Route path="travels" element={<MyTravels />} />
                     <Route path="schedules" element={<MySchedules />} />
@@ -80,6 +81,7 @@ function App() {
                 {/* 설정/ */}
                 <Route path="/settings" element={<ProtectedRoute isAuthenticated={true}> <MyPageLayout /></ProtectedRoute>}>
                     <Route index element={<UserSettings />} />
+                    <Route path="user" element={<UserSettings />} />
                     <Route path="profile" element={<ProfileSettings />} />
                     <Route path="password" element={<PasswordSettings />} />
                     <Route path="report" element={<ReportSettings />} />

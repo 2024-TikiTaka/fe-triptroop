@@ -1,7 +1,7 @@
 import React from "react";
 import SettingContent from "../../components/content/SettingContent";
 
-const ReportSettings = () => {
+function ReportSettings() {
 
 
     return (

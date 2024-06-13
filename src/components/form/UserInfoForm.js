@@ -36,7 +36,7 @@ function UserInfoForm({ userInfo }) {
                             {/* 성별 */}
                             <Form.Group className="mb-3" controlId="gender">
                                 <Form.Label>성별</Form.Label>
-                                <Form.Control plaintext readOnly defaultValue={userInfo?.gender.name} />
+                                <Form.Control plaintext readOnly defaultValue={userInfo?.gender} />
                             </Form.Group>
                         </Col>
                         <Col md={12}>

@@ -2,7 +2,7 @@ import React from "react";
 
 import MyPageContent from "../../components/content/MyPageContent";
 
-const MyTravels = () => {
+function MyTravels() {
 
 
     return (
