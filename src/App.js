@@ -35,6 +35,11 @@ import TravelRegist from "./pages/travel/TravelRegist";
 import ScheduleUpdate from "./pages/schedule/ScheduleUpdate";
 import ScheduleItemForm from "./components/form/ScheduleItemForm";
 import ScheduleItemUpdate from "./pages/schedule/ScheduleItemUpdate";
+import ScheduleRemove from "./pages/schedule/ScheduleRemove";
+import ScheduleItemRemove from "./pages/schedule/ScheduleItemRemove";
+import ScheduleApply from "./pages/schedule/ScheduleApply";
+import ScheduleAccept from "./pages/schedule/ScheduleAccept";
+import ScheduleRejected from "./pages/schedule/ScheduleRejected";
 
 function App() {
     return (
@@ -58,6 +63,11 @@ function App() {
                     <Route path="/schedules" element={<SchedulesList />} />
                     <Route path="/schedules/:scheduleId" element={<ScheduleDetail/>} />
                     <Route path="/schedules/:scheduleId/modify" element={<ScheduleUpdate/>} />
+                    <Route path="/schedules/:scheduleId/remove" element={<ScheduleRemove/>} />
+                    <Route path="/schedules/:scheduleId/apply" element={<ScheduleApply/>} />
+                    <Route path="/schedules/:scheduleParticipantId/accept" element={<ScheduleAccept/>} />
+                    <Route path="/schedules/:scheduleParticipantId/rejected" element={<ScheduleRejected/>} />
+                    <Route path="/schedules/:scheduleItemId/remove-item" element={<ScheduleItemRemove/>} />
                     <Route path="/schedules/:scheduleItemId/item" element={<ScheduleItemUpdate/>} />
                     <Route path="/schedules/regist" element={<ScheduleRegist/>} />
                     {/* 동행 */}

@@ -1,5 +1,6 @@
 import {authRequest,request} from "./api";
 import {getSchedules,getSchedule,success} from "../modules/ScheduleModules";
+import axios from 'axios';
 
 export const callScheduleListAPI = ({currentPage = 1}) => {
 
@@ -128,6 +129,78 @@ export const callScheduleItemUpdateAPI = (scheduleItemId, modifyRequest) => {
 // //
 // //     }
 // // };
+// 일정 삭제
+export const callScheduleRemoveAPI = ( scheduleId ) => {
+
+    return async (dispatch, getState) => {
+        const result = await authRequest.delete(`/api/v1/schedules/${scheduleId}/remove`);
+        console.log('callScheduleRemoveAPI result : ',result);
+
+        if(result.status === 204) {
+            dispatch(success());
+        }
+    }
+};
+// 일정 계획 삭제
+export const callScheduleItemRemoveAPI = ( scheduleItemId ) => {
+
+    return async (dispatch, getState) => {
+        const result = await authRequest.delete(`/api/v1/schedules/${scheduleItemId}/remove-item`);
+        console.log('callScheduleItemRemoveAPI result : ',result);
+
+        if(result.status === 204) {
+            dispatch(success());
+        }
+    }
+};
+// 일정 신청
+export const callScheduleApplyAPI = ( scheduleId ) => {
+
+    return async (dispatch, getState) => {
+        const result = await authRequest.post(`/api/v1/schedules/${scheduleId}/apply`);
+        console.log('callScheduleApplyAPI result : ',result);
+
+        if(result.status === 201) {
+            dispatch(success());
+        }
+    }
+};
+// 일정 신청 승인
+export const callScheduleAcceptAPI = ( scheduleParticipantId ) => {
+
+    return async (dispatch, getState) => {
+        const result = await authRequest.put(`/api/v1/schedules/${scheduleParticipantId}/accept`);
+        console.log('callScheduleAcceptAPI result : ',result);
+
+        if(result.status === 201) {
+            dispatch(success());
+        }
+    }
+};
+// 일정 신청 반려
+// export const callScheduleRejectedAPI = ( scheduleParticipantId ,scheduleParticipantRejectedRequest) => {
+//
+//     return async (dispatch, getState) => {
+//         const result = await authRequest.post(`/api/v1/schedules/${scheduleParticipantId}/rejected`,scheduleParticipantRejectedRequest);
+//         console.log('callScheduleRejectedAPI result : ',result);
+//
+//         if(result.status === 201) {
+//             dispatch(success());
+//         }
+//     }
+// };
+
+export const callScheduleRejectedAPI = (scheduleParticipantId, scheduleParticipantRejectedRequest) => {
+    return async (dispatch) => {
+        try {
+            const response = await authRequest.put(`/api/v1/schedules/${scheduleParticipantId}/rejected`, scheduleParticipantRejectedRequest);
+            dispatch({ type: 'SCHEDULE_REJECT_SUCCESS', payload: response.data });
+        } catch (error) {
+            dispatch({ type: 'SCHEDULE_REJECT_FAILURE', payload: error });
+        }
+    };
+};
+
 
 
 
