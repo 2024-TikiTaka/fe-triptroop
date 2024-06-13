@@ -1,4 +1,3 @@
-// ChatList.js
 import React, { useEffect, useState } from 'react';
 import { authRequest } from '../../apis/api'; // 올바른 경로로 수정하세요
 
@@ -26,12 +25,12 @@ const ChatList = ({ onSelectRoom }) => {
     }
 
     if (error) {
-        return <div>{error}</div>
+        return <div>{error}</div>;
     }
 
     return (
         <div>
-            <h2>채팅 목록</h2>
+            <h5>채팅</h5>
             <ul>
                 {chatRooms.map((room) => (
                     <li key={room.id} onClick={() => onSelectRoom(room)}>
