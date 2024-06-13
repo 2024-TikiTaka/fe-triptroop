@@ -1,144 +1,164 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Button, Container, Image, Nav, Navbar, Offcanvas, } from "react-bootstrap";
+import { Chat, Person, } from "react-bootstrap-icons";
+import { Button, Container, Dropdown, Image, Nav, Navbar } from "react-bootstrap";
 
 import { isLogin } from "../../utils/TokenUtils";
+import { reset } from "../../modules/UserModules";
+import { callLogoutAPI, callProfileAPI } from "../../apis/UserAPICalls";
 
-import ChatBox from "../box/ChatBox";
-import ProfileBox from "../box/ProfileBox";
-import { callLogoutAPI } from "../../apis/UserAPICalls";
-
+import ChatBox from "../item/ChatBox";
+import { DefaultProfile } from "./Icons";
 
 const CustomNavLink = ({ to, children }) => (
     <NavLink
         to={to}
-        className={({ isActive }) =>
-            isActive ? "nav-link px-2 fs-5 active" : "nav-link px-2 fs-5"
-        }
-    >
+        className={({ isActive }) => isActive ? "px-2 fs-5 active" : "px-2 fs-5"}>
         {children}
     </NavLink>
 );
 
 function Header() {
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const { success, profileInfo } = useSelector(state => state.userReducer);
     const [ showChat, setShowChat ] = useState(false);
-    const handleChatShow = () => setShowChat(true);
-    const handleChatClose = () => setShowChat(false);
+
+    useEffect(() => {
+
+        if (success === true) {
+            navigate(`/`);
+            dispatch(reset());
+        }
+
+        if (isLogin()) {
+            dispatch(callProfileAPI());
+        }
+    }, [ success ]);
 
     function BeforeLogin() {
         return (
             <>
-                <Offcanvas.Body>
-                    <Navbar.Collapse className="justify-content-between">
-                        <Nav className="justify-content-center">
-                            <Nav.Link as={CustomNavLink} to="/travel">
-                                여행지 소개
-                            </Nav.Link>
-                            <Nav.Link as={CustomNavLink} to="/schedule">
-                                일정
-                            </Nav.Link>
-                            <Nav.Link as={CustomNavLink} to="/companion">
-                                동행글
-                            </Nav.Link>
-                            <Nav.Link as={CustomNavLink} to="/inquiry">
-                                문의하기
-                            </Nav.Link>
-                        </Nav>
-                        <Nav className="text-end">
-                            <Button
-                                className="outline blue-900 fs-6 mx-1"
-                                onClick={() => navigate(`/login`)}
-                            >
-                                로그인
-                            </Button>
-                            <Button
-                                className="blue-900 white fs-6 mx-1"
-                                onClick={() => navigate(`/signup`)}
-                            >
-                                회원가입
-                            </Button>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Offcanvas.Body>
+                <Dropdown className="ms-3">
+                    <Dropdown.Toggle
+                        variant="light"
+                        data-bs-auto-close="outside" data-bs-display="static">
+                        <Person size="22px" />
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu className="dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
+                        <Dropdown.Item onClick={() => navigate(`/login`)}>로그인 </Dropdown.Item>
+                        <Dropdown.Item onClick={() => navigate(`/signup`)}>회원가입</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
             </>
         );
     }
 
     function AfterLogin() {
+
         return (
             <>
-                <Offcanvas.Header>
-                    <Offcanvas.Title>
-                        <ProfileBox />
-                    </Offcanvas.Title>
-                </Offcanvas.Header>
+                {/* Chat */}
+                <Navbar expand="md">
+                    <Container>
+                        <Button variant="light" onClick={() => setShowChat(!showChat)}>
+                            <Chat size="20px" /> 채팅
+                        </Button>
 
-                <Offcanvas.Body>
-                    <Navbar.Collapse className="justify-content-between">
-                        <Nav className="justify-content-center">
-                            <Nav.Link as={CustomNavLink} to="/travel">
-                                여행지 소개
-                            </Nav.Link>
-                            <Nav.Link as={CustomNavLink} to="/schedule">
-                                일정
-                            </Nav.Link>
-                            <Nav.Link as={CustomNavLink} to="/companions">
-                                동행글
-                            </Nav.Link>
-                            <Nav.Link as={CustomNavLink} to="/inquiry">
-                                문의하기
-                            </Nav.Link>
-                        </Nav>
-                        <Nav className="text-end">
-                            <Button onClick={handleChatShow}>
-                                <span>채팅</span>
-                            </Button>
-                            <Button
-                                className="outline blue-900 fs-6 mx-1"
-                                onClick={() => navigate(`/mypage`)}
-                            >
-                                마이페이지
-                            </Button>
-                            <Button
-                                className="blue-900 whit fs-6 mx-1"
-                                onClick={() => dispatch(callLogoutAPI(), navigate(`/`))}
-                            >
-                                로그아웃
-                            </Button>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Offcanvas.Body>
+                        {/* Profile */}
+                        <Dropdown className="ms-3">
+                            <Dropdown.Toggle
+                                role="button"
+                                variant="light"
+                                data-bs-auto-close="outside">
+                                <Person size="22px" />
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu className="dropdown-animation dropdown-menu-end shadow" aria-labelledby="profileDropdown">
+                                <Dropdown.Item as="div">
+                                    <div className="d-flex align-items-center">
+                                        <div className=" me-3 rounded-5 overflow-hidden border">
+                                            {!profileInfo ?
+                                                (
+                                                    <DefaultProfile
+                                                        className="avatar mx-auto d-block mb-3"
+                                                        width="50px" height="50px"
+                                                    />)
+                                                : <Image src={profileInfo?.profile.profileImage} width="50px" height="50px" />
+                                            }
+                                        </div>
+                                        <div>
+                                            <p className="small m-0">
+                                                {profileInfo?.profile.nickname}
+                                            </p>
+                                            <p className="small m-0">
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                </Dropdown.Item>
+                                <Dropdown.Divider />
+                                <Dropdown.Item onClick={() => navigate(`/mypage`)}>마이페이지 </Dropdown.Item>
+                                <Dropdown.Item onClick={() => navigate(`/likes`)}>좋아요</Dropdown.Item>
+                                <Dropdown.Item onClick={() => navigate(`/settings`)}>설정</Dropdown.Item>
+                                <Dropdown.Divider />
+                                <Dropdown.Item onClick={() => dispatch(callLogoutAPI())}>로그아웃</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </Container>
+                </Navbar>
             </>
         );
     }
 
     return (
         <header className="header">
-            <Navbar expand="md py-3">
-                <Container fluid="lg">
+            <Navbar expand="md">
+                <Container fluid>
+                    {/* Logo */}
                     <Navbar.Brand
-                        className="logo-btn col-md-3"
-                        onClick={() => navigate(`/`)}
-                    >
+                        className="logo-btn"
+                        onClick={() => navigate(`/`)}>
+
                         <Image src="/images/logo.svg" fluid />
                     </Navbar.Brand>
 
-                    <Navbar.Toggle />
-                    <Navbar.Offcanvas placement="end">
-                        {isLogin() ? <AfterLogin /> : <BeforeLogin />}
-                    </Navbar.Offcanvas>
+                    {/* Menu */}
+                    <Navbar.Toggle
+                        className="custom-navbar-toggler ms-auto mx-3 p-0 p-sm-2"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarCollapse"
+                        aria-controls="navbarCollapse"
+                        aria-expanded="true"
+                        aria-label="Toggle navigation"
+                    >
+                    </Navbar.Toggle>
+                    <Navbar.Collapse id="navbarCollapse">
+                        <Nav className="me-auto">
+                            <Nav.Link as={CustomNavLink} to="/travels">
+                                여행지
+                            </Nav.Link>
+                            <Nav.Link as={CustomNavLink} to="/schedules">
+                                일정
+                            </Nav.Link>
+                            <Nav.Link as={CustomNavLink} to="/companions">
+                                동행
+                            </Nav.Link>
+                            <Nav.Link as={CustomNavLink} to="/inquiry">
+                                문의
+                            </Nav.Link>
+                        </Nav>
+                    </Navbar.Collapse>
+
+                    {!isLogin() ? <BeforeLogin /> : <AfterLogin />}
+
+                    <ChatBox show={showChat} handleClose={() => setShowChat(false)} />
                 </Container>
             </Navbar>
-
-            {/* 채팅 */}
-            <div className="chat-container">
-                <ChatBox show={showChat} handleClose={handleChatClose} />
-            </div>
         </header>
+
     );
 }
 

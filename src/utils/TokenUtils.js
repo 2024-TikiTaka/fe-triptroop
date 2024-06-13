@@ -1,4 +1,4 @@
-import { jwtDecode } from "jwt-decode";
+import {jwtDecode} from "jwt-decode";
 
 const BEARER = 'Bearer ';
 
@@ -26,7 +26,7 @@ export const isLogin = () => {
 };
 
 export const isAdmin = () => {
-    return isLogin() && getDecodeAccessToken().userRole === 'ADMIN';
+    return isLogin() && getDecodeAccessToken().role === 'ADMIN';
 };
 
 export const getEmail = () => {
