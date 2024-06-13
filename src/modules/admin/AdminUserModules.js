@@ -29,17 +29,17 @@ export const {admin: {getList, getInfo, add, update, delete: remove, success, fa
     [FAILURE]: result => ({failure: result.data.result})
 });
 
-const adminReducer = handleActions({
-    [GET_LIST]: (state, {payload}) => ({...state, getList: payload.getList}),
-    [GET_INFO]: (state, {payload}) => ({...state, getInfo: payload.getInfo}),
-    [ADD]: (state, {payload}) => ({...state, added: payload.added}),
-    [UPDATE]: (state, {payload}) => ({...state, updated: payload.updated}),
-    [DELETE]: (state, {payload}) => ({...state, deleted: payload.deleted}),
-    [SUCCESS]: (state, {payload}) => ({...state, success: payload.success}),
-    [FAILURE]: (state, {payload}) => ({...state, failure: payload.failure})
+const adminUserReducer = handleActions({
+    [GET_LIST]: (state, {payload}) => payload,
+    [GET_INFO]: (state, {payload}) => payload,
+    [ADD]: (state, {payload}) => payload,
+    [UPDATE]: (state, {payload}) => payload,
+    [DELETE]: (state, {payload}) => payload,
+    [SUCCESS]: (state, {payload}) => payload,
+    [FAILURE]: (state, {payload}) => payload
 }, initialState);
 
-export default adminReducer;
+export default adminUserReducer;
 
 
 
