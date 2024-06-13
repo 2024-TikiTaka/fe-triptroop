@@ -1,18 +1,16 @@
 import React from 'react';
 import { Button, Card, Col, Form, InputGroup } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 function PasswordForm() {
+    const dispatch = useDispatch();
     const { register, handleSubmit, formState: { errors }, getValues } = useForm();
 
     const onSubmit = async (data) => {
-        try {
-            const response = await axios.post('/api/v1/users/passwordpassword-reset', data);
-            alert('비밀번호가 성공적으로 변경되었습니다.');
-        } catch (error) {
-            alert('비밀번호 변경 중 오류가 발생했습니다.');
-        }
+
     };
+    
     return (
         <>
             <Card className="border">

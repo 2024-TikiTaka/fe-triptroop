@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 function SettingContent({ children }) {
 
-    const { profileInfo } = useSelector(state => state.userReducer);
+    const { profile } = useSelector(state => state.userReducer);
 
 
     return (
@@ -14,7 +14,7 @@ function SettingContent({ children }) {
                     <div className="container">
                         <div className="row">
 
-                            <SettingNavbar profileInfo={profileInfo} />
+                            <SettingNavbar profile={profile} />
 
                             <div className="col-lg-8 col-xl-9">
                                 {children}

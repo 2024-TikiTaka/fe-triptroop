@@ -16,7 +16,7 @@ const CustomNavLink = ({ to, children }) => {
         </NavLink>
     );
 };
-function SettingNavbar({ profileInfo }) {
+function SettingNavbar({ profile }) {
 
     const dispatch = useDispatch();
     return (
@@ -39,7 +39,7 @@ function SettingNavbar({ profileInfo }) {
                             <div className="card-header p-3 bg-white">
                                 <div className="text-center">
                                     <ProfileImage size={"7.5rem"} />
-                                    <p className="nickname">{profileInfo?.nickname}</p>
+                                    <p className="nickname">{profile?.nickname}</p>
                                     <p className="email"></p>
                                 </div>
 

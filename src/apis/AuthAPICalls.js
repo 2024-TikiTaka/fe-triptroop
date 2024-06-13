@@ -1,6 +1,6 @@
 import { authRequest, request } from './api';
 import { success } from "../modules/UserModules";
-import { saveToken } from "../utils/TokenUtils";
+import { removeToken, saveToken } from "../utils/TokenUtils";
 import { toast } from "react-toastify";
 
 export async function callKakaoAuthAPI({ code }) {
@@ -35,7 +35,6 @@ export const callLoginAPI = ({ loginRequest }) => {
             JSON.stringify(loginRequest),
         );
 
-        console.warn(result?.status);
         if (result?.status === 200) {
             saveToken(result.headers);
             dispatch(success());
@@ -54,11 +53,16 @@ export const callLoginAPI = ({ loginRequest }) => {
 export const callLogoutAPI = () => {
 
     return async (dispatch, getState) => {
-        const result = await authRequest.post(`/api/v1/logout`);
-
-        if (result?.status === 200) {
-            dispatch(success());
-        }
+        return await authRequest
+            .post(`/api/v1/logout`)
+            .then(result => {
+                removeToken();
+                dispatch(success());
+            })
+            .catch(error => {
+                removeToken();
+                window.location.replace('/');
+            });
     };
 };
 

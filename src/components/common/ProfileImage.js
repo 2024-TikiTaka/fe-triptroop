@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 function ProfileImage({ size = "50px" }) {
 
     const dispatch = useDispatch();
-    const { profileInfo } = useSelector(state => state.userReducer);
+    const { profile } = useSelector(state => state.profileReducer);
 
     useEffect(() => {
-   
-    }, [ profileInfo ]);
+
+    }, [ profile ]);
 
     return (
         <div
@@ -20,11 +20,11 @@ function ProfileImage({ size = "50px" }) {
                 "borderRadius": size, background: "#f4f4f4"
             }}
         >
-            {!profileInfo ?
+            {!profile ?
                 <DefaultProfile className="avatar mx-auto d-block mb-3"
                                 style={{ "width": size, "height": size }}
                 />
-                : <Image src={profileInfo?.profileImage}
+                : <Image src={profile?.profileImage}
                          style={{ "width": size, "height": size }}
                 />
             }

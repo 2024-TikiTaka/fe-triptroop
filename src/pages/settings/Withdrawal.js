@@ -6,7 +6,7 @@ import WithdrawalForm from "../../components/form/WithdrawalForm";
 function Withdrawal() {
 
     const dispatch = useDispatch();
-    const { userInfo } = useSelector(state => state.userReducer);
+    const { user } = useSelector(state => state.userReducer);
 
     return (
         <>

@@ -2,8 +2,8 @@ import React from 'react';
 import { Button, Card, Col, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import ProfileImage from "../common/ProfileImage";
 
-function ProfileForm({ profileInfo }) {
-    
+function ProfileForm({ profile }) {
+
 
     return (
         <>
@@ -42,7 +42,7 @@ function ProfileForm({ profileInfo }) {
                         {/* 닉네임 */}
                         <Form.Group className="mb-3" controlId="nickname">
                             <Form.Label>닉네임</Form.Label>
-                            <Form.Control size="lg" defaultValue={profileInfo?.nickname} />
+                            <Form.Control size="lg" defaultValue={profile?.nickname} />
                         </Form.Group>
                     </Col>
                     <Col md={12}>
@@ -51,7 +51,7 @@ function ProfileForm({ profileInfo }) {
                             <Form.Label>자기소개</Form.Label>
 
                             <Form.Control as="textarea"
-                                          size="lg" defaultValue={profileInfo?.introduction} />
+                                          size="lg" defaultValue={profile?.introduction} />
                         </Form.Group>
                     </Col>
 

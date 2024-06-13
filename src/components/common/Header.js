@@ -7,7 +7,7 @@ import { Button, Container, Dropdown, Image, Nav, Navbar } from "react-bootstrap
 import { isLogin } from "../../utils/TokenUtils";
 import { reset } from "../../modules/UserModules";
 import { callLogoutAPI } from "../../apis/AuthAPICalls";
-import { callProfileAPI } from "../../apis/UserAPICalls";
+import { callProfileAPI } from "../../apis/ProfileAPICalls";
 
 import ChatBox from "../item/ChatBox";
 import ProfileImage from "./ProfileImage";
@@ -25,7 +25,7 @@ function Header() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const { success, profileInfo } = useSelector(state => state.userReducer);
+    const { success, profile } = useSelector(state => state.userReducer);
     const [ showChat, setShowChat ] = useState(false);
 
     useEffect(() => {
@@ -36,9 +36,9 @@ function Header() {
         }
 
         if (isLogin()) {
-            !profileInfo && dispatch(callProfileAPI());
+            !profile && dispatch(callProfileAPI());
         }
-    }, [ success, profileInfo ]);
+    }, [ success, profile ]);
 
     function BeforeLogin() {
         return (
@@ -85,7 +85,7 @@ function Header() {
                                         </div>
                                         <div>
                                             <p className="small m-0">
-                                                {profileInfo?.nickname}
+                                                {profile?.nickname}
                                             </p>
                                             <p className="small m-0">
 
