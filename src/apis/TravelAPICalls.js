@@ -18,6 +18,29 @@ export const callTravelListAPI = ({ currentPage = 1}) => {
         }
     }
 };
+
+export const callTravelCategoryListAPI = ({ categoryId, currentPage = 1 }) => {
+
+    return async (dispatch, getState) => {
+
+        const result = await request('GET', `/api/v1/travels?categoryId=${categoryId}&page=${currentPage}`);
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* 상세 조회 */
 export const callTravelDetailAPI = ({ travelId }) => {
     return async (dispatch, getState) => {
@@ -76,10 +99,6 @@ export const callTravelInsertAPI = ({ registRequest }) => {
 export const callTravelModifyAPI = ({ travelId, modifyRequest }) => {
 
     return async (dispatch, getState) => {
-        console.log("11111111111",modifyRequest)
-
-
-
         const result = await authRequest.put(`/api/v1/travels/${travelId}`, modifyRequest)
         console.log(`callTravelModifyAPI  result : ` , (result));
 
@@ -88,6 +107,22 @@ export const callTravelModifyAPI = ({ travelId, modifyRequest }) => {
         }
     }
 };
+
+export const callTravelDeleteAPI = ({ travelId }) => {
+
+    return async (dispatch, getState) => {
+        const result = await authRequest.delete(`/api/v1/travels/${travelId}`);
+        console.log(`callTravelDeleteAPI result : ` , (result));
+
+        if (result.status === 204 ) {
+            dispatch(success());
+        }
+    }
+}
+
+
+
+
 
 
 
