@@ -21,4 +21,4 @@ const rootReducer = combineReducers({
     adminNoticeReducer
 })
 
-export default rootReducer
+export default rootReducer;

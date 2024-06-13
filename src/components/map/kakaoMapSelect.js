@@ -1,17 +1,20 @@
-import { MapMarker, Map } from "react-kakao-maps-sdk";
 import React, { useEffect, useState } from "react";
+import { MapMarker, Map } from "react-kakao-maps-sdk";
+import {useSelector} from "react-redux";
 
 const KakaoMapTest = ({ place }) => {
     const [position, setPosition] = useState(null);
 
+
     useEffect(() => {
         const script = document.createElement('script');
-        script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=6556106b6de66f55df4233e7cdcd7cdd&libraries=services,clusterer`;
+        script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=6556106b6de66f55df4233e7cdcd7cdd&libraries=services&autoload=false`;
         script.async = true;
         document.head.appendChild(script);
 
         script.onload = () => {
             window.kakao.maps.load(() => {
+
                 if (place && place.address) {
                     console.log('Searching for address:', place.address);
                     console.log('Place name:', place.name);
