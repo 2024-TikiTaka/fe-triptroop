@@ -31,16 +31,6 @@ export const callTravelCategoryListAPI = ({ categoryId, currentPage = 1 }) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
 /* 상세 조회 */
 export const callTravelDetailAPI = ({ travelId }) => {
     return async (dispatch, getState) => {
