@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Card, Col, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import ProfileImage from "../common/ProfileImage";
+import { useDispatch, useSelector } from "react-redux";
+import { callProfileAPI } from "../../apis/ProfileAPICalls";
 
-function ProfileForm({ profile }) {
+function ProfileForm() {
 
+    const dispatch = useDispatch();
+    const { profileInfo } = useSelector(state => state.profileReducer);
+
+    useEffect(() => {
+        dispatch(callProfileAPI());
+    }, []);
 
     return (
         <>
@@ -42,7 +50,7 @@ function ProfileForm({ profile }) {
                         {/* 닉네임 */}
                         <Form.Group className="mb-3" controlId="nickname">
                             <Form.Label>닉네임</Form.Label>
-                            <Form.Control size="lg" defaultValue={profile?.nickname} />
+                            <Form.Control defaultValue={profileInfo?.nickname} />
                         </Form.Group>
                     </Col>
                     <Col md={12}>
@@ -51,7 +59,7 @@ function ProfileForm({ profile }) {
                             <Form.Label>자기소개</Form.Label>
 
                             <Form.Control as="textarea"
-                                          size="lg" defaultValue={profile?.introduction} />
+                                          defaultValue={profileInfo?.introduction} />
                         </Form.Group>
                     </Col>
 

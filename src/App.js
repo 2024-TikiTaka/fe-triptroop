@@ -80,9 +80,9 @@ function App() {
                 </Route>
                 {/* 설정/ */}
                 <Route path="/settings" element={<ProtectedRoute isAuthenticated={true}> <MyPageLayout /></ProtectedRoute>}>
-                    <Route index element={<UserSettings />} />
-                    <Route path="user" element={<UserSettings />} />
+                    <Route index element={<ProfileSettings />} />
                     <Route path="profile" element={<ProfileSettings />} />
+                    <Route path="user" element={<UserSettings />} />
                     <Route path="password" element={<PasswordSettings />} />
                     <Route path="report" element={<ReportSettings />} />
                     <Route path="withdrawal" element={<Withdrawal />} />

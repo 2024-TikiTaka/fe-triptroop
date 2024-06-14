@@ -13,7 +13,7 @@ export const callProfileAPI = () => {
     };
 };
 
-export const callProfileSaveAPI = () => {
+export const callProfileSaveAPI = ({ profileImage, profileRequest }) => {
     return async (dispatch, getState) => {
         return await authRequest.post(`/api/v1/profiles/me`)
                                 .then(response => {

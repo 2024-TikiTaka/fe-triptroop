@@ -10,12 +10,12 @@ import { callUserInfoAPI } from "../../apis/UserAPICalls";
 function UserSettings() {
 
     const dispatch = useDispatch();
-    const { user } = useSelector(state => state.userReducer);
+    const { userInfo } = useSelector(state => state.userReducer);
 
     useEffect(() => {
 
         if (isLogin()) {
-            !user && dispatch(callUserInfoAPI());
+            !userInfo && dispatch(callUserInfoAPI());
         }
 
     }, [ success ]);
@@ -23,7 +23,7 @@ function UserSettings() {
     return (
         <>
             <SettingContent>
-                <UserInfoForm user={user} />
+                <UserInfoForm userInfo={userInfo} />
             </SettingContent>
         </>
     );

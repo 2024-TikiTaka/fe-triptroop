@@ -82,7 +82,7 @@ export const callSendVerificationCodeAPI = ({ email }) => {
             'POST',
             `/api/v1/email/send`,
             { 'Content-Type': 'application/x-www-form-urlencoded' },
-            new URLSearchParams({ email: email })
+            { email: email }
         );
     };
 };
@@ -93,7 +93,7 @@ export const callCheckVerificationCodeAPI = ({ verifyRequest }) => {
             'POST',
             `/api/v1/email/verify`,
             { 'Content-Type': 'application/x-www-form-urlencoded' },
-            new URLSearchParams({ ...verifyRequest })
+            new URLSearchParams({ verifyRequest })
         );
     };
 };

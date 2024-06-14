@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Button, Card, Form, InputGroup } from "react-bootstrap";
-import { callCheckEmailAPI, callSignupAPI } from "../../apis/AuthAPICalls";
+import { callCheckEmailAPI, callSendVerificationCodeAPI, callSignupAPI } from "../../apis/AuthAPICalls";
+import { toast } from "react-toastify";
 
 function SignupForm() {
 
@@ -32,11 +33,10 @@ function SignupForm() {
     };
 
     const sendVerificationCode = async (email) => {
-        const result = await dispatch(callCheckEmailAPI({ email }));
+        const result = await dispatch(callSendVerificationCodeAPI({ email }));
 
         if (result?.status === 200) {
-            clearErrors("email");
-            console.log("발송됨");
+            toast.info("이메일로 인증 번호가 전송되었습니다.");
             return true;
         }
         if (result?.status === 409) {
@@ -82,7 +82,7 @@ function SignupForm() {
                                     })}
                                 />
                                 <Button variant="primary"
-                                        onClick={sendVerificationCode}>
+                                        onClick={!errors.email ? sendVerificationCode : undefined}>
                                     인증
                                 </Button>
                             </InputGroup>
