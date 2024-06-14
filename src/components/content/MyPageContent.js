@@ -2,8 +2,19 @@ import React from "react";
 
 import { Card, Col, Container, Nav, Row } from 'react-bootstrap';
 import MyPageHeader from "../common/MyPageHeader";
+import { NavLink } from "react-router-dom";
 
-function MyPageContent() {
+const CustomNavLink = ({ to, children }) => {
+ 
+    return (
+        <NavLink
+            to={to}
+            className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+            {children}
+        </NavLink>
+    );
+};
+function MyPageContent({ children }) {
     return (
         <>
             <div className="mypage-content">
@@ -15,49 +26,32 @@ function MyPageContent() {
                             <Row>
                                 <Col md={12}>
                                     {/* 탭 영역 */}
-                                    <Nav variant="pills" defaultActiveKey="/home">
+                                    <Nav
+                                        variant="pills"
+                                        className="mypage-tab mb-4"
+                                    >
                                         <Nav.Item>
-                                            <Nav.Link href="/home">홈</Nav.Link>
+                                            <Nav.Link as={CustomNavLink} to={"/mypage/home"}>홈</Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item>
-                                            <Nav.Link eventKey="link-1">여행</Nav.Link>
+                                            <Nav.Link as={CustomNavLink} to={"/mypage/travels"}>여행</Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item>
-                                            <Nav.Link eventKey="link-2">일정</Nav.Link>
+                                            <Nav.Link as={CustomNavLink} to={"/mypage/schedules"}>일정</Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item>
-                                            <Nav.Link eventKey="link-3">좋아요</Nav.Link>
+                                            <Nav.Link as={CustomNavLink} to={"/mypage/likes"}>좋아요</Nav.Link>
                                         </Nav.Item>
                                     </Nav>
 
-                                    <Row className="mt-4">
-                                        <Col md={8}>
-                                            <Card>
-                                                <Card.Body>
-                                                    <h5>다녀온 여행지</h5>
-                                                    <img src="assets/images/map.png" alt="Map" className="img-fluid" />
-                                                </Card.Body>
-                                            </Card>
-                                        </Col>
-                                        <Col md={4}>
-                                            <Card>
-                                                <Card.Body>
-                                                    <h5>추천 회원</h5>
-                                                    <div className="d-flex flex-wrap">
-                                                        {[ "김다솔", "김아현", "박병언", "이은재", "조형기", "이한솔", "김현준" ].map((name) => (
-                                                            <div key={name} className="m-2 text-center">
-                                                                <img src="assets/images/avatar-placeholder.png" alt={name} className="rounded-circle" width="50" />
-                                                                <p>{name}</p>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </Card.Body>
-                                            </Card>
-                                        </Col>
-                                    </Row>
+                                    {/* 내용 */}
+                                    <Container className="mypage-content-inner">
+                                        {children}
+                                    </Container>
                                 </Col>
                             </Row>
-                        </Card.Body></Card>
+                        </Card.Body>
+                    </Card>
                 </Container>
             </div>
         </>
