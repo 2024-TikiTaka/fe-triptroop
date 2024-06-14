@@ -1,78 +1,66 @@
-import {useNavigate, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {callScheduleDetailAPI} from "../../apis/ScheduleAPICalls";
-import KakaoMapTest from "../../pages/travel/kakaoMapTest";
+import { Row, Col, Image, ListGroup, Button } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 
-function ScheduleItem({schedule}) {
-    const { participantProfile, information, scheduleItemInfoResponse } = schedule;
+function ScheduleItem({ schedule }) {
+    const { information, participantProfile, scheduleItemInfoResponse } = schedule;
     const navigate = useNavigate();
-    const [amount, setAmount] = useState(1);
+
+    const handleClickModifyItem = (item) => {
+        console.log('Item for modify:', item); // 구조 확인
+
+        navigate(`/schedules/${item.id}/item`);
+    };
+
+    const handleClickDeletedItem = (item) => {
+        console.log('Item for modify:', item); // 구조 확인
+
+        navigate(`/schedules/${item.id}/remove-item`);
+    };
 
     return (
-        <>
-            <div className="img-div">
-                {/*<img src={information.scheduleImage} alt={information.title}/>*/}
-                <img src={information.scheduleImage} alt={information.title}></img>
-
-            </div>
-            <div className="info-div">
-                <p>제목: {information.title}</p>
-                <p>시작일: {information.startDate}</p>
-                <p>종료일: {information.endDate}</p>
-                <p>인원: {information.count}</p>
-                <p>조회수: {information.views}</p>
-
-            </div>
-            <div className="userInfo-div">
-                <div className="info-div">
-                    <p>MBTI: {information.mbti}</p>
-                    <p>닉네임: {information.nickname}</p>
-                </div>
-                <div className="profile-img">
-                    <img src={information.profileImage} alt="profileImage"></img>
-                </div>
-            </div>
-
-            <div className="participant-div">
-                {/*<p>닉네임: {participantProfile.nickname}</p>*/}
-                {/*<p>MBTI: {participantProfile.mbti}</p>*/}
-                {/*<p>리뷰: {participantProfile.reviewContent}</p>*/}
-                {/*<p>평점: {participantProfile.reviewPoint}</p>*/}
-                {/*<img src={participantProfile.profileImage} alt="porofileImage"></img>*/}
-                <ul>
-                    {schedule.participantProfile.map((profile, index) => (
-                        <li key={index}>
-                            <p>닉네임: {profile.nickname}</p>
-                            <p>MBTI: {profile.mbti}</p>
-                            <p>리뷰: {profile.reviewContent}</p>
-                            <p>평점: {profile.reviewPoint}</p>
-                            <img src={profile.profileImage} alt="porofileImage"></img>
-                            {/* Add other properties as needed */}
-                        </li>
+        <Row className="my-5">
+            <Col md={6}>
+                <Image src={information.scheduleImage} alt={information.title} fluid className="rounded" />
+            </Col>
+            <Col md={6}>
+                <h2 className="mb-4">{information.title}</h2>
+                <p><strong>시작일:</strong> {information.startDate}</p>
+                <p><strong>종료일:</strong> {information.endDate}</p>
+                <p><strong>인원:</strong> {information.count}</p>
+                <p><strong>조회수:</strong> {information.views}</p>
+                <hr />
+                <h3 className="mb-3">참여자 정보</h3>
+                <ListGroup>
+                    {participantProfile.map((profile, index) => (
+                        <ListGroup.Item key={index} className="border-0 mb-3">
+                            <Image src={profile.profileImage} alt="Profile" roundedCircle className="mr-3" width="50" height="50" />
+                            <div>
+                                <p className="mb-1"><strong>닉네임:</strong> {profile.nickname}</p>
+                                <p className="mb-1"><strong>MBTI:</strong> {profile.mbti}</p>
+                                <p className="mb-0"><strong>평점:</strong> {profile.reviewPoint}</p>
+                                <p><strong>리뷰:</strong> {profile.reviewContent}</p>
+                            </div>
+                        </ListGroup.Item>
                     ))}
-                </ul>
-            </div>
-            <div className="item-div">
-                <ul>
-                    {schedule.scheduleItemInfoResponse.map((item, index) => (
-                        <li key={index}>
-                            <p>장소: {item.name}</p>
-                            <p>주소: {item.address}</p>
-                            <p>계획일: {item.planDate}</p>
-                            <p>구분: {item.kind}</p>
-                            <p>가격: {item.cost}</p>
-                            <p>내용: {item.content}</p>
-                            {/* Add other properties as needed */}
-                        </li>
-
-                    ))}
-                </ul>
-            </div>
-        </>
+                </ListGroup>
+            </Col>
+            <Col md={12}>
+                <h3 className="mt-5 mb-3">일정 항목</h3>
+                {scheduleItemInfoResponse.map((item, index) => (
+                    <div key={index} className="mb-4">
+                        <h4>{item.name}</h4>
+                        <p><strong>주소:</strong> {item.address}</p>
+                        <p><strong>계획일:</strong> {item.planDate}</p>
+                        <p><strong>구분:</strong> {item.kind}</p>
+                        <p><strong>가격:</strong> {item.cost}</p>
+                        <p><strong>내용:</strong> {item.content}</p>
+                        <Button variant="success" onClick={() => handleClickModifyItem(item)}>수정</Button>
+                        <Button variant="danger" onClick={() => handleClickDeletedItem(item)}>삭제</Button>
+                    </div>
+                ))}
+            </Col>
+        </Row>
     );
-
 }
-
 
 export default ScheduleItem;

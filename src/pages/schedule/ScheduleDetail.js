@@ -1,16 +1,32 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { callScheduleDetailAPI } from "../../apis/ScheduleAPICalls";
+import {callScheduleAcceptAPI, callScheduleApplyAPI, callScheduleDetailAPI} from "../../apis/ScheduleAPICalls";
 import ScheduleItem from "../../components/item/ScheduleItem";
 import KakaoMapSelect from "../../components/map/kakaoMapSelect";
+import {Button} from "react-bootstrap";
 
 function ScheduleDetail() {
     const dispatch = useDispatch();
     const { scheduleId } = useParams();
     const [loading, setLoading] = useState(true); // 로딩 상태 추가
     const { schedule } = useSelector(state => state.scheduleReducer);
+    const navigate = useNavigate();
 
+    const handleClickModify = () => {
+        navigate(`/schedules/${scheduleId}/modify`);
+    };
+
+    const handleClickDeleted = () => {
+        navigate(`/schedules/${scheduleId}/remove`);
+    };
+
+    const handleClickAccept = () => {
+        const confirmed = window.confirm("일정 참여 신청을 하시겠습니까?");
+        if (confirmed) {
+            dispatch(callScheduleApplyAPI(scheduleId));
+        }
+    };
     useEffect(() => {
         console.log('useParams로부터 가져온 scheduleId:', scheduleId); // scheduleId 확인
         const fetchScheduleDetail = async () => {
@@ -35,8 +51,14 @@ function ScheduleDetail() {
                     {schedule.scheduleItemInfoResponse.map(item => (
                         <KakaoMapSelect key={item.id} place={item} />
 
-                    ))}
+                        )
+
+            )}
                     <ScheduleItem schedule={schedule} />
+                    <Button variant="primary" onClick={handleClickAccept}>신청</Button>{' '}
+                    <Button variant="success" onClick={handleClickModify}>수정</Button>{' '}
+                    <Button variant="danger" onClick={handleClickDeleted}>삭제</Button>
+
                 </div>
             )}
         </>
