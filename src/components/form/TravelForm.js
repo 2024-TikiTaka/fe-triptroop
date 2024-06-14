@@ -3,6 +3,7 @@ import { Form } from "react-bootstrap";
 import KaKaoMapAPI from "../map/KaKaoMapAPI";
 import { callTravelInsertAPI } from "../../apis/TravelAPICalls";
 import { useDispatch } from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 const TravelRegistration = () => {
     const [formData, setFormData] = useState({
@@ -11,11 +12,12 @@ const TravelRegistration = () => {
         placeId: '',
         title: '',
         content: '',
-        images: []  // images 속성을 추가합니다.
+        images: []
     });
 
     const imageInput = useRef();
     const dispatch = useDispatch();
+    const navigate = useNavigate(); // useNavigate 훅을 사용합니다.
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -73,6 +75,7 @@ const TravelRegistration = () => {
         try {
             const response = await dispatch(callTravelInsertAPI({ registRequest: data }));
             console.log("요청 성공:", response);
+            navigate('/travels'); // 등록 성공 후 이동할 페이지로 navigate를 사용합니다.
         } catch (error) {
             if (error.response) {
                 console.error("서버 응답 오류:", error.response.data);

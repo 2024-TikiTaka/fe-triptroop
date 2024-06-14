@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Chat, Person } from "react-bootstrap-icons";
 import { Button, Container, Dropdown, Image, Navbar } from "react-bootstrap";
 
 import { isLogin } from "../../../utils/TokenUtils";
 import { reset } from "../../../modules/UserModules";
-import { callLogoutAPI } from "../../../apis/UserAPICalls";
+import { callLogoutAPI } from "../../../apis/AuthAPICalls";
 import ChatBox from "../../item/ChatBox";
 
 function AdminHeader() {
@@ -14,7 +14,7 @@ function AdminHeader() {
     const location = useLocation();
     const dispatch = useDispatch();
     const { success } = useSelector(state => state.userReducer);
-    const [showChat, setShowChat] = useState(false);
+    const [ showChat, setShowChat ] = useState(false);
 
     const getHeaderText = () => {
         switch (location.pathname) {
@@ -29,14 +29,14 @@ function AdminHeader() {
             default:
                 return '메인 화면';
         }
-    }
+    };
 
     useEffect(() => {
         if (success === true) {
             navigate(`/`);
             dispatch(reset());
         }
-    }, [success]);
+    }, [ success ]);
 
     function AfterLogin() {
         return (
