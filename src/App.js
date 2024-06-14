@@ -16,7 +16,7 @@ import ScheduleRegist from "./pages/schedule/ScheduleRegist";
 import TravelMain from "./pages/travel/TravelMain";
 import TravelDetail from "./pages/travel/TravelDetail";
 import AdminLayout from "./layouts/AdminLayout";
-import AdminMain from "./pages/admin/AdminMain";
+import AdminMain from "./pages/admin/main/AdminMain";
 import AdminUsers from "./pages/admin/user/AdminUsers";
 import AdminUserDetail from "./pages/admin/user/AdminUserDetail";
 import AdminUserRegist from "./pages/admin/user/AdminUserRegist";
@@ -26,6 +26,7 @@ import AdminInquiryDetail from "./pages/admin/inquiry/AdminInquiryDetail";
 import AdminCategories from "./pages/admin/category/AdminCategories";
 import AdminCategoryRegist from "./pages/admin/category/AdminCategoryRegist";
 import AdminCategoryModify from "./pages/admin/category/AdminCategoryModify";
+import AdminInquiryRegister from "./pages/admin/inquiry/AdminInquiryRegister";
 import ProfileSettings from "./pages/settings/ProfileSettings";
 import UserSettings from "./pages/settings/UserSettings";
 import PasswordSettings from "./pages/settings/PasswordSettings";
@@ -36,6 +37,7 @@ import MyHome from "./pages/mypage/MyHome";
 import MyLikes from "./pages/mypage/MyLikes";
 import MySchedules from "./pages/mypage/MySchedules";
 import MyTravels from "./pages/mypage/MyTravels";
+import TravelModifyForm from "./components/form/TravelModifyForm";
 import TravelRegist from "./pages/travel/TravelRegist";
 import ScheduleUpdate from "./pages/schedule/ScheduleUpdate";
 import ScheduleItemUpdate from "./pages/schedule/ScheduleItemUpdate";
@@ -44,6 +46,7 @@ import ScheduleItemRemove from "./pages/schedule/ScheduleItemRemove";
 import ScheduleApply from "./pages/schedule/ScheduleApply";
 import ScheduleRejected from "./pages/schedule/ScheduleRejected";
 import ScheduleParticipant from "./pages/schedule/ScheduleParticipant";
+
 
 function App() {
     return (
