@@ -1,21 +1,24 @@
 import '../styles/admin.css';
 
-import { Outlet } from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
 
 import AdminHeader from '../components/common/admin/AdminHeader';
 import AdminNav from '../components/common/admin/AdminNav';
 import Footer from '../components/common/Footer';
+import {Container} from "react-bootstrap";
 
 function AdminLayout() {
     return (
-        <>
-            <AdminHeader />
+        <div className="admin-layout">
+            <AdminHeader/>
             <AdminNav/>
-                <main className="admin-main">
-                    <Outlet />
-                </main>
-            <Footer />
-        </>
+            <main className="admin-main">
+                <Container>
+                    <Outlet/>
+                </Container>
+            </main>
+            <Footer/>
+        </div>
     );
 }
 
