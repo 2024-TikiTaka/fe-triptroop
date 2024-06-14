@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // useNavigate 훅 사용
 import Button from 'react-bootstrap/Button';
+import { authRequest } from '../../apis/api'; // 올바른 경로로 수정하세요
 import 'bootstrap-icons/font/bootstrap-icons.css'; // 부트스트랩 아이콘 CSS
 import '../../styles/chat.css'; // CSS 파일을 import 합니다.
-import ChatRoom from '../item/ChatRoom';
-import { authRequest } from '../../apis/api';
 
 const FriendList = ({ onSelectRoom }) => {
     const [friends, setFriends] = useState([]); // 초기 값을 빈 배열로 설정
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const navigate = useNavigate(); // useNavigate 훅 사용
 
     useEffect(() => {
-        const fetchFriendsAndChatRooms = async () => {
+        const fetchFriends = async () => {
             try {
-                console.log('Fetching friends and chat rooms...');
+                console.log('Fetching friends...');
                 const friendsResponse = await authRequest.get('/api/v1/friend');
                 console.log('Friends Response:', friendsResponse);
                 setFriends(friendsResponse.data.result || []);
@@ -26,18 +23,17 @@ const FriendList = ({ onSelectRoom }) => {
                 setLoading(false);
             }
         };
-        fetchFriendsAndChatRooms();
+        fetchFriends();
     }, []);
 
-    const startPrivateChat = (roomName, friendId) => {
-        const room = {
-            roomName: roomName,
-            friendId: friendId,
-            type: 'PRIVATE', // 기본값 설정
-            url: `/ws/${roomName}` // 예시 URL, 필요에 따라 수정
+    const handleChatClick = (friend) => {
+        const newRoom = {
+            roomName: friend.nickname,
+            friendId: friend.requesterId,
+            type: 'PRIVATE',
+            url: 'http://localhost:8080/ws' // 고정된 웹 소켓 URL
         };
-        console.log('Starting private chat with room:', room);
-        onSelectRoom(room); // 채팅방 선택 함수 호출
+        onSelectRoom(newRoom);
     };
 
     const handleDeleteFriend = (friendId) => {
@@ -67,7 +63,7 @@ const FriendList = ({ onSelectRoom }) => {
                             <Button
                                 variant="outline-primary"
                                 size="sm"
-                                onClick={() => startPrivateChat(friend.nickname, friend.requesterId)}
+                                onClick={() => handleChatClick(friend)}
                             >
                                 <i className="bi bi-chat-dots"></i>
                             </Button>

@@ -17,8 +17,10 @@ const ChatRoom = ({ room, onBack }) => {
 				'Access-Token': getAccessTokenHeader()
 			},
 			onConnect: () => {
-				client.subscribe(`/topic/public/${room.roomName}`, msg => {
+				// 방별 구독 설정
+				client.subscribe(`/topic/public`, msg => {
 					const receivedMessage = JSON.parse(msg.body);
+					console.log('Received message:', receivedMessage); // 수신된 메시지 로그
 					setMessages(prevMessages => [...prevMessages, receivedMessage]);
 				});
 			},
@@ -39,14 +41,18 @@ const ChatRoom = ({ room, onBack }) => {
 	}, [room]);
 
 	const sendMessage = () => {
+		const senderId = getUserId(); // getUserId가 제대로 된 값을 반환하는지 확인
+		console.log('User ID:', senderId); // 사용자 ID 로그
+
 		if (stompClient && message.trim()) {
 			const chatMessage = {
-				sender: getUserId(), // 사용자 ID를 Long 타입으로 전송
+				sender: senderId, // 사용자 ID를 Long 타입으로 전송
 				content: message,
 				type: 'CHAT',
 			};
+			console.log('Sending message:', chatMessage); // 전송하는 메시지 로그
 			stompClient.publish({
-				destination: `/app/chat.sendMessage/${room.roomName}`,
+				destination: `/app/chat.sendMessage/`,
 				body: JSON.stringify(chatMessage),
 			});
 			setMessage('');
@@ -56,13 +62,14 @@ const ChatRoom = ({ room, onBack }) => {
 	return (
 		<div>
 			<Button onClick={onBack}>뒤로가기</Button>
-			<h2>채팅방: {room.roomName}</h2>
+			<h5>{room.roomName}</h5>
 			<div>
 				{messages.map((msg, index) => (
 					<div key={index}>
-						{msg.sender}: {msg.content}
+						<strong>{msg.sender}</strong>: {msg.content}
 					</div>
 				))}
+				{console.log('Messages state:', messages)} {/* 메시지 상태 로그 */}
 			</div>
 			<Form.Control
 				type="text"
