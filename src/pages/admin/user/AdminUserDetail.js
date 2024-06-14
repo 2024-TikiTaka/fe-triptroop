@@ -2,8 +2,8 @@ import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {callAdminUserDetailAPI} from "../../../apis/admin/AdminUserAPICalls";
 import {useParams} from "react-router-dom";
-import DescriptionList from "../../../components/custom/dl/DescriptionList";
-import {TranslateKeys} from "../../../components/custom/dl/TranslateKeys";
+import DescriptionList from "../../../components/custom/admin/dl/DescriptionList";
+import {TranslateKeys} from "../../../components/custom/admin/dl/TranslateKeys";
 
 
 const displayOrder = ['userId', 'email', 'nickname', 'role', 'gender', 'name', 'birth', 'phone', 'createdAt', 'provider', 'reportCount', 'godo', 'reviewPoint', 'introduction', 'interestNames', 'mbti', 'contentCount', 'friendCount', 'inquiriesCount', 'status'];

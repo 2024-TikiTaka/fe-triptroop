@@ -36,6 +36,7 @@ export const callAdminUserDetailAPI = ({userId}) => {
 };
 
 
-
-
+//관리자 > 회원 관리 > 회원 등록
+export const callAdminUserRegisterAPI = () => {
+}
 

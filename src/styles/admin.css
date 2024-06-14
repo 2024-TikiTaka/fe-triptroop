@@ -24,8 +24,14 @@ html:has(.admin-main) {
 }
 
 .admin-main {
-    padding-top: 100px;
+    padding-top: 140px;
     padding-left: 310px;
+}
+
+.admin-main h2 {
+    font-size: 32px;
+    color: #1A365D;
+    margin-bottom: 40px;
 }
 
 .admin-header,
@@ -37,7 +43,7 @@ html:has(.admin-main) {
 
 .admin-header {
     height: 100px;
-    padding: 0;
+    padding: 0 0 0 310px;
 }
 
 

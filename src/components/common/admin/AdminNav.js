@@ -33,8 +33,8 @@ function AdminNav() {
                     <Nav.Link as={CustomNavLink} to="/admin/users"><img src="/images/icon_admin_user.png" alt=""/>회원 관리</Nav.Link>
                     <Nav.Link as={CustomNavLink} to="/admin/inquires"><img src="/images/icon_admin_inquiry.png" alt=""/>문의
                         관리</Nav.Link>
-                    <Nav.Link as={CustomNavLink} to="/admin/categores"><img src="/images/icon_admin_category.png"
-                                                                            alt=""/>카테고리 관리</Nav.Link>
+                    <Nav.Link as={CustomNavLink} to="/admin/categories"><img src="/images/icon_admin_category.png"
+                                                                             alt=""/>카테고리 관리</Nav.Link>
                     <Nav.Link as={CustomNavLink} to="/admin/notices">공지 관리</Nav.Link>
                 </Nav>
             </Navbar.Brand>

@@ -21,7 +21,7 @@ import TravelMain from "./pages/travel/TravelMain";
 import TravelDetail from "./pages/travel/TravelDetail";
 import AdminUsers from "./pages/admin/user/AdminUsers";
 import AdminUserDetail from "./pages/admin/user/AdminUserDetail";
-import AdminUserRegist from "./pages/admin/user/AdminUserRegist";
+import AdminUserRegister from "./pages/admin/user/AdminUserRegister";
 import AdminUserDelete from "./pages/admin/user/AdminUserDelete";
 import AdminInquiries from "./pages/admin/inquiry/AdminInquiries";
 import AdminInquiryDetail from "./pages/admin/inquiry/AdminInquiryDetail";
@@ -87,7 +87,7 @@ function App() {
                     <Route path="users">
                         <Route index element={<AdminUsers/>}/>
                         <Route path=":userId" element={<AdminUserDetail/>}/>
-                        <Route path="regist" element={<AdminUserRegist/>}/>
+                        <Route path="regist" element={<AdminUserRegister/>}/>
                         <Route path="delete" element={<AdminUserDelete/>}/>
                     </Route>
                     <Route path="inquires">

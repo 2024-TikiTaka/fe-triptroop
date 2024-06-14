@@ -6,7 +6,7 @@ export const ADMIN_USER = {
     friendCount: "친구 수", gender: "성별", godo: "고도", inquiriesCount: "문의 개수",
     name: "이름", password: "비밀번호", phone: "전화번호", reportCount: "신고 개수",
     role: "권한", status: "상태", userId: "No", nickname: "닉네임", provider: "소셜 로그인",
-    introduction: "소개", interestNames: "관신사", mbti: "MBTI", reviewPoint: "리뷰 점수"
+    introduction: "소개", interestNames: "관심사", mbti: "MBTI", reviewPoint: "리뷰 점수"
 };
 
 export const ADMIN_INQUIRY = {
