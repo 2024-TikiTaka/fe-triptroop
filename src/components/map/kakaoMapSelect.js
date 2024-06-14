@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Map, MapMarker } from "react-kakao-maps-sdk";
+import { MapMarker, Map } from "react-kakao-maps-sdk";
+import {useSelector} from "react-redux";
 
 const KakaoMapTest = ({ place }) => {
     const [ position, setPosition ] = useState(null);
