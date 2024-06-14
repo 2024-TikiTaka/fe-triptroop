@@ -6,10 +6,11 @@ import { Button, Container, Dropdown, Image, Nav, Navbar } from "react-bootstrap
 
 import { isLogin } from "../../utils/TokenUtils";
 import { reset } from "../../modules/UserModules";
-import { callLogoutAPI, callProfileAPI } from "../../apis/UserAPICalls";
+import { callLogoutAPI } from "../../apis/AuthAPICalls";
+import { callProfileAPI } from "../../apis/ProfileAPICalls";
 
 import ChatBox from "../item/ChatBox";
-import { DefaultProfile } from "./Icons";
+import ProfileImage from "./ProfileImage";
 
 const CustomNavLink = ({ to, children }) => (
     <NavLink
@@ -24,7 +25,7 @@ function Header() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const { success, profileInfo } = useSelector(state => state.userReducer);
+    const { success, profile } = useSelector(state => state.userReducer);
     const [ showChat, setShowChat ] = useState(false);
 
     useEffect(() => {
@@ -35,9 +36,9 @@ function Header() {
         }
 
         if (isLogin()) {
-            dispatch(callProfileAPI());
+            !profile && dispatch(callProfileAPI());
         }
-    }, [ success ]);
+    }, [ success, profile ]);
 
     function BeforeLogin() {
         return (
@@ -79,19 +80,12 @@ function Header() {
                             <Dropdown.Menu className="dropdown-animation dropdown-menu-end shadow" aria-labelledby="profileDropdown">
                                 <Dropdown.Item as="div">
                                     <div className="d-flex align-items-center">
-                                        <div className=" me-3 rounded-5 overflow-hidden border">
-                                            {!profileInfo ?
-                                                (
-                                                    <DefaultProfile
-                                                        className="avatar mx-auto d-block mb-3"
-                                                        width="50px" height="50px"
-                                                    />)
-                                                : <Image src={profileInfo?.profile.profileImage} width="50px" height="50px" />
-                                            }
+                                        <div className="me-3">
+                                            <ProfileImage />
                                         </div>
                                         <div>
                                             <p className="small m-0">
-                                                {profileInfo?.profile.nickname}
+                                                {profile?.nickname}
                                             </p>
                                             <p className="small m-0">
 
@@ -100,7 +94,7 @@ function Header() {
                                     </div>
                                 </Dropdown.Item>
                                 <Dropdown.Divider />
-                                <Dropdown.Item onClick={() => navigate(`/mypage`)}>마이페이지 </Dropdown.Item>
+                                <Dropdown.Item onClick={() => navigate(`/mypage`)}>마이페이지</Dropdown.Item>
                                 <Dropdown.Item onClick={() => navigate(`/likes`)}>좋아요</Dropdown.Item>
                                 <Dropdown.Item onClick={() => navigate(`/settings`)}>설정</Dropdown.Item>
                                 <Dropdown.Divider />

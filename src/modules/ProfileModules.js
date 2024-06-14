@@ -4,26 +4,26 @@ import { createActions, handleActions } from 'redux-actions';
 const initialState = {};
 
 /* 액션 타입 */
-const RESET = 'user/RESET';
-const SUCCESS = 'user/SUCCESS';
-const GET_USER = 'user/GET_USER';
+const RESET = 'profile/RESET';
+const SUCCESS = 'profile/SUCCESS';
+const GET_PROFILE = 'profile/GET_PROFILE';
 
 /* 액션 함수 */
 export const {
-    user: {
-        reset, success, getUser
+    profile: {
+        reset, success, getUser, getProfile
     },
 } = createActions({
     [RESET]: () => {},
     [SUCCESS]: () => ({ success: true }),
-    [GET_USER]: result => ({ userInfo: result }),
+    [GET_PROFILE]: result => ({ profile: result }),
 });
 
 /* 리듀서 함수 */
 const userReducer = handleActions({
     [RESET]: () => initialState,
     [SUCCESS]: (state, { payload }) => payload,
-    [GET_USER]: (state, { payload }) => payload,
+    [GET_PROFILE]: (state, { payload }) => payload,
 }, initialState);
 
 export default userReducer;
