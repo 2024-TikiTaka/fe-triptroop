@@ -1,4 +1,4 @@
-import CustomTable from "../../item/CustomTable";
+import CustomTable from "../../custom/table/CustomTable";
 import {useNavigate} from "react-router-dom";
 
 const AdminUserList = ({data}) => {

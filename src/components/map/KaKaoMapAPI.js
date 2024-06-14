@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from "react";
-import {Map, MapMarker} from "react-kakao-maps-sdk";
+import React, { useEffect, useState } from "react";
+import { Map, MapMarker } from "react-kakao-maps-sdk";
 
-function KaKaoMapAPI({onPlaceSelect}) {
-    const [keyword, setKeyword] = useState('');
-    const [info, setInfo] = useState(null);
-    const [markers, setMarkers] = useState([]);
-    const [map, setMap] = useState(null);
-    const [places, setPlaces] = useState([]);
+function KaKaoMapAPI({ onPlaceSelect }) {
+    const [ keyword, setKeyword ] = useState('');
+    const [ info, setInfo ] = useState(null);
+    const [ markers, setMarkers ] = useState([]);
+    const [ map, setMap ] = useState(null);
+    const [ places, setPlaces ] = useState([]);
 
     useEffect(() => {
         const script = document.createElement("script");
-        script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=c832e4b58ba1a41ba6ae7d694e9e37e5&libraries=services,clusterer`;
+        script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_MAP_API_KEY}&libraries=services,clusterer`;
         script.async = true;
         document.head.appendChild(script);
 
@@ -69,8 +69,8 @@ function KaKaoMapAPI({onPlaceSelect}) {
             lat: parseFloat(place.y),
             lng: parseFloat(place.x),
         };
-        setMarkers([{position, content: place.place_name}]);
-        setInfo({content: place.place_name, address: place.road_address_name || place.address_name});
+        setMarkers([ { position, content: place.place_name } ]);
+        setInfo({ content: place.place_name, address: place.road_address_name || place.address_name });
 
         if (map) {
             const moveLatLon = new window.kakao.maps.LatLng(position.lat, position.lng);
@@ -95,7 +95,7 @@ function KaKaoMapAPI({onPlaceSelect}) {
                 />
                 <button onClick={searchPlaces}>검색</button>
             </div>
-            <div style={{display: 'flex'}}>
+            <div style={{ display: 'flex' }}>
                 <div>
                     <ul>
                         {places.map((place) => (
@@ -105,7 +105,7 @@ function KaKaoMapAPI({onPlaceSelect}) {
                         ))}
                     </ul>
                 </div>
-                <div id="map" style={{width: "500px", height: "400px"}}>
+                <div id="map" style={{ width: "500px", height: "400px" }}>
                     <Map
                         center={{
                             lat: 37.566826,
@@ -125,7 +125,7 @@ function KaKaoMapAPI({onPlaceSelect}) {
                                 onClick={() => setInfo(marker)}
                             >
                                 {info && info.content === marker.content && (
-                                    <div style={{color: "#000"}}>{marker.content}</div>
+                                    <div style={{ color: "#000" }}>{marker.content}</div>
                                 )}
                             </MapMarker>
                         ))}

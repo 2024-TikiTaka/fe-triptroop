@@ -20,13 +20,18 @@ export const callAdminUserListAPI = () => {
 export const callAdminUserDetailAPI = ({userId}) => {
 
     return async (dispatch) => {
-        const result = await authRequest.get(`/api/v1/admin/users/${userId}`)
-        console.log('callAdminUserDetailAPI result : ', result);
-        // console.log('callAdminUserDetailAPI ㅠㅠ 유저아이디!!!! : ', result.userId);
+        try {
+            const result = await authRequest.get(`/api/v1/admin/users/${userId}`)
+            console.log('callAdminUserDetailAPI result : ', result);
+            // console.log('callAdminUserDetailAPI ㅠㅠ 유저아이디!!!! : ', result.userId);
 
-        if (result.status === 200) {
-            dispatch(getInfo(result));
+            if (result.status === 200) {
+                dispatch(getInfo(result));
+            }
+        } catch (error) {
+            console.error('callAdminUserDetailAPI error: ', error);
         }
+
     }
 };
 
