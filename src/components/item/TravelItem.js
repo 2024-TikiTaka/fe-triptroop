@@ -1,7 +1,6 @@
 function TravelItem({travel}) {
     const {travels, images, place} = travel;
     console.log(place)
-    console.log(place)
     return (
         <>
             <div className="img-div">
@@ -38,3 +37,6 @@ function TravelItem({travel}) {
 }
 
 export default TravelItem;
+
+
+

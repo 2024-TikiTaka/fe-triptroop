@@ -1,4 +1,6 @@
 import {Image} from "react-bootstrap";
+import  '../../styles/travel.css';
+
 
 function TravelCommentListItem ({ comments: { id, content, nickname , profileImage }}) {
 

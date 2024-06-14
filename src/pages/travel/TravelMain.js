@@ -9,6 +9,7 @@ import {useNavigate} from "react-router-dom";
 
 
 
+
 function TravelMain() {
 
     const dispatch = useDispatch();
@@ -37,6 +38,7 @@ function TravelMain() {
             {
                 travels &&
                 <>
+
                     <JobPostingsStatus /> {/* JobPostingsStatus 컴포넌트 추가 */}
                     <TravelList data={travels.data}/>
                     <PagingBar pageInfo={travels.pageInfo} setCurrentPage={setCurrentPage}/>
