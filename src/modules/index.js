@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+
+import scheduleParticipantReducer from "./ScheduleParticipantModules";
 import userReducer from './UserModules';
 import profileReducer from './ProfileModules';
 import scheduleReducer from './ScheduleModules';
@@ -14,6 +16,7 @@ const rootReducer = combineReducers({
     userReducer,
     profileReducer,
     scheduleReducer,
+    scheduleParticipantReducer,
     travelReducer,
     commentReducer,
     placeReducer,
@@ -21,6 +24,6 @@ const rootReducer = combineReducers({
     adminInquiryReducer,
     adminCategoryReducer,
     adminNoticeReducer
-})
+});
 
 export default rootReducer;
