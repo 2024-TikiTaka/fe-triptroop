@@ -44,7 +44,7 @@ const FriendList = ({ onSelectRoom }) => {
         try {
             const requestBody = {
                 roomName: `${nickname}, ${friend.nickname}`, // 자신의 닉네임과 친구의 닉네임을 함께 사용
-                friendId: friend.requesterId,
+                friendId: friend.acceptorId,
                 type: 'PRIVATE'
             };
 
@@ -52,7 +52,7 @@ const FriendList = ({ onSelectRoom }) => {
             console.log('Chat room created:', response.data);
 
             const newRoom = {
-                roomName: response.data.roomName,
+                roomName: `${nickname}, ${friend.nickname}`,
                 friendId: friend.requesterId,
                 type: 'PRIVATE',
                 url: 'http://localhost:8080/ws'
