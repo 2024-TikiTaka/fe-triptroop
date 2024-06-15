@@ -1,15 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import { authRequest } from '../../apis/api'; // 올바른 경로로 수정하세요
-import 'bootstrap-icons/font/bootstrap-icons.css'; // 부트스트랩 아이콘 CSS
+import { authRequest } from '../../apis/api';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../../styles/chat.css'; // CSS 파일을 import 합니다.
 
 const FriendList = ({ onSelectRoom }) => {
-    const [friends, setFriends] = useState([]); // 초기 값을 빈 배열로 설정
+    const [friends, setFriends] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [nickname, setNickname] = useState('');
 
     useEffect(() => {
+        const fetchUserProfile = async () => {
+            try {
+                console.log('Fetching user profile...');
+                const userProfileResponse = await authRequest.get('/api/v1/users/me/profile');
+                console.log('User Profile Response:', userProfileResponse);
+                setNickname(userProfileResponse.data.result.profile.nickname);
+            } catch (error) {
+                console.error('Error fetching user profile:', error);
+            }
+        };
+
         const fetchFriends = async () => {
             try {
                 console.log('Fetching friends...');
@@ -23,22 +35,45 @@ const FriendList = ({ onSelectRoom }) => {
                 setLoading(false);
             }
         };
+
+        fetchUserProfile();
         fetchFriends();
     }, []);
 
-    const handleChatClick = (friend) => {
-        const newRoom = {
-            roomName: friend.nickname,
-            friendId: friend.requesterId,
-            type: 'PRIVATE',
-            url: 'http://localhost:8080/ws' // 고정된 웹 소켓 URL
-        };
-        onSelectRoom(newRoom);
+    const handleChatClick = async (friend) => {
+        try {
+            const requestBody = {
+                roomName: `${nickname}, ${friend.nickname}`, // 자신의 닉네임과 친구의 닉네임을 함께 사용
+                friendId: friend.requesterId,
+                type: 'PRIVATE'
+            };
+
+            const response = await authRequest.post('/api/v1/chat/chatroom', requestBody);
+            console.log('Chat room created:', response.data);
+
+            const newRoom = {
+                roomName: response.data.roomName,
+                friendId: friend.requesterId,
+                type: 'PRIVATE',
+                url: 'http://localhost:8080/ws'
+            };
+
+            onSelectRoom(newRoom);
+        } catch (error) {
+            console.error('Error creating chat room:', error);
+        }
     };
 
-    const handleDeleteFriend = (friendId) => {
-        console.log('친구 삭제:', friendId);
-        // 친구 삭제 API 호출 로직을 추가할 수 있습니다.
+    const handleDeleteFriend = async (nickname) => {
+        try {
+            console.log('친구 삭제:', nickname);
+            await authRequest.delete('/api/v1/friend/delete', {
+                data: { nickname }
+            });
+            setFriends(friends.filter(friend => friend.nickname !== nickname));
+        } catch (error) {
+            console.error('친구 삭제 중 오류 발생:', error);
+        }
     };
 
     if (loading) {
@@ -70,7 +105,7 @@ const FriendList = ({ onSelectRoom }) => {
                             <Button
                                 variant="outline-danger"
                                 size="sm"
-                                onClick={() => handleDeleteFriend(friend.requesterId)}
+                                onClick={() => handleDeleteFriend(friend.nickname)}
                             >
                                 <i className="bi bi-person-x"></i>
                             </Button>

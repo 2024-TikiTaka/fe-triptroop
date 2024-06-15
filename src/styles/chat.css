@@ -172,3 +172,110 @@
     flex-direction: column;
     overflow-y: auto;
 }
+
+/* 채팅 목록 */
+.chat-list-container {
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+}
+
+.chat-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.chat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer; /* 클릭 가능하게 마우스 커서를 변경 */
+    transition: background-color 0.3s;
+}
+
+.chat-item:hover {
+    background-color: #f1f1f1; /* 호버 시 배경색 변경 */
+}
+
+.chat-room-name {
+    font-size: 14px;
+    font-weight: normal; /* 채팅방 이름 글씨 굵기 조정 */
+}
+
+/* 채팅룸 */
+.chat-room-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.chat-room-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #7DCD7D;
+    color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    position: relative; /* 위치를 상대적으로 설정하여 내부 요소 배치 조정 */
+}
+
+.back-button {
+    color: white;
+    margin-right: 10px;
+    position: absolute; /* 절대 위치로 설정하여 좌측에 고정 */
+    left: 10px; /* 좌측 여백 설정 */
+}
+
+.room-name {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+}
+
+.message-container {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-top: none;
+    background-color: #f9f9f9;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.input-group-custom {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #f9f9f9;
+}
+
+.input-control-custom {
+    flex-grow: 1;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    margin-right: 10px;
+}
+
+.send-button-custom {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    flex-shrink: 0;
+    background-color: #7DCD7D;
+    border-color: #7DCD7D;
+}

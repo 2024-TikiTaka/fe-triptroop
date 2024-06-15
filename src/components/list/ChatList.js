@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { authRequest } from '../../apis/api'; // 올바른 경로로 수정하세요
+import '../../styles/chat.css'; // 스타일 파일을 import 합니다.
 
 const ChatList = ({ onSelectRoom }) => {
     const [chatRooms, setChatRooms] = useState([]);
@@ -29,12 +30,12 @@ const ChatList = ({ onSelectRoom }) => {
     }
 
     return (
-        <div>
+        <div className="chat-list-container">
             <h5>채팅</h5>
-            <ul>
+            <ul className="chat-list">
                 {chatRooms.map((room) => (
-                    <li key={room.id} onClick={() => onSelectRoom(room)}>
-                        {room.roomName}
+                    <li key={room.id} className="chat-item" onClick={() => onSelectRoom(room)}>
+                        <div className="chat-room-name">{room.roomName}</div>
                     </li>
                 ))}
             </ul>

@@ -34,9 +34,9 @@ export const getEmail = () => {
 };
 
 export const getUserId = () => {
-    return getDecodeAccessToken().userId;
+    const accessToken = getDecodeAccessToken();
+    return accessToken ? accessToken.userId : null;
 };
-
 
 
 
