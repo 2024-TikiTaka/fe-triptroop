@@ -7,6 +7,7 @@ import TravelItem from "../../components/item/TravelItem";
 import TravelCommentList from "../../components/list/TravelCommentList";
 import PagingBar from "../../components/pagination/PagingBar";
 import KakaoMapTest from "./kakaoMapTest";
+import {Button} from "react-bootstrap";
 
 
 function TravelDetail() {
@@ -14,16 +15,16 @@ function TravelDetail() {
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
     const [isTravelDetailLoaded, setIsTravelDetailLoaded] = useState(false);
-    const { travelId } = useParams();
-    const { travel, place } = useSelector((state) => state.travelReducer);
-    const { comment } = useSelector((state) => state.commentReducer);
+    const {travelId} = useParams();
+    const {travel, place} = useSelector((state) => state.travelReducer);
+    const {comment} = useSelector((state) => state.commentReducer);
 
     useEffect(() => {
         console.log('useParams로부터 가져온 travelId:', travelId);
 
         const fetchTravelDetail = async () => {
             if (travelId) {
-                await dispatch(callTravelDetailAPI({ travelId }));
+                await dispatch(callTravelDetailAPI({travelId}));
                 setIsTravelDetailLoaded(true);
             } else {
                 console.error('travelId가 유효하지 않습니다.');
@@ -35,7 +36,7 @@ function TravelDetail() {
 
     useEffect(() => {
         if (isTravelDetailLoaded) {
-            dispatch(callCommentAPI({ travelId, currentPage }));
+            dispatch(callCommentAPI({travelId, currentPage}));
         }
     }, [dispatch, travelId, currentPage, isTravelDetailLoaded]);
 
@@ -44,7 +45,7 @@ function TravelDetail() {
     };
 
     const handleDeleteClick = async () => {
-        const success = await dispatch(callTravelDeleteAPI({ travelId }));
+        const success = await dispatch(callTravelDeleteAPI({travelId}));
         if (success) {
             navigate('/travels'); // 삭제 성공 시 이동
         }
@@ -56,18 +57,38 @@ function TravelDetail() {
 
     return (
         <>
+
+            <Button onClick={handleEditClick}>수정</Button>
+            <Button onClick={handleDeleteClick}>삭제</Button>
+
             {travel && (
                 <div className="detail-div">
                     <TravelItem travel={travel}/>
-                    <button onClick={handleEditClick}>수정</button>
-                    <button onClick={handleDeleteClick}>삭제</button>
+
                 </div>
             )}
+
             {travel && travel.place && (
                 <div>
                     <KakaoMapTest place={travel.place}/>
                 </div>
             )}
+
+            {/*<button onClick={handleEditClick}>수정</button>*/}
+            {/*<button onClick={handleDeleteClick}>삭제</button>*/}
+            {/*{travel && (*/}
+            {/*    <div className="detail-div">*/}
+            {/*        <TravelItem travel={travel}/>*/}
+            {/*        <button onClick={handleEditClick}>수정</button>*/}
+            {/*        <button onClick={handleDeleteClick}>삭제</button>*/}
+            {/*    </div>*/}
+            {/*)}*/}
+            {/*{travel && travel.place && (*/}
+            {/*    <div>*/}
+            {/*        <KakaoMapTest place={travel.place}/>*/}
+            {/*    </div>*/}
+            {/*)}*/}
+           
             {comment && (
                 <div>
                     <TravelCommentList data={comment.data}/>
@@ -79,3 +100,4 @@ function TravelDetail() {
 }
 
 export default TravelDetail;
+

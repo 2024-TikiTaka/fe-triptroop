@@ -1,14 +1,14 @@
 import TravelListItem from "../item/TravelListItem";
+import styles from '../../styles/TravelListmodule.css';
 
-function TravelList({data}) {
-
+function TravelList({ data }) {
     return (
-        <div className="travels-div">
-            { data && data.map(travel =>
-                <TravelListItem key={travel.id} travel={travel}/>)
+        <div className={styles.travelsDiv}>
+            {data && data.map(travel =>
+                <TravelListItem key={travel.id} travel={travel} />)
             }
         </div>
-    )
+    );
 }
 
 export default TravelList;

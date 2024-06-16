@@ -1,0 +1,175 @@
+/* TravelListItem CSS */
+.travel-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.travel-div:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.travel-div h5 {
+    font-size: 1.25rem;
+    margin: 8px 0;
+}
+
+.travel-div p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* TravelList CSS */
+.travels-div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.travel-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.travel-div:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.travel-div img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.travel-div h5 {
+    font-size: 1.25rem;
+    margin: 8px 0;
+}
+
+.travel-div p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.travels-div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.travel-item {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.img-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.img-div img {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.no-image {
+    text-align: center;
+    font-style: italic;
+    color: #999;
+}
+
+.profile-div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.profile-image {
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    border-radius: 50%; /* Ensures it's round */
+    object-fit: cover; /* Ensures the image fills the space */
+    margin-right: 12px;
+}
+
+.detail {
+    margin-bottom: 16px;
+}
+
+.details-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.details-list li {
+    margin-bottom: 8px;
+}
+
+.map-div {
+    background-color: #f0f0f0;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.map-div ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.map-div ul li {
+    margin-bottom: 8px;
+}
+
+.map-div strong {
+    font-weight: bold;
+}
+
+.comment-div {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.comment-div p {
+    margin: 0;
+}
+
+.comment-div .profile-image {
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    border-radius: 50%; /* Ensures it's round */
+    object-fit: cover; /* Ensures the image fills the space */
+    margin-right: 12px;
+}
