@@ -1,7 +1,7 @@
 import React from 'react'
 
 const NoticeList = () => {
-	return <div>공지 내용</div>
+	return <h5>공지</h5>
 }
 
 export default NoticeList

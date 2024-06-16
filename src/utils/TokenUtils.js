@@ -33,8 +33,10 @@ export const getEmail = () => {
     return getDecodeAccessToken().email;
 };
 
-
-
+export const getUserId = () => {
+    const accessToken = getDecodeAccessToken();
+    return accessToken ? accessToken.userId : null;
+};
 
 
 
