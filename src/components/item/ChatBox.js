@@ -6,7 +6,7 @@ import 'react-resizable/css/styles.css';
 import '../../styles/chat.css';
 import ChatList from '../list/ChatList';
 import ChatRoom from '../item/ChatRoom';
-import NoticeList from '../list/NoticeList';
+import NoticeList from '../list/NoticeList'; // 공지 목록 컴포넌트
 import FriendList from '../list/FriendList';
 
 const ChatBox = ({ show, handleClose }) => {
@@ -65,7 +65,7 @@ const ChatBox = ({ show, handleClose }) => {
                     <Modal.Body className="modal-body">
                         {activeTab === 'friends' && <FriendList onSelectRoom={handleSelectRoom} />}
                         {activeTab === 'chats' && <ChatList onSelectRoom={handleSelectRoom} />}
-                        {activeTab === 'notices' && <NoticeList />}
+                        {activeTab === 'notices' && <NoticeList />} {/* 공지 목록 추가 */}
                         {activeTab === 'chatRoom' && selectedRoom && (
                             <ChatRoom room={selectedRoom} onBack={handleBackToList} />
                         )}
