@@ -1,6 +1,6 @@
-import ScheduleListItem from "../item/ScheduleListItem";
+import ScheduleListItem from "../../components/item/ScheduleListItem";
 
-const ScheduleList = ({data}) => {
+const Schedule = ({data}) => {
 
     return (
         <div className="schedule-div">
@@ -9,4 +9,5 @@ const ScheduleList = ({data}) => {
     );
 }
 
-export default ScheduleList;
+
+export default Schedule;

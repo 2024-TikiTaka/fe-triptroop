@@ -31,16 +31,6 @@ export const callTravelCategoryListAPI = ({ categoryId, currentPage = 1 }) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
 /* 상세 조회 */
 export const callTravelDetailAPI = ({ travelId }) => {
     return async (dispatch, getState) => {
@@ -55,6 +45,8 @@ export const callTravelDetailAPI = ({ travelId }) => {
         }
     }
 }
+
+
 /* 댓글 조회 */
 export const callCommentAPI = ({ travelId ,currentPage = 1}) => {
     return async (dispatch, getState) => {
@@ -108,6 +100,7 @@ export const callTravelModifyAPI = ({ travelId, modifyRequest }) => {
     }
 };
 
+/* 여행지 소개 삭제 */
 export const callTravelDeleteAPI = ({ travelId }) => {
 
     return async (dispatch, getState) => {
@@ -119,6 +112,23 @@ export const callTravelDeleteAPI = ({ travelId }) => {
         }
     }
 }
+
+/* 댓글 등록 */
+export const callCommentRegistAPI = ({ travelId, registRequest }) => {
+
+    return async (dispatch, getState) => {
+        const result = await authRequest.post(`/api/v1/travels/${travelId}/comments`, registRequest);
+        console.log(`callCommentRegistAPI : `, result);
+
+        if (result.status === 201) {
+            dispatch(success());
+        }
+
+    }
+}
+
+
+
 
 
 

@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Button, Row, Col } from "react-bootstrap";
 import KaKaoMapAPI from "../map/KaKaoMapAPI";
 import { callTravelInsertAPI } from "../../apis/TravelAPICalls";
 import { useDispatch } from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const TravelRegistration = () => {
     const [formData, setFormData] = useState({
@@ -17,7 +17,7 @@ const TravelRegistration = () => {
 
     const imageInput = useRef();
     const dispatch = useDispatch();
-    const navigate = useNavigate(); // useNavigate 훅을 사용합니다.
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -75,7 +75,7 @@ const TravelRegistration = () => {
         try {
             const response = await dispatch(callTravelInsertAPI({ registRequest: data }));
             console.log("요청 성공:", response);
-            navigate('/travels'); // 등록 성공 후 이동할 페이지로 navigate를 사용합니다.
+            navigate('/travels');
         } catch (error) {
             if (error.response) {
                 console.error("서버 응답 오류:", error.response.data);
@@ -88,57 +88,67 @@ const TravelRegistration = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>카테고리:</label>
-                <select name="categoryId" value={formData.categoryId} onChange={handleCategoryChange}>
-                    <option value="">카테고리 선택</option>
-                    <option value="1">관광지</option>
-                    <option value="2">문화시설</option>
-                    <option value="3">축제</option>
-                    <option value="4">행사</option>
-                    <option value="5">레포츠</option>
-                    <option value="6">숙박</option>
-                    <option value="7">쇼핑</option>
-                    <option value="8">음식점</option>
-                    <option value="9">여행코스</option>
-                    <option value="10">체험</option>
-                </select>
-            </div>
-            <div>
-                <label>지역:</label>
-                <select name="areaId" value={formData.areaId} onChange={handleAreaChange}>
-                    <option value="">지역 선택</option>
-                    <option value="1">서울</option>
-                    <option value="2">부산</option>
-                    <option value="3">대구</option>
-                    <option value="4">인천</option>
-                    <option value="5">광주</option>
-                    <option value="6">대전</option>
-                    <option value="7">울산</option>
-                    <option value="8">세종</option>
-                    <option value="9">경기</option>
-                    <option value="10">강원</option>
-                </select>
-            </div>
-            <div>
-                <label>장소:</label>
+        <Form onSubmit={handleSubmit}>
+            <Row className="mb-3">
+                <Form.Group as={Col} controlId="formGridCategory">
+                    <Form.Label>카테고리</Form.Label>
+                    <Form.Control as="select" name="categoryId" value={formData.categoryId} onChange={handleCategoryChange}>
+                        <option value="">카테고리 선택</option>
+                        <option value="1">관광지</option>
+                        <option value="2">문화시설</option>
+                        <option value="3">축제</option>
+                        <option value="4">행사</option>
+                        <option value="5">레포츠</option>
+                        <option value="6">숙박</option>
+                        <option value="7">쇼핑</option>
+                        <option value="8">음식점</option>
+                        <option value="9">여행코스</option>
+                        <option value="10">체험</option>
+                    </Form.Control>
+                </Form.Group>
+
+                <Form.Group as={Col} controlId="formGridArea">
+                    <Form.Label>지역</Form.Label>
+                    <Form.Control as="select" name="areaId" value={formData.areaId} onChange={handleAreaChange}>
+                        <option value="">지역 선택</option>
+                        <option value="1">서울</option>
+                        <option value="2">부산</option>
+                        <option value="3">대구</option>
+                        <option value="4">인천</option>
+                        <option value="5">광주</option>
+                        <option value="6">대전</option>
+                        <option value="7">울산</option>
+                        <option value="8">세종</option>
+                        <option value="9">경기</option>
+                        <option value="10">강원</option>
+                    </Form.Control>
+                </Form.Group>
+            </Row>
+
+            <Form.Group className="mb-3" controlId="formGridPlace">
+                <Form.Label>장소</Form.Label>
                 <KaKaoMapAPI onPlaceSelect={handlePlaceSelect} />
-            </div>
-            <div>
-                <label>제목:</label>
-                <input type="text" name="title" value={formData.title} onChange={handleChange} />
-            </div>
-            <div>
-                <label>내용:</label>
-                <textarea name="content" value={formData.content} onChange={handleChange} />
-            </div>
-            <div>
-                <label>이미지:</label>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formGridTitle">
+                <Form.Label>제목</Form.Label>
+                <Form.Control type="text" name="title" value={formData.title} onChange={handleChange} />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formGridContent">
+                <Form.Label>내용</Form.Label>
+                <Form.Control as="textarea" name="content" value={formData.content} onChange={handleChange} />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formGridImages">
+                <Form.Label>이미지</Form.Label>
                 <Form.Control type="file" accept="image/*" ref={imageInput} onChange={handleFileChange} multiple />
-            </div>
-            <button type="submit">등록</button>
-        </form>
+            </Form.Group>
+
+            <Button variant="primary" type="submit">
+                등록
+            </Button>
+        </Form>
     );
 };
 
