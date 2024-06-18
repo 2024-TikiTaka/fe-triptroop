@@ -1,5 +1,5 @@
 import TravelListItem from "../item/TravelListItem";
-import styles from '../../styles/TravelListmodule.css';
+import styles from '../../styles/travel.css';
 
 function TravelList({ data }) {
     return (
