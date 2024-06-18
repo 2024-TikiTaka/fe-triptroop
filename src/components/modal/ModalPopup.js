@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button, Container } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 
 
 /**
@@ -15,7 +15,7 @@ import { Modal, Button, Container } from 'react-bootstrap';
  *    모달 컨텐츠에 표시될 내용
  * </ModalPopup>
  *  */
-const ModalPopup = ({ show, onHide, title, ...props }) => {
+const ModalPopup = ({ show = false, onHide = undefined, title, ...props }) => {
 
     return (
         <Modal
@@ -30,8 +30,8 @@ const ModalPopup = ({ show, onHide, title, ...props }) => {
                 {props.children}
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={onHide} className={"px-3"}>취소</Button>
-                <Button variant="primary" onClick={onHide} className={"px-4"}>확인</Button>
+                <Button variant="secondary" onClick={onHide ? onHide : undefined} className={"px-3"}>취소</Button>
+                <Button variant="primary" onClick={onHide ? onHide : undefined} className={"px-4"}>확인</Button>
             </Modal.Footer>
         </Modal>
     );

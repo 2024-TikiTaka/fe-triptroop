@@ -1,24 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Card, Col, Container, Nav, Row } from 'react-bootstrap';
 import MyPageHeader from "../common/MyPageHeader";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { callMyProfileAPI } from "../../apis/ProfileAPICalls";
+import { callCurrentUserAPI } from "../../apis/UserAPICalls";
 
-const CustomNavLink = ({ to, children }) => {
- 
+const CustomNavLink = ({ children, ...props }) => {
     return (
         <NavLink
-            to={to}
-            className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+            {...props}
+            className={({ isActive }) =>
+                `nav-link ${isActive ? 'active' : ''}`
+            }
+        >
             {children}
         </NavLink>
     );
 };
+
 function MyPageContent({ children }) {
+
+    const dispatch = useDispatch();
+    const { currentUser } = useSelector(state => state.userReducer);
+    const { currentProfile } = useSelector(state => state.profileReducer);
+
+    useEffect(() => {
+        !currentUser && dispatch(callCurrentUserAPI());
+        !currentProfile && dispatch(callMyProfileAPI());
+    }, [ dispatch ]);
+
     return (
         <>
             <div className="mypage-content">
-                <MyPageHeader />
+                <MyPageHeader userInfo={currentUser} profileInfo={currentProfile} />
 
                 <Container>
                     <Card className="mb-4">
@@ -31,7 +47,7 @@ function MyPageContent({ children }) {
                                         className="mypage-tab mb-4"
                                     >
                                         <Nav.Item>
-                                            <Nav.Link as={CustomNavLink} to={"/mypage/home"}>홈</Nav.Link>
+                                            <Nav.Link as={CustomNavLink} to={"/mypage"} exact>홈</Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item>
                                             <Nav.Link as={CustomNavLink} to={"/mypage/travels"}>여행</Nav.Link>

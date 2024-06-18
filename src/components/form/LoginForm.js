@@ -2,6 +2,11 @@ import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { Button, Form } from "react-bootstrap";
 import { callLoginAPI } from "../../apis/AuthAPICalls";
+import { Link } from "react-router-dom";
+import { request } from "../../apis/api";
+import { saveToken } from "../../utils/TokenUtils";
+import { success } from "../../modules/UserModules";
+import { toast } from "react-toastify";
 
 function LoginForm() {
 
@@ -20,7 +25,6 @@ function LoginForm() {
     const onClickLoginHandler = () => {
         if (formChanged) {
             dispatch(callLoginAPI({ loginRequest: form }));
-            setFormChanged(false);
         }
     };
 
@@ -48,18 +52,17 @@ function LoginForm() {
                     />
                 </Form.Group>
 
-                {/* 비밀번호 찾기 */}
-                {/* <div className="mb-3 d-sm-flex justify-content-between"> */}
-                {/*     <Link to={"/find"}>비밀번호 찾기</Link> */}
-                {/* </div> */}
-
                 <Button
                     size="lg"
-                    className="fs-6 w-100 mb-0  blue-800"
-                    onClick={onClickLoginHandler}
-                >
+                    className="fs-6 w-100 mb-0 blue-800"
+                    onClick={onClickLoginHandler}>
                     로그인
                 </Button>
+
+                {/* 비밀번호 찾기 */}
+                <div className="mt-3 text-center">
+                    <Link to={"/find/password"}>비밀번호를 잊어버리셨나요?</Link>
+                </div>
             </Form>
         </>
     );
