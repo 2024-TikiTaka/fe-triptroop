@@ -4,26 +4,27 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale/ko";
 import { useDispatch, useSelector } from "react-redux";
-import { callScheduleDetailAPI, callScheduleUpdateAPI } from "../../apis/ScheduleAPICalls";
-import axios from "axios";
+import { callScheduleDetailAPI } from "../../apis/ScheduleAPICalls";
 import { useNavigate, useParams } from "react-router-dom";
-import {authRequest} from "../../apis/api";
+import { authRequest } from "../../apis/api";
 
 function ScheduleUpdateForm() {
     const { scheduleId } = useParams();
+    const { schedule } = useSelector(state => state.scheduleReducer);
+    const information = {schedule}
     const [scheduleForm, setScheduleForm] = useState({
         title: "",
         count: "",
-        areaId: "",
+        areaId:information.areaId,
         startDate: new Date(),
         endDate: new Date(),
-        status: "PUBLIC"
+        visibility: "PUBLIC"
     });
     const [images, setImages] = useState([]);
     const imageInput = useRef();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { schedule } = useSelector(state => state.scheduleReducer);
+
 
     useEffect(() => {
         const fetchScheduleDetail = async () => {
@@ -33,23 +34,23 @@ function ScheduleUpdateForm() {
     }, [dispatch, scheduleId]);
 
     useEffect(() => {
-        if (schedule && scheduleId == schedule.id) {
+        if (information && parseInt(scheduleId, 10) === information.id) {
             setScheduleForm({
-                title: schedule.title || "",
-                count: schedule.count || "",
-                areaId: schedule.areaId || "",
-                startDate: new Date(schedule.startDate) || new Date(),
-                endDate: new Date(schedule.endDate) || new Date(),
-                status: schedule.status || "PUBLIC"
+                title: information.title || "",
+                count: information.count || "",
+                areaId: information.areaId,
+                startDate: new Date(information.startDate) || new Date(),
+                endDate: new Date(information.endDate) || new Date(),
+                visibility: information.visibility || "PUBLIC"
             });
         }
-    }, [schedule, scheduleId]);
+    }, [information, scheduleId]);
 
     const toggleStatus = () => {
-        const newStatus = scheduleForm.status === "PUBLIC" ? "PRIVATE" : "PUBLIC";
+        const newStatus = scheduleForm.visibility === "PUBLIC" ? "PRIVATE" : "PUBLIC";
         setScheduleForm({
             ...scheduleForm,
-            status: newStatus
+            visibility: newStatus
         });
     };
 
@@ -91,17 +92,20 @@ function ScheduleUpdateForm() {
 
         const formData = new FormData();
 
-        // 직렬화된 JSON 데이터 추가
-        const jsonBlob = new Blob([JSON.stringify({
-            areaId: scheduleForm.areaId,
+        // 직렬화된 JSON 데이터 추가 (수정된 값과 이전 값 모두 포함)
+        const scheduleUpdateRequest = {
+            title: scheduleForm.title,
             count: scheduleForm.count,
+            areaId: scheduleForm.areaId,
             startDate: scheduleForm.startDate,
             endDate: scheduleForm.endDate,
-            title: scheduleForm.title,
-            status: scheduleForm.status
-        })], { type: 'application/json' });
+            visibility: scheduleForm.visibility
+        };
 
-        formData.append('scheduleUpdateRequest', jsonBlob);
+        formData.append('scheduleUpdateRequest', new Blob([JSON.stringify(scheduleUpdateRequest)], { type: 'application/json' }));
+
+
+        // areaId 추가
 
         // 이미지 추가
         images.forEach(image => {
@@ -134,9 +138,6 @@ function ScheduleUpdateForm() {
             }
         }
     };
-
-
-
 
     return (
         <>
@@ -213,10 +214,10 @@ function ScheduleUpdateForm() {
                     />
                     <Button
                         className="fs-6 me-2"
-                        variant={scheduleForm.status === "PUBLIC" ? "primary" : "danger"}
+                        variant={scheduleForm.visibility === "PUBLIC" ? "primary" : "danger"}
                         onClick={toggleStatus}
                     >
-                        {scheduleForm.status === "PUBLIC" ? "공개" : "비공개"}
+                        {scheduleForm.visibility === "PUBLIC" ? "공개" : "비공개"}
                     </Button>
                 </div>
 
