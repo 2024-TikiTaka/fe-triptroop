@@ -48,15 +48,7 @@ import ScheduleApply from "./pages/schedule/ScheduleApply";
 import ScheduleRejected from "./pages/schedule/ScheduleRejected";
 import ScheduleParticipant from "./pages/schedule/ScheduleParticipant";
 import FindPassword from "./pages/user/FindPassword";
-import ProfileRegist from "./pages/user/ProfileRegist";
-import * as PropTypes from "prop-types";
 
-
-function Redirect(props) {
-    return null;
-}
-
-Redirect.propTypes = { to: PropTypes.string };
 function App() {
     return (
         <BrowserRouter>
@@ -129,14 +121,6 @@ function App() {
                 </Route>
 
                 {/* 마이페이지 */}
-                {/* <Route */}
-                {/*     path="/profile/add" */}
-                {/*     element={ */}
-                {/*         <ProtectedRoute isAuthenticated={true}> */}
-                {/*             <ProfileRegist /> */}
-                {/*         </ProtectedRoute> */}
-                {/*     } */}
-                {/* /> */}
                 <Route
                     path="/mypage"
                     element={
@@ -194,7 +178,6 @@ function App() {
                         <Route path="regist" element={<AdminCategoryRegist />} />
                     </Route>
                     <Route path="notices" />
-                    {/*<Route path="test" element={<TestDl/>}/>*/}
 
                     {/* 오류 */}
                     <Route path="*" element={<ErrorPage />} />
