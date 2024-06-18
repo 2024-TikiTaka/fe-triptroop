@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Col, Form } from "react-bootstrap";
 
-function UserInfoForm({ userInfo: { email, name, gender, birth } }) {
+function UserInfoForm({ userInfo }) {
 
     return (
         <>
@@ -15,37 +15,37 @@ function UserInfoForm({ userInfo: { email, name, gender, birth } }) {
                         <Col md={12}>
                             <Form.Group className="mb-3" controlId="email">
                                 <Form.Label>이메일</Form.Label>
-                                <Form.Control size={"lg"} plaintext readOnly defaultValue={email} />
+                                <Form.Control readOnly defaultValue={userInfo?.email} />
                             </Form.Group>
                         </Col>
                         <Col md={12}>
                             {/* 이름 */}
                             <Form.Group className="mb-3" controlId="name">
                                 <Form.Label>이름</Form.Label>
-                                <Form.Control plaintext readOnly defaultValue={name} />
+                                <Form.Control readOnly defaultValue={userInfo?.name} />
                             </Form.Group>
                         </Col>
                         <Col md={12}>
                             {/* 성별 */}
                             <Form.Group className="mb-3" controlId="gender">
                                 <Form.Label>성별</Form.Label>
-                                <Form.Control plaintext readOnly defaultValue={gender} />
+                                <Form.Control defaultValue={userInfo?.gender === 'F' ? '여자' : '남자'} />
                             </Form.Group>
                         </Col>
                         <Col md={12}>
                             {/* 생년월일 */}
                             <Form.Group className="mb-3" controlId="birth">
                                 <Form.Label>생년월일</Form.Label>
-                                <Form.Control plaintext readOnly defaultValue={birth} />
+                                <Form.Control readOnly defaultValue={userInfo?.birth} />
                             </Form.Group>
                         </Col>
-                        {/* <Col md={12}> */}
-                        {/*     /!* 전화번호 *!/ */}
-                        {/*     <Form.Group className="mb-3" controlId="phone"> */}
-                        {/*         <Form.Label>전화번호</Form.Label> */}
-                        {/*         <Form.Control plaintext readOnly defaultValue={phone} /> */}
-                        {/*     </Form.Group> */}
-                        {/* </Col> */}
+                        <Col md={12}>
+                            {/* 전화번호 */}
+                            <Form.Group className="mb-3" controlId="phone">
+                                <Form.Label>전화번호</Form.Label>
+                                <Form.Control readOnly defaultValue={userInfo?.phone} />
+                            </Form.Group>
+                        </Col>
                     </Form>
                 </Card.Body>
             </Card>

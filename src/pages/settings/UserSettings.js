@@ -5,25 +5,25 @@ import { success } from "../../modules/UserModules";
 import SettingContent from "../../components/content/SettingContent";
 import UserInfoForm from "../../components/form/UserInfoForm";
 
-import { callUserInfoAPI } from "../../apis/UserAPICalls";
+import { callCurrentUserAPI } from "../../apis/UserAPICalls";
 
 function UserSettings() {
 
     const dispatch = useDispatch();
-    const { userInfo } = useSelector(state => state.userReducer);
+    const { currentUser } = useSelector(state => state.userReducer);
 
     useEffect(() => {
 
         if (isLogin()) {
-            !userInfo && dispatch(callUserInfoAPI());
+            !currentUser && dispatch(callCurrentUserAPI());
         }
 
-    }, [ success ]);
+    }, [ dispatch, currentUser ]);
 
     return (
         <>
             <SettingContent>
-                <UserInfoForm userInfo={userInfo} />
+                <UserInfoForm userInfo={currentUser} />
             </SettingContent>
         </>
     );
