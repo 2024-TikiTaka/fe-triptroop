@@ -54,10 +54,15 @@ function ScheduleDetail() {
                         )
 
             )}
-                    <ScheduleItem schedule={schedule} />
-                    <Button variant="primary" onClick={handleClickAccept}>신청</Button>{' '}
-                    <Button variant="success" onClick={handleClickModify}>수정</Button>{' '}
-                    <Button variant="danger" onClick={handleClickDeleted}>삭제</Button>
+                    <div>
+                        <ScheduleItem schedule={schedule} />
+                        <Button variant="primary" onClick={handleClickAccept}>신청</Button>{' '}
+                        <Button variant="success" onClick={handleClickModify}>수정</Button>{' '}
+                        <Button variant="danger" onClick={handleClickDeleted}>삭제</Button>
+
+                    </div>
+
+
 
                 </div>
             )}
