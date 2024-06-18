@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import scheduleParticipantReducer from "./ScheduleParticipantModules";
 import userReducer from './UserModules';
-import profileReducer from './ProfileModules';
+import profileReducer from "./ProfileModules";
 import scheduleReducer from './ScheduleModules';
 import travelReducer from './TravelModules';
 import commentReducer from './TravelCommentModules';
@@ -11,6 +11,7 @@ import adminUserReducer from './admin/AdminUserModules';
 import adminNoticeReducer from "./admin/AdminNoticeModules";
 import adminCategoryReducer from "./admin/AdminCategoryModules";
 import adminInquiryReducer from "./admin/AdminInquiryModules";
+
 
 const rootReducer = combineReducers({
     userReducer,
