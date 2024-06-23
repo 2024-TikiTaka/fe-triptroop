@@ -1,4 +1,4 @@
-import { Row, Col, Image, ListGroup, Button } from 'react-bootstrap';
+import {Row, Col, Image, ListGroup, Button, Card} from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 
 function ScheduleItem({ schedule }) {
@@ -44,20 +44,27 @@ function ScheduleItem({ schedule }) {
                     ))}
                 </ListGroup>
             </Col>
+            <hr/>
             <Col md={12}>
                 <h3 className="mt-5 mb-3">일정 항목</h3>
-                {scheduleItemInfoResponse.map((item, index) => (
-                    <div key={index} className="mb-4">
-                        <h4>{item.name}</h4>
-                        <p><strong>주소:</strong> {item.address}</p>
-                        <p><strong>계획일:</strong> {item.planDate}</p>
-                        <p><strong>구분:</strong> {item.kind}</p>
-                        <p><strong>가격:</strong> {item.cost}</p>
-                        <p><strong>내용:</strong> {item.content}</p>
-                        <Button variant="success" onClick={() => handleClickModifyItem(item)}>수정</Button>
-                        <Button variant="danger" onClick={() => handleClickDeletedItem(item)}>삭제</Button>
-                    </div>
-                ))}
+                <Row>
+                    {scheduleItemInfoResponse.map((item, index) => (
+                        <Col md={6} lg={4} key={index} className="mb-4">
+                            <Card className="h-100">
+                                <Card.Body>
+                                    <Card.Title>{item.name}</Card.Title>
+                                    <Card.Text><strong>주소:</strong> {item.address}</Card.Text>
+                                    <Card.Text><strong>계획일:</strong> {item.planDate}</Card.Text>
+                                    <Card.Text><strong>구분:</strong> {item.kind}</Card.Text>
+                                    <Card.Text><strong>가격:</strong> {item.cost}</Card.Text>
+                                    <Card.Text><strong>내용:</strong> {item.content}</Card.Text>
+                                    <Button variant="success" onClick={() => handleClickModifyItem(item)} className="me-2">수정</Button>
+                                    <Button variant="danger" onClick={() => handleClickDeletedItem(item)}>삭제</Button>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
             </Col>
         </Row>
     );

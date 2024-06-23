@@ -2,13 +2,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import 'react-toastify/dist/ReactToastify.css';
 import "./styles/common.css";
 
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/router/ProtectedRoute";
 
 import ErrorPage from "./pages/error/Error";
 import Layout from "./layouts/Layout";
 import Main from "./pages/main/Main";
 import Login from "./pages/user/Login";
+import Signup from "./pages/user/Signup";
 import KakaoAuth from "./pages/user/KakaoAuth";
 import SchedulesList from "./components/list/SchedulesList";
 import ScheduleDetail from "./pages/schedule/ScheduleDetail";
@@ -46,7 +47,7 @@ import ScheduleItemRemove from "./pages/schedule/ScheduleItemRemove";
 import ScheduleApply from "./pages/schedule/ScheduleApply";
 import ScheduleRejected from "./pages/schedule/ScheduleRejected";
 import ScheduleParticipant from "./pages/schedule/ScheduleParticipant";
-
+import FindPassword from "./pages/user/FindPassword";
 
 function App() {
     return (
@@ -60,6 +61,15 @@ function App() {
                         path="/signup"
                         element={
                             <ProtectedRoute isAuthenticated={false}>
+                                <Signup />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/find/password"
+                        element={
+                            <ProtectedRoute isAuthenticated={false}>
+                                <FindPassword />
                             </ProtectedRoute>
                         }
                     />
@@ -119,7 +129,7 @@ function App() {
                         </ProtectedRoute>
                     }
                 >
-                    <Route index element={<MyHome />} />
+                    <Route index element={<Navigate to="/mypage/home" />} />
                     <Route path="home" element={<MyHome />} />
                     <Route path="travels" element={<MyTravels />} />
                     <Route path="schedules" element={<MySchedules />} />
@@ -128,13 +138,12 @@ function App() {
                 {/* 설정/ */}
                 <Route
                     path="/settings"
-                    element={
-                        <ProtectedRoute isAuthenticated={true}>
-                            <MyPageLayout />
-                        </ProtectedRoute>
+                    element={<ProtectedRoute isAuthenticated={true}>
+                        <MyPageLayout />
+                    </ProtectedRoute>
                     }
                 >
-                    <Route index element={<ProfileSettings />} />
+                    <Route index element={<Navigate to="/settings/profile" />} />
                     <Route path="profile" element={<ProfileSettings />} />
                     <Route path="user" element={<UserSettings />} />
                     <Route path="password" element={<PasswordSettings />} />
@@ -169,7 +178,6 @@ function App() {
                         <Route path="regist" element={<AdminCategoryRegist />} />
                     </Route>
                     <Route path="notices" />
-                    {/*<Route path="test" element={<TestDl/>}/>*/}
 
                     {/* 오류 */}
                     <Route path="*" element={<ErrorPage />} />

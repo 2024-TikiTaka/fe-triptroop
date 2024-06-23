@@ -1,25 +1,27 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Card, Row, Col } from "react-bootstrap";
+import { Card, Col } from "react-bootstrap";
 
 function ScheduleListItem({ schedule: { scheduleId, sido, count, startDate, endDate, title, views, imageUrl } }) {
     const navigate = useNavigate();
-    const [search, setSearch] = useState('');
-    const dispatch = useDispatch();
 
-    const onEnterKeyHandler = (e) => {
-        if (e.key === 'Enter') navigate(`/schedules/search?keyword=${title}`);
+    const cardStyle = {
+        height: '350px', // 원하는 높이로 설정
+        marginBottom: '20px' // 하단 마진 조정
+    };
+
+    const imgStyle = {
+        height: '200px', // 이미지 높이 설정
+        objectFit: 'cover' // 이미지 비율 유지하면서 카드에 맞추기
     };
 
     return (
-        <Col xs={12} sm={6} md={4} lg={3} className="mb-4">
-            <Card className="schedule-card h-100" onClick={() => navigate(`/schedules/${scheduleId}`)}>
+        <Col  md={4} lg={12} className="mb-4">
+            <Card className="schedule-card h-100" onClick={() => navigate(`/schedules/${scheduleId}`)} style={cardStyle}>
                 <Card.Img
                     variant="top"
                     src={imageUrl}
                     alt={title}
-                    style={{ height: '200px', objectFit: 'cover' }}
+                    style={imgStyle}
                 />
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>

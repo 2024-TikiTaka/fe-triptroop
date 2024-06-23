@@ -1,33 +1,24 @@
-import React, { useEffect } from 'react';
-import { DefaultProfile } from "./Icons";
+import React from 'react';
 import { Image } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
 
-function ProfileImage({ size = "50px" }) {
-
-    const dispatch = useDispatch();
-    const { profile } = useSelector(state => state.profileReducer);
-
-    useEffect(() => {
-
-    }, [ profile ]);
+function ProfileImage({ src, size = "50px" }) {
 
     return (
-        <div
-            className="avatar avatar-xl mb-2 profile-image"
-            style={{
-                overflow: "hidden", "width": size, "height": size,
-                "borderRadius": size, background: "#f4f4f4"
-            }}
-        >
-            {!profile ?
-                <DefaultProfile className="avatar mx-auto d-block mb-3"
-                                style={{ "width": size, "height": size }}
+        <div className="w-100 me-auto">
+            <div
+                className="avatar avatar-xl mb-2 me-auto profile-image"
+                style={{
+                    overflow: "hidden", "width": size, "height": size, "margin": "auto",
+                    "borderRadius": size, background: "#f4f4f4"
+                }}
+            >
+                <Image src={src || "/images/default_profile.svg"}
+                       style={{ "width": size, "height": size }}
+                       onError={(e) => {
+                           e.target.src = "/images/default_profile.svg";
+                       }}
                 />
-                : <Image src={profile?.profileImage}
-                         style={{ "width": size, "height": size }}
-                />
-            }
+            </div>
         </div>
     );
 }
