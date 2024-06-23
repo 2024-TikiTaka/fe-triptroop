@@ -24,8 +24,7 @@ html:has(.admin-main) {
 }
 
 .admin-main {
-    padding-top: 140px;
-    padding-left: 310px;
+    padding: 160px 40px 60px 350px;
 }
 
 .admin-main h2 {
@@ -116,4 +115,13 @@ html:has(.admin-main) {
 
 .description-definition {
     background-color: #FFF;
+}
+
+/*----------------------------------------------------------------
+    2.0   PAGE
+----------------------------------------------------------------*/
+/* -- 2.1 USER -- */
+.user-list-table {
+    min-height: 454px;
+    margin-bottom: 1rem;
 }

@@ -17,19 +17,24 @@ function AdminHeader() {
     const [showChat, setShowChat] = useState(false);
 
     const getHeaderText = () => {
-        switch (location.pathname) {
-            case '/admin/users':
-                return '회원 관리';
-            case '/admin/inquires':
-                return '문의 관리';
-            case '/admin/categories':
-                return '카테고리 관리';
-            case '/admin/notices':
-                return '공지 관리';
+        const path = location.pathname;
+
+        const hasId = /\d+$/.test(path); // 경로 끝에 숫자가 있는지 확인
+
+        switch (true) {
+            case path.startsWith('/admin/users'):
+                return hasId ? '회원 상세 정보' : '회원 목록 조회';
+            case path.startsWith('/admin/inquires'):
+                return hasId ? '문의 상세 정보' : '문의 목록 조회';
+            case path.startsWith('/admin/categories'):
+                return hasId ? '카테고리 상세 정보' : '카테고리 목록 조회';
+            case path.startsWith('/admin/notices'):
+                return hasId ? '공지       상세 정보' : '공지 목록 조회';
             default:
                 return '메인 화면';
         }
     };
+
 
     useEffect(() => {
         if (success === true) {

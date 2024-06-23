@@ -25,20 +25,25 @@ function AdminUsers() {
     console.log('이거 데이터 있어?? 겟인포 : ', getList)
     return (
         <>
-            <h1>어드민유저스 </h1>
-            {getList && (
+            <div className="d-flex justify-content-between mb-4">
+                <div>검색바</div>
+                <Button onClick={onClickHandeleClick}>회원 등록</Button>
+            </div>
+            {getList ? (
                 <div className="ad-user-list">
-                    <h2>회원 목록</h2>
-                    <div className="d-flex justify-content-between">
-                        <div>검색바</div>
-                        <Button onClick={onClickHandeleClick}>회원 등록</Button>
+                    <div className="user-list-table">
+                        <AdminUserList data={getList.data}/>
                     </div>
-                    <AdminUserList data={getList.data}/>
                     <PagingBar pageInfo={getList.pageInfo} setCurrentPage={setCurrentPage}/>
+                </div>
+            ) : (
+                <div className="no-data">
+                    회원 내역이 존재 하지 않습니다.
                 </div>
             )}
         </>
     );
+
 }
 
 export default AdminUsers;
