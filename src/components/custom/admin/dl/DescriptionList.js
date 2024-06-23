@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Button, Container, Row} from 'react-bootstrap';
+import transformDescription from "./transformDescription";
 
 // 데이터를 행당 항목 개수에 따라 분할하는 함수
 const chunkArray = (array, rowSizes) => {
@@ -36,8 +37,15 @@ const DescriptionList = ({items, rowSizes, dtWidth}) => {
         return () => window.removeEventListener('resize', updateWidth);
     }, []);
 
-    console.log("DescriptionList items :", items);
-    console.log("DescriptionList rowSizes:", rowSizes);
+    // items 배열 변환
+    // const transformedItems = items.map(item => ({
+    //     ...item,
+    //     description: transformDescription(item.description),
+    // }));
+
+    // console.log("DescriptionList items :", items);
+    // console.log("DescriptionList rowSizes:", rowSizes);
+    //const chunkedItems = chunkArray(transformedItems, rowSizes);
     const chunkedItems = chunkArray(items, rowSizes);
 
     return (
@@ -63,7 +71,8 @@ const DescriptionList = ({items, rowSizes, dtWidth}) => {
                                         flex: `0 0 ${ddWidthCalc}`
                                     }}
                                 >
-                                    {item.description}
+                                    {/*{item.description}*/}
+                                    {transformDescription(item.term, item.description)}
                                     {item.term === '값' && <Button>버튼</Button>}
                                 </div>
                             </React.Fragment>

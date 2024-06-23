@@ -21,10 +21,10 @@ function AdminUserDetail() {
 
 
     //console.log("items 값 : ", items);
-    console.log("getInfo 값 : ", getInfo);
-    console.log("userId 값 : ", userId);
-    console.log("dispatch 값 : ", dispatch);
-    console.log("mappedAdmin 값 : ", mappedAdmin);
+    // console.log("getInfo 값 : ", getInfo);
+    // console.log("userId 값 : ", userId);
+    // console.log("dispatch 값 : ", dispatch);
+    // console.log("mappedAdmin 값 : ", mappedAdmin);
 
     // const items = getInfo && displayOrder.map((key) => ({}))
     const items = getInfo && displayOrder.map((key) => ({

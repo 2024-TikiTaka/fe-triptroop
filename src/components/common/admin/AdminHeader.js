@@ -29,7 +29,7 @@ function AdminHeader() {
             case path.startsWith('/admin/categories'):
                 return hasId ? '카테고리 상세 정보' : '카테고리 목록 조회';
             case path.startsWith('/admin/notices'):
-                return hasId ? '공지       상세 정보' : '공지 목록 조회';
+                return hasId ? '공지 상세 정보' : '공지 목록 조회';
             default:
                 return '메인 화면';
         }
