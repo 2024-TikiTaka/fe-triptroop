@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Container, Row} from 'react-bootstrap';
+import {Button, Container, Row} from 'react-bootstrap';
 
 // 데이터를 행당 항목 개수에 따라 분할하는 함수
 const chunkArray = (array, rowSizes) => {
@@ -64,6 +64,7 @@ const DescriptionList = ({items, rowSizes, dtWidth}) => {
                                     }}
                                 >
                                     {item.description}
+                                    {item.term === '값' && <Button>버튼</Button>}
                                 </div>
                             </React.Fragment>
                         ))}

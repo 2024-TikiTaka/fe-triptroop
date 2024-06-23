@@ -6,16 +6,56 @@
 // options : options 확인 값 이라 입력 X
 const inputData = [
     ['아이디', 'email', 'email', true],
+    ['닉네임', 'text', 'nickname', true],
     ['비밀번호', 'password', 'password', true],
+    ['비밀번확인', 'password', 'confirmPassword', true],
     ['이름', 'text', 'name', true],
     [
         '성별', 'select', 'gender', true, [
-        {value: 'male', label: '남성'},
-        {value: 'female', label: '여성'}
+        {value: null, label: '선택안함'},
+        {value: 'M', label: '남성'},
+        {value: 'F', label: '여성'}
     ]
     ],
-    ['권한', 'text', 'role', true],
-    ['뉴스레터 구독', 'checkbox', 'newsletter', false]
+    //['성별', 'radio', 'gender', false],
+    ['생년월일', 'date', 'birth', true],
+    [
+        '권한', 'select', 'role', true, [
+        {value: null, label: '선택안함'},
+        {value: 'USER', label: '유저'},
+        {value: 'ADMIN', label: '관리자'}
+    ]
+    ],
+    ['전화번호', 'text', 'phone', false],
+    [
+        '상태', 'select', 'status', true, [
+        {value: null, label: '선택안함'},
+        {value: 'ACTIVE', label: '활동'},
+        {value: 'SUSPENDED', label: '정지'},
+        {value: 'WITHDRAWN', label: '탈퇴'}
+    ]
+    ],
+    ['자기소게', 'text', 'introduction', false],
+    [
+        'MBTI', 'select', 'mbti', false, [
+        {value: 'ISTJ', label: 'ISTJ'},
+        {value: 'ISTP', label: 'ISTP'},
+        {value: 'INFJ', label: 'INFJ'},
+        {value: 'INTJ', label: 'INTJ'},
+        {value: 'ISFJ', label: 'ISFJ'},
+        {value: 'ISFP', label: 'ISFP'},
+        {value: 'INFP', label: 'INFP'},
+        {value: 'INTP', label: 'INTP'},
+        {value: 'ESTJ', label: 'ESTJ'},
+        {value: 'ESFP', label: 'ESFP'},
+        {value: 'ENFP', label: 'ENFP'},
+        {value: 'ENTP', label: 'ENTP'},
+        {value: 'ESFJ', label: 'ESFJ'},
+        {value: 'ESTP', label: 'ESTP'},
+        {value: 'ENFJ', label: 'ENFJ'},
+        {value: 'ENTJ', label: 'ENTJ'}
+    ]
+    ]
 ]
 
 const convertFieldData = (inputData) => {

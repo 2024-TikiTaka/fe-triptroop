@@ -6,7 +6,7 @@ import DescriptionList from "../../../components/custom/admin/dl/DescriptionList
 import {TranslateKeys} from "../../../components/custom/admin/dl/TranslateKeys";
 
 
-const displayOrder = ['userId', 'email', 'nickname', 'role', 'gender', 'name', 'birth', 'phone', 'createdAt', 'provider', 'reportCount', 'godo', 'reviewPoint', 'introduction', 'interestNames', 'mbti', 'contentCount', 'friendCount', 'inquiriesCount', 'status'];
+const displayOrder = ['email', 'nickname', 'role', 'gender', 'name', 'birth', 'phone', 'createdAt', 'provider', 'reportCount', 'godo', 'reviewPoint', 'introduction', 'interestNames', 'mbti', 'contentCount', 'friendCount', 'inquiriesCount', 'status'];
 
 function AdminUserDetail() {
     const dispatch = useDispatch();
@@ -34,7 +34,7 @@ function AdminUserDetail() {
 
 
     // 각 행에 들어갈 항목 수를 설정합니다.
-    const rowSizes = [2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2]; // 행마다 들어갈 dt, dd 쌍의 수
+    const rowSizes = [2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2]; // 행마다 들어갈 dt, dd 쌍의 수
     const dtWidth = 175; // dt의 너비
 
 

@@ -1,31 +1,30 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Chat, Person } from "react-bootstrap-icons";
-import { Button, Container, Dropdown, Image, Navbar } from "react-bootstrap";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useLocation, useNavigate} from "react-router-dom";
+import {Chat, Person} from "react-bootstrap-icons";
+import {Button, Container, Dropdown, Image, Navbar} from "react-bootstrap";
 
-import { isLogin } from "../../../utils/TokenUtils";
-import { reset } from "../../../modules/UserModules";
-import { callLogoutAPI } from "../../../apis/AuthAPICalls";
+import {isLogin} from "../../../utils/TokenUtils";
+import {reset} from "../../../modules/UserModules";
+import {callLogoutAPI} from "../../../apis/AuthAPICalls";
 import ChatBox from "../../item/ChatBox";
-import {getHeaderText} from "./AdminHeaderText";
 
 function AdminHeader() {
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
-    const { success } = useSelector(state => state.userReducer);
-    const [ showChat, setShowChat ] = useState(false);
+    const {success} = useSelector(state => state.userReducer);
+    const [showChat, setShowChat] = useState(false);
 
     const getHeaderText = () => {
         switch (location.pathname) {
-            case '/users':
+            case '/admin/users':
                 return '회원 관리';
-            case '/inquires':
+            case '/admin/inquires':
                 return '문의 관리';
-            case '/categories':
+            case '/admin/categories':
                 return '카테고리 관리';
-            case '/notices':
+            case '/admin/notices':
                 return '공지 관리';
             default:
                 return '메인 화면';
@@ -37,11 +36,11 @@ function AdminHeader() {
             navigate(`/`);
             dispatch(reset());
         }
-    }, [ success ]);
+    }, [success]);
 
     function AfterLogin() {
         return (
-            <>
+            <div className="d-flex">
                 <Button variant="light" onClick={() => setShowChat(!showChat)}>
                     <Chat size="20px"/> 채팅
                 </Button>
@@ -75,7 +74,7 @@ function AdminHeader() {
                     </Dropdown.Menu>
                 </Dropdown>
                 <ChatBox show={showChat} handleClose={() => setShowChat(false)}/>
-            </>
+            </div>
         );
     }
 

@@ -1,10 +1,13 @@
 import axios from 'axios';
-import { getAccessTokenHeader, getRefreshTokenHeader, saveToken } from '../utils/TokenUtils';
+import {getAccessTokenHeader, getRefreshTokenHeader, saveToken} from '../utils/TokenUtils';
 
-const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
-const SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
+const SERVER_IP = process.env.REACT_APP_RESTAPI_SERVER_IP || 'localhost';
+const SERVER_PORT = process.env.REACT_APP_RESTAPI_SERVER_PORT || '8080';
 
-const DEFAULT_URL = `${SERVER_IP}:${SERVER_PORT}`;
+
+const DEFAULT_URL = SERVER_IP === 'localhost'
+    ? `http://${SERVER_IP}:${SERVER_PORT}`
+    : `${SERVER_IP}:${SERVER_PORT}`;
 
 /* 미인증 요청 */
 export const request = async (method, url, headers, data) => {
@@ -20,7 +23,7 @@ export const request = async (method, url, headers, data) => {
 
 /* 인증 요청 */
 export const authRequest = axios.create({
-    baseURL: DEFAULT_URL,
+    baseURL: DEFAULT_URL
 });
 
 authRequest.interceptors.request.use(config => {
@@ -35,7 +38,7 @@ authRequest.interceptors.response.use(
     },
     /* ERROR */
     async error => {
-        const { config, response } = error;
+        const {config, response} = error;
 
         if (response?.status === 401) {
             const originRequest = config;

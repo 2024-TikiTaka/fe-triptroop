@@ -2,16 +2,16 @@ import {createActions, handleActions} from "redux-actions";
 
 
 const initialState = {
-    getList: [],
-    getInfo: {},
-    added: null,
-    updated: null,
-    deleted: null,
-    success: null,
-    failure: null,
+    // getList: [],
+    // getInfo: {},
+    // added: null,
+    // updated: null,
+    // deleted: null,
+    // success: {},
+    // failure: null,
 };
 
-const GET_LIST = 'admin/GET_LIST';
+const GET_LIST = ' admin/GET_LIST';
 const GET_INFO = 'admin/GET_INFO';
 const ADD = 'admin/ADD';
 const UPDATE = 'admin/UPDATE';
