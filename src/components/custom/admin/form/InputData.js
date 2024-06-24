@@ -12,16 +12,13 @@ const inputData = [
     ['이름', 'text', 'name', true],
     [
         '성별', 'select', 'gender', true, [
-        {value: null, label: '선택안함'},
         {value: 'M', label: '남성'},
         {value: 'F', label: '여성'}
     ]
     ],
-    //['성별', 'radio', 'gender', false],
     ['생년월일', 'date', 'birth', true],
     [
         '권한', 'select', 'role', true, [
-        {value: null, label: '선택안함'},
         {value: 'USER', label: '유저'},
         {value: 'ADMIN', label: '관리자'}
     ]
@@ -29,7 +26,6 @@ const inputData = [
     ['전화번호', 'text', 'phone', false],
     [
         '상태', 'select', 'status', true, [
-        {value: null, label: '선택안함'},
         {value: 'ACTIVE', label: '활동'},
         {value: 'SUSPENDED', label: '정지'},
         {value: 'WITHDRAWN', label: '탈퇴'}
@@ -38,6 +34,7 @@ const inputData = [
     ['자기소게', 'text', 'introduction', false],
     [
         'MBTI', 'select', 'mbti', false, [
+        {value: null, label: '선택안함'},
         {value: 'ISTJ', label: 'ISTJ'},
         {value: 'ISTP', label: 'ISTP'},
         {value: 'INFJ', label: 'INFJ'},

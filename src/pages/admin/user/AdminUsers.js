@@ -23,7 +23,7 @@ function AdminUsers() {
     const onClickHandeleClick = () => {
         navigate('/admin/users/regist');
     }
-    console.log('이거 데이터 있어?? 겟인포 : ', getList)
+    //console.log('이거 데이터 있어?? 겟인포 : ', getList)
     return (
         <>
             <div className="d-flex justify-content-between mb-4 align-items-center">

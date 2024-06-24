@@ -7,7 +7,7 @@ const chunkArray = (array, rowSizes) => {
     const chunkedArr = [];
     let index = 0;
 
-    console.log("dsafsdf : ", array, rowSizes)
+    // console.log("dsafsdf : ", array, rowSizes)
 
     rowSizes.forEach(size => {
         chunkedArr.push(array.slice(index, index + size * 1)); // dt, dd 쌍으로 인해 2를 곱함

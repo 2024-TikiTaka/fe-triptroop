@@ -8,6 +8,7 @@ import {isLogin} from "../../../utils/TokenUtils";
 import {reset} from "../../../modules/UserModules";
 import {callLogoutAPI} from "../../../apis/AuthAPICalls";
 import ChatBox from "../../item/ChatBox";
+import getHeaderText from "./AdminHeaderText";
 
 function AdminHeader() {
     const navigate = useNavigate();
@@ -15,26 +16,6 @@ function AdminHeader() {
     const dispatch = useDispatch();
     const {success} = useSelector(state => state.userReducer);
     const [showChat, setShowChat] = useState(false);
-
-    const getHeaderText = () => {
-        const path = location.pathname;
-
-        const hasId = /\d+$/.test(path); // 경로 끝에 숫자가 있는지 확인
-
-        switch (true) {
-            case path.startsWith('/admin/users'):
-                return hasId ? '회원 상세 정보' : '회원 목록 조회';
-            case path.startsWith('/admin/inquires'):
-                return hasId ? '문의 상세 정보' : '문의 목록 조회';
-            case path.startsWith('/admin/categories'):
-                return hasId ? '카테고리 상세 정보' : '카테고리 목록 조회';
-            case path.startsWith('/admin/notices'):
-                return hasId ? '공지 상세 정보' : '공지 목록 조회';
-            default:
-                return '메인 화면';
-        }
-    };
-
 
     useEffect(() => {
         if (success === true) {
@@ -86,7 +67,7 @@ function AdminHeader() {
     return (
         <Navbar className="admin-header" fixed="top" expand="md">
             <Container fluid>
-                <h2>{getHeaderText(location)}</h2>
+                <h2>{getHeaderText(location.pathname)}</h2>
                 {isLogin() && AfterLogin()}
             </Container>
         </Navbar>

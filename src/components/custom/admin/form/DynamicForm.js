@@ -16,7 +16,7 @@ const DynamicForm = ({fields, context, rowSizes}) => {
         password: '',
         passwordConfirm: '',
         name: '',
-        gender: '',
+        gender: 'M',
         birth: '',
         role: 'USER',
         phone: '',
@@ -66,10 +66,28 @@ const DynamicForm = ({fields, context, rowSizes}) => {
         }));
     }
 
+    // const validateForm = () => {
+    //     if (!form.email || !form.nickname || !form.role || !form.gender || !form.name || !form.birth || !form.status) {
+    //         return false;
+    //     }
+    //     return true;
+    // }
     const validateForm = () => {
-        if (!form.email || !form.nickname || !form.role || !form.gender || !form.name || !form.birth || !form.status) {
+        const missingFields = [];
+
+        if (!form.email) missingFields.push('이메일');
+        if (!form.nickname) missingFields.push('닉네임');
+        if (!form.role) missingFields.push('권한');
+        if (!form.gender) missingFields.push('성별');
+        if (!form.name) missingFields.push('이름');
+        if (!form.birth) missingFields.push('생년월일');
+        if (!form.status) missingFields.push('상태');
+
+        if (missingFields.length > 0) {
+            alert(`다음 항목을 입력해주세요: ${missingFields.join(', ')}`);
             return false;
         }
+
         return true;
     }
 

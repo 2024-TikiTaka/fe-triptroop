@@ -8,7 +8,6 @@ function AdminUserRegister() {
 
     return (
         <div>
-            <h2>회원 등록</h2>
             <DynamicForm fields={fields} context={'admin_user'} rowSizes={rowSizes}/>
         </div>
     );
