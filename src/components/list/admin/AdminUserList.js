@@ -1,8 +1,5 @@
 import CustomTable from "../../custom/admin/table/CustomTable";
 import {useNavigate} from "react-router-dom";
-// import PagingBar from "../../pagination/PagingBar";
-// import {useDispatch, useSelector} from "react-redux";
-// import {useState} from "react";
 
 
 const AdminUserList = ({data}) => {
