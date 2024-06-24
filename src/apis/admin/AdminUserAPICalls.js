@@ -23,7 +23,6 @@ export const callAdminUserDetailAPI = ({userId}) => {
         try {
             const result = await authRequest.get(`/api/v1/admin/users/${userId}`)
             console.log('callAdminUserDetailAPI result : ', result);
-            // console.log('callAdminUserDetailAPI ㅠㅠ 유저아이디!!!! : ', result.userId);
 
             if (result.status === 200) {
                 dispatch(getInfo(result));
@@ -41,7 +40,7 @@ export const callAdminUserRegisterAPI = (formData) => {
     return async (dispatch) => {
         try {
             const result = await authRequest.post(`/api/v1/admin/users`, formData);
-            console.log('callAdminUserRegisterAPI 일단 트라이 안의 result : ', result);
+            console.log('회원 등록 API 트라이 안의 result : ', result);
 
             if (result.status === 200) {
                 dispatch(success(result));
@@ -50,7 +49,7 @@ export const callAdminUserRegisterAPI = (formData) => {
             }
             return result;
         } catch (error) {
-            console.error('callAdminUserRegisterAPI 캐치 안의 error: ', error);
+            console.error('회원 등록 API 캐치 안의 error: ', error);
             throw error; // 예외를 다시 던져서 상위에서 처리할 수 있도록 함
         }
     }
