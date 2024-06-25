@@ -12,7 +12,7 @@ function AdminLayout() {
         <div className="admin-layout">
             <AdminHeader/>
             <AdminNav/>
-            <main className="admin-main">
+            <main>
                 <Container>
                     <Outlet/>
                 </Container>

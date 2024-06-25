@@ -49,7 +49,7 @@ const DescriptionList = ({items, rowSizes, dtWidth}) => {
     const chunkedItems = chunkArray(items, rowSizes);
 
     return (
-        <Container ref={containerRef}>
+        <Container ref={containerRef} className="dl-container">
             {chunkedItems.map((chunk, chunkIndex) => {
                 const ddWidthCalc = `calc((100% - ${dtWidth * rowSizes[chunkIndex]}px) / ${rowSizes[chunkIndex]})`;
 

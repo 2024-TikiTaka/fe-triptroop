@@ -10,20 +10,31 @@ import {callAdminUserRegisterAPI} from "../../../../apis/admin/AdminUserAPICalls
 import {format} from "date-fns";
 
 const DynamicForm = ({fields, context, rowSizes}) => {
-    const [dynamicForm, setDynamicForm] = useState({
-        email: '',
-        nickname: '',
-        password: '',
-        passwordConfirm: '',
-        name: '',
-        gender: 'M',
-        birth: '',
-        role: 'USER',
-        phone: '',
-        status: 'ACTIVE',
-        introduction: '',
-        mbti: ''
-    });
+    // const [dynamicForm, setDynamicForm] = useState({
+    //     email: '',
+    //     nickname: '',
+    //     password: '',
+    //     passwordConfirm: '',
+    //     name: '',
+    //     gender: 'M',
+    //     birth: '',
+    //     role: 'USER',
+    //     phone: '',
+    //     status: 'ACTIVE',
+    //     introduction: '',
+    //     mbti: ''
+    // });
+
+    const initialFormState = fields.reduce((acc, field) => {
+        if (field.name === 'birth') {
+            acc[field.name] = field.defaultValue !== undefined ? field.defaultValue : '1900-01-01';
+        } else {
+            acc[field.name] = field.defaultValue !== undefined ? field.defaultValue : (field.type === 'select' || field.type === 'radio' ? null : '');
+        }
+        return acc;
+    }, {});
+
+    const [form, setForm] = useState(initialFormState);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -43,12 +54,12 @@ const DynamicForm = ({fields, context, rowSizes}) => {
         return acc;
     }, {}), context);
 
-    const initialFormState = fields.reduce((acc, field) => {
-        acc[field.name] = '';
-        return acc;
-    }, {});
+    // const initialFormState = fields.reduce((acc, field) => {
+    //     acc[field.name] = '';
+    //     return acc;
+    // }, {});
 
-    const [form, setForm] = useState(initialFormState);
+    // const [form, setForm] = useState(initialFormState);
 
     const handleChange = (event) => {
         const {name, value, type, checked, files} = event.target;
@@ -62,7 +73,8 @@ const DynamicForm = ({fields, context, rowSizes}) => {
     const handleDateChange = (date) => {
         setForm(prevForm => ({
             ...prevForm,
-            birth: format(date, 'yyyy-MM-dd')
+            birth: date ? format(date, 'yyyy-MM-dd') : '1900-01-01'
+
         }));
     }
 
@@ -78,9 +90,9 @@ const DynamicForm = ({fields, context, rowSizes}) => {
         if (!form.email) missingFields.push('이메일');
         if (!form.nickname) missingFields.push('닉네임');
         if (!form.role) missingFields.push('권한');
-        if (!form.gender) missingFields.push('성별');
+        //if (!form.gender) missingFields.push('성별');
         if (!form.name) missingFields.push('이름');
-        if (!form.birth) missingFields.push('생년월일');
+        //if (!form.birth) missingFields.push('생년월일');
         if (!form.status) missingFields.push('상태');
 
         if (missingFields.length > 0) {
@@ -107,7 +119,7 @@ const DynamicForm = ({fields, context, rowSizes}) => {
             confirmPassword: form.confirmPassword,
             name: form.name,
             phone: form.phone,
-            gender: form.gender,
+            gender: form.gender || null,
             role: form.role,
             status: form.status,
             birth: form.birth,
@@ -170,14 +182,12 @@ const DynamicForm = ({fields, context, rowSizes}) => {
         ) : field.type === 'date' ? (
             <DatePicker
                 className="form-control"
-                selected={form.birth ? new Date(form.birth) : null}
-                // onChange={(date) => setEndDate(date)}
+                selected={form.birth !== '1900-01-01' ? new Date(form.birth) : null}
                 onChange={handleDateChange}
                 locale={ko}
                 dateFormat="yyyy-MM-dd"
                 showPopperArrow={false}
                 maxDate={new Date()}
-                //value={form[field.name]}
             />
         ) : field.type === 'checkbox' ? (
             <input
@@ -203,7 +213,8 @@ const DynamicForm = ({fields, context, rowSizes}) => {
     return (
         <form onSubmit={handleSubmit}>
             <DescriptionList items={items} rowSizes={rowSizes} dtWidth={180}/>
-            <button type="submit" className="btn btn-primary">제출</button>
+            <button type="" className="btn blue-300 outline">취소</button>
+            <button type="submit" className="btn blue-300">등록 완료</button>
         </form>
     );
 };

@@ -36,12 +36,11 @@ function AdminUsers() {
                         <option value="status">상태</option>
                     </Form.Select>
                     <div className="search-input">
-                        <Search size="22px" fill="#757575"/>
                         <input type="text" placeholder="검색어를 입력해주세요."/>
+                        <Button className="blue-300"><Search size="22px" fill="#FFF"/></Button>
                     </div>
-                    <Button>검색</Button>
                 </Form>
-                <Button onClick={onClickHandeleClick}>회원 등록</Button>
+                <Button onClick={onClickHandeleClick} className="blue-300">회원 등록</Button>
             </div>
             {getList ? (
                 <div className="ad-user-list">

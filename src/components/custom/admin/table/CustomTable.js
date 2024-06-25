@@ -4,7 +4,7 @@ import {Table as BootstrapTable} from 'react-bootstrap';
 const CustomTable = ({headers, rows, onRowClick}) => {
     return (
         <BootstrapTable hover className="table px-5 text-center">
-            <thead className="border-2 border-bottom border-top border-secondary-subtle border-start-0 border-end-0">
+            <thead className="border-bottom border-top border-secondary-subtle border-start-0 border-end-0">
             <tr>
                 {headers.map((header, index) => (
                     <th key={index}>{header}</th>
