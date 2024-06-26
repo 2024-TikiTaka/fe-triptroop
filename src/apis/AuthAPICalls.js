@@ -60,7 +60,8 @@ export const callSignupAPI = ({ signupRequest }) => {
 
 export const callLoginAPI = ({ loginRequest }) => {
     return async (dispatch, getState) => {
-        const response = await request('POST',
+        const response = await request(
+            'POST',
             '/api/v1/login',
             { 'Content-Type': 'application/json' },
             JSON.stringify(loginRequest),
@@ -79,20 +80,37 @@ export const callLoginAPI = ({ loginRequest }) => {
 
 export const callLogoutAPI = () => {
     return async (dispatch, getState) => {
-        return await authRequest.post(`/api/v1/logout`)
-                                .then(result => {
-                                    removeToken();
-                                    dispatch(success());
-                                })
-                                .catch(error => {
-                                    removeToken();
-                                    window.location.replace('/');
-                                });
+        return await authRequest
+            .post(`/api/v1/logout`)
+            .then(result => {
+                removeToken();
+                dispatch(success());
+            })
+            .catch(error => {
+                removeToken();
+                window.location.replace('/');
+            });
     };
 };
 
-export async function callKakaoAuthAPI({ code }) {
-    return await request('POST', '/api/v1/oauth/kakao/code?code=' + code,
-        { "Content-Type": "application/x-www-form-urlencoded", }
-    );
-}
+export const callKakaoAuthAPI = (code) => {
+    return async (dispatch, getState) => {
+        return await request(
+            'POST',
+            '/api/v1/login/oauth2/kakao?code=' + code,
+            { 'Content-Type': 'application/x-www-form-urlencoded' }
+        )
+            .then((response) => console.log(response));
+    };
+};
+
+export const callNaverAuthAPI = (code) => {
+    return async (dispatch, getState) => {
+        return await request(
+            'POST',
+            '/api/v1/login/oauth2/naver?code=' + code,
+            { 'Content-Type': 'application/x-www-form-urlencoded' }
+        )
+            .then((response) => console.log(response));
+    };
+};

@@ -3,15 +3,15 @@ import { Badge, Button, Form } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale/ko";
-import KaKaoMapAPI from "../map/KaKaoMapAPI";
+import KakaomapSearch from "../map/KakaomapSearch";
 import { useDispatch } from "react-redux";
 import { callScheduleItemUpdateAPI } from "../../apis/ScheduleAPICalls";
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-function ScheduleItemUpdateForm( ) {
+function ScheduleItemUpdateForm() {
     const { scheduleItemId } = useParams();
 
-    const [form, setForm] = useState({
+    const [ form, setForm ] = useState({
         address: '',
         name: '',
         kind: '',
@@ -72,7 +72,7 @@ function ScheduleItemUpdateForm( ) {
         <>
             <h2 className="fs-1 fw-bold text-center mb-5">일정 계획 수정</h2>
 
-            <KaKaoMapAPI onPlaceSelect={handlePlaceSelect} />
+            <KakaomapSearch onPlaceSelect={handlePlaceSelect} />
             <Form onSubmit={onClickScheduleItemUpdateHandler}>
                 <Form.Group id="scheduleItem" className="mb-3">
                     <Form.Label>구분 선택</Form.Label>
@@ -125,7 +125,7 @@ function ScheduleItemUpdateForm( ) {
                             showPopperArrow={false}
                             minDate={new Date()}
                             customInput={
-                                <Form.Control as="textarea" rows={1} style={{ width: "250px" }} />
+                                <Form.Control rows={1} style={{ width: "250px" }} />
                             }
                         />
                     </div>

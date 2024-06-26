@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { callTravelDetailAPI, callTravelModifyAPI } from "../../apis/TravelAPICalls";
-import KaKaoMapAPI from "../map/KaKaoMapAPI";
+import KakaomapSearch from "../map/KakaomapSearch";
 
 function TravelModifyForm() {
     const { travelId } = useParams();
-    const [formData, setFormData] = useState({
+    const [ formData, setFormData ] = useState({
         categoryId: '',
         areaId: '',
         address: '',
@@ -17,7 +17,7 @@ function TravelModifyForm() {
         images: [],
         status: 'PUBLIC'
     });
-    const [existingImages, setExistingImages] = useState([]);
+    const [ existingImages, setExistingImages ] = useState([]);
     const imageInput = useRef();
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -29,7 +29,7 @@ function TravelModifyForm() {
         };
 
         fetchTravelDetail();
-    }, [dispatch, travelId]);
+    }, [ dispatch, travelId ]);
 
     useEffect(() => {
         if (travel && travelId === travel.id) {
@@ -45,7 +45,7 @@ function TravelModifyForm() {
             });
             setExistingImages(travel.images || []);
         }
-    }, [travel, travelId]);
+    }, [ travel, travelId ]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -85,7 +85,7 @@ function TravelModifyForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = new FormData();
-        data.append('travelRequest', new Blob([JSON.stringify({
+        data.append('travelRequest', new Blob([ JSON.stringify({
             categoryId: formData.categoryId,
             areaId: formData.areaId,
             address: formData.address,
@@ -93,7 +93,7 @@ function TravelModifyForm() {
             title: formData.title,
             content: formData.content,
             status: formData.status
-        })], { type: 'application/json' }));
+        }) ], { type: 'application/json' }));
 
         formData.images.forEach(image => {
             data.append('image', image);
@@ -153,7 +153,7 @@ function TravelModifyForm() {
 
             <Form.Group className="mb-3" controlId="formGridPlace">
                 <Form.Label>장소</Form.Label>
-                <KaKaoMapAPI onPlaceSelect={handlePlaceSelect} />
+                <KakaomapSearch onPlaceSelect={handlePlaceSelect} />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formGridTitle">

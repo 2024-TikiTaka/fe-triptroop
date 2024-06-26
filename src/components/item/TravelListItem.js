@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import { Image } from "react-bootstrap";
 
 function TravelListItem({ travel: { id, title, content, images } }) {
     const navigate = useNavigate();
