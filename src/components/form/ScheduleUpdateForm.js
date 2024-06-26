@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Form, Badge, Button } from "react-bootstrap";
+import { Badge, Button, Form } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale/ko";
@@ -11,16 +11,16 @@ import { authRequest } from "../../apis/api";
 function ScheduleUpdateForm() {
     const { scheduleId } = useParams();
     const { schedule } = useSelector(state => state.scheduleReducer);
-    const information = {schedule}
-    const [scheduleForm, setScheduleForm] = useState({
+    const information = { schedule };
+    const [ scheduleForm, setScheduleForm ] = useState({
         title: "",
         count: "",
-        areaId:information.areaId,
+        areaId: information.areaId,
         startDate: new Date(),
         endDate: new Date(),
         visibility: "PUBLIC"
     });
-    const [images, setImages] = useState([]);
+    const [ images, setImages ] = useState([]);
     const imageInput = useRef();
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -31,7 +31,7 @@ function ScheduleUpdateForm() {
             await dispatch(callScheduleDetailAPI({ scheduleId }));
         };
         fetchScheduleDetail();
-    }, [dispatch, scheduleId]);
+    }, [ dispatch, scheduleId ]);
 
     useEffect(() => {
         if (information && parseInt(scheduleId, 10) === information.id) {
@@ -44,7 +44,7 @@ function ScheduleUpdateForm() {
                 visibility: information.visibility || "PUBLIC"
             });
         }
-    }, [information, scheduleId]);
+    }, [ information, scheduleId ]);
 
     const toggleStatus = () => {
         const newStatus = scheduleForm.visibility === "PUBLIC" ? "PRIVATE" : "PUBLIC";
@@ -102,7 +102,7 @@ function ScheduleUpdateForm() {
             visibility: scheduleForm.visibility
         };
 
-        formData.append('scheduleUpdateRequest', new Blob([JSON.stringify(scheduleUpdateRequest)], { type: 'application/json' }));
+        formData.append('scheduleUpdateRequest', new Blob([ JSON.stringify(scheduleUpdateRequest) ], { type: 'application/json' }));
 
 
         // areaId 추가
@@ -116,14 +116,8 @@ function ScheduleUpdateForm() {
             const accessToken = localStorage.getItem("accessToken");
 
             const response = await authRequest.put(
-                `http://localhost:8080/api/v1/schedules/${scheduleId}/modify`,
+                `/api/v1/schedules/${scheduleId}/modify`,
                 formData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                        'Content-Type': 'multipart/form-data'
-                    }
-                }
             );
 
             console.log("수정 성공:", response.data);
