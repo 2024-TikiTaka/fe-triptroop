@@ -3,8 +3,8 @@ import {ADMIN_INQUIRY, ADMIN_USER} from "./Translates";
 
 const TranslateKey = (key, context) => {
     let translations;
-    console.log('key : ' + key);
-    console.log('context : ' + context);
+    // console.log('key : ' + key);
+    // console.log('context : ' + context);
     switch (context) {
         case "admin_user" :
             translations = ADMIN_USER;

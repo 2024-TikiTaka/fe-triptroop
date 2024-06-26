@@ -20,7 +20,7 @@ import AdminLayout from "./layouts/AdminLayout";
 import AdminMain from "./pages/admin/main/AdminMain";
 import AdminUsers from "./pages/admin/user/AdminUsers";
 import AdminUserDetail from "./pages/admin/user/AdminUserDetail";
-import AdminUserRegist from "./pages/admin/user/AdminUserRegist";
+import AdminUserRegister from "./pages/admin/user/AdminUserRegister";
 import AdminUserDelete from "./pages/admin/user/AdminUserDelete";
 import AdminInquiries from "./pages/admin/inquiry/AdminInquiries";
 import AdminInquiryDetail from "./pages/admin/inquiry/AdminInquiryDetail";
@@ -53,8 +53,8 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Layout />}>
-                    <Route index element={<Main />} />
+                <Route path="/" element={<Layout/>}>
+                    <Route index element={<Main/>}/>
 
                     {/* 비회원 ============================= */}
                     <Route
@@ -113,11 +113,11 @@ function App() {
                     <Route path="/schedules/:scheduleItemId/item" element={<ScheduleItemUpdate />} />
                     <Route path="/schedules/regist" element={<ScheduleRegist />} />
                     {/* 동행 */}
-                    <Route path="/companions" />
+                    <Route path="/companions"/>
                     {/* 문의 */}
-                    <Route path="/inquiry" />
+                    <Route path="/inquiry"/>
                     {/* 오류 */}
-                    <Route path="*" element={<ErrorPage />} />
+                    <Route path="*" element={<ErrorPage/>}/>
                 </Route>
 
                 {/* 마이페이지 */}
@@ -162,15 +162,15 @@ function App() {
                 >
                     <Route index element={<AdminMain />} />
                     <Route path="users">
-                        <Route index element={<AdminUsers />} />
-                        <Route path=":userId" element={<AdminUserDetail />} />
-                        <Route path="regist" element={<AdminUserRegist />} />
-                        <Route path="delete" element={<AdminUserDelete />} />
+                        <Route index element={<AdminUsers/>}/>
+                        <Route path=":userId" element={<AdminUserDetail/>}/>
+                        <Route path="regist" element={<AdminUserRegister/>}/>
+                        <Route path="delete" element={<AdminUserDelete/>}/>
                     </Route>
                     <Route path="inquires">
-                        <Route index element={<AdminInquiries />} />
-                        <Route path="inquiryId" element={<AdminInquiryDetail />} />
-                        <Route path="regist" element={<AdminInquiryRegister />} />
+                        <Route index element={<AdminInquiries/>}/>
+                        <Route path="inquiryId" element={<AdminInquiryDetail/>}/>
+                        <Route path="regist" element={<AdminInquiryRegister/>}/>
                     </Route>
                     <Route path="categories">
                         <Route index element={<AdminCategories />} />
