@@ -1,22 +1,20 @@
-import CustomTable from "../../custom/table/CustomTable";
+import CustomTable from "../../custom/admin/table/CustomTable";
 import {useNavigate} from "react-router-dom";
+
 
 const AdminUserList = ({data}) => {
 
     const headers = ['No', '권한', '아이디', '닉네임', '성별', '고도', '상태', '가입일'];
     const rows = data && Array.isArray(data) ? data.map((item, index) => ({
-        No: index + 1,
-        권한: item.role,
+        No: item.userId,
+        권한: item.role === 'ADMIN' ? '관리자' : '회원',
         아이디: item.email,
-        닉네임: item.nickname || '',  // 닉네임이 없는 경우 빈 문자열로 설정
-        성별: item.gender,
+        닉네임: item.nickname || ` - `,  // 닉네임이 없는 경우 빈 문자열로 설정
+        성별: item.gender === 'M' ? '남자' : '여자',
         고도: item.godo,
-        상태: item.status,
+        상태: item.status === 'SUSPENDED' ? '정지' : item.status === 'ACTIVE' ? '활동' : '탈퇴',
         가입일: item.createdAt
     })) : [];
-
-    // console.log("rows.map(row => row.userId) 값 Map 사용시: ", rows.map(row => row.권한))
-    // rows.forEach(row => { console.log(`No: ${row.No}, 권한: ${row.권한}, 아이디: ${row.아이디}`); });
 
     const navigate = useNavigate();
 
@@ -27,8 +25,14 @@ const AdminUserList = ({data}) => {
 
     return (
         <div className="admin-user-div">
-            {data && <CustomTable key={rows.No} headers={headers} rows={rows}
-                                  onRowClick={handleRowClick}/>}
+            {rows.length > 0 ? (
+                <>
+                    <CustomTable key={rows.No} headers={headers} rows={rows}
+                                 onRowClick={handleRowClick}/>
+                </>
+            ) : (
+                <div>데이터가 없습니다.</div> // 데이터가 없을 때 표시할 내용
+            )}
         </div>
     );
 

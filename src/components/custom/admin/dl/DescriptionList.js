@@ -1,12 +1,13 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Container, Row} from 'react-bootstrap';
+import {Button, Container, Row} from 'react-bootstrap';
+import transformDescription from "./transformDescription";
 
 // 데이터를 행당 항목 개수에 따라 분할하는 함수
 const chunkArray = (array, rowSizes) => {
     const chunkedArr = [];
     let index = 0;
 
-    console.log("dsafsdf : ", array, rowSizes)
+    // console.log("dsafsdf : ", array, rowSizes)
 
     rowSizes.forEach(size => {
         chunkedArr.push(array.slice(index, index + size * 1)); // dt, dd 쌍으로 인해 2를 곱함
@@ -36,12 +37,19 @@ const DescriptionList = ({items, rowSizes, dtWidth}) => {
         return () => window.removeEventListener('resize', updateWidth);
     }, []);
 
-    console.log("DescriptionList items :", items);
-    console.log("DescriptionList rowSizes:", rowSizes);
+    // items 배열 변환
+    // const transformedItems = items.map(item => ({
+    //     ...item,
+    //     description: transformDescription(item.description),
+    // }));
+
+    // console.log("DescriptionList items :", items);
+    // console.log("DescriptionList rowSizes:", rowSizes);
+    //const chunkedItems = chunkArray(transformedItems, rowSizes);
     const chunkedItems = chunkArray(items, rowSizes);
 
     return (
-        <Container ref={containerRef}>
+        <Container ref={containerRef} className="dl-container">
             {chunkedItems.map((chunk, chunkIndex) => {
                 const ddWidthCalc = `calc((100% - ${dtWidth * rowSizes[chunkIndex]}px) / ${rowSizes[chunkIndex]})`;
 
@@ -63,7 +71,9 @@ const DescriptionList = ({items, rowSizes, dtWidth}) => {
                                         flex: `0 0 ${ddWidthCalc}`
                                     }}
                                 >
-                                    {item.description}
+                                    {/*{item.description}*/}
+                                    {transformDescription(item.term, item.description)}
+                                    {item.term === '값' && <Button>버튼</Button>}
                                 </div>
                             </React.Fragment>
                         ))}

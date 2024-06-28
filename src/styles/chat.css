@@ -279,3 +279,120 @@
     background-color: #7DCD7D;
     border-color: #7DCD7D;
 }
+
+/* 공지목록 */
+.notice-list-container {
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+}
+
+.notice-item {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.notice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.notice-title {
+    font-weight: bold;
+}
+
+.notice-date {
+    color: #888;
+    font-size: 12px;
+}
+
+.notice-content {
+    color: #555;
+}
+
+/* 공지 상세 */
+.notice-list-container {
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+}
+
+.notice-item {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.notice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.notice-title {
+    font-weight: bold;
+}
+
+.notice-date {
+    color: #888;
+    font-size: 12px;
+}
+
+.notice-content {
+    color: #555;
+}
+
+.notice-item-container {
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+}
+
+.notice-item-header {
+    display: flex;
+    align-items: center;
+}
+
+.notice-kind {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.notice-item-content {
+    margin-top: 20px;
+}
+
+.notice-item-content .notice-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.notice-item-content .notice-date {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.notice-item-content .notice-content {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.notice-images {
+    margin-top: 20px;
+}
+
+.notice-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}

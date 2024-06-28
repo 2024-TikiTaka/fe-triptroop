@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 function SchedulesList() {
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
+    const [searchKeyword, setSearchKeyword] = useState("");
     const { schedules } = useSelector(state => state.scheduleReducer);
 
     const location = useLocation();
@@ -22,10 +23,15 @@ function SchedulesList() {
             dispatch(callScheduleSortListAPI({ sort: newSort, currentPage }));
         }
     };
-    const handleKeywordChange = (e) => {
-        const newKeyword = e.target.value;
-            dispatch(callScheduleSearchListAPI({ key: newKeyword, currentPage }));
 
+    const handleKeywordChange = (e) => {
+        setSearchKeyword(e.target.value);
+    };
+
+    const handleSearchClick = () => {
+        if (searchKeyword) {
+            dispatch(callScheduleSearchListAPI({ keyword: searchKeyword, currentPage }));
+        }
     };
 
     useEffect(() => {
@@ -40,24 +46,24 @@ function SchedulesList() {
         <Container>
             <Row className="my-4">
                 <Col>
-                    <h2>Schedule List</h2>
+                    <h2>일정</h2>
                 </Col>
                 <Col className="text-right">
                     <Form.Select onChange={handleSortChange} value={sort || 'default'}>
-                        <option value="default" disabled>Sort by...</option>
-                        <option value="views">Most Views</option>
-                        <option value="latest">Latest</option>
+                        <option value="default" disabled>정렬</option>
+                        <option value="views">조회순</option>
+                        <option value="latest">최신순</option>
                     </Form.Select>
                 </Col>
             </Row>
             <Row className="mb-4">
                 <Col>
                     <Form.Group>
-                        <Form.Control onChange={handleKeywordChange} type="text" placeholder="Search by keyword" />
+                        <Form.Control onChange={handleKeywordChange} type="text" placeholder="제목을 검색하세요." />
                     </Form.Group>
                 </Col>
                 <Col>
-                    <Button variant="primary" className="ml-2">Search</Button>
+                    <Button variant="primary" className="ml-2" onClick={handleSearchClick}>검색</Button>
                 </Col>
             </Row>
             <Row>

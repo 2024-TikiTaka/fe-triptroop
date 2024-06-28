@@ -91,9 +91,9 @@ export const callScheduleRegistAPI = ({ registRequest }) => {
     }
 };
 // 일정 수정
-export const callScheduleUpdateAPI = ({ scheduleId,modifyRequest }) => {
+export const callScheduleUpdateAPI = ({ scheduleId,scheduleUpdateRequest }) => {
     return async (dispatch, getState) => {
-        const result = await authRequest.put(`/api/v1/schedules/${scheduleId}/modify`, modifyRequest);
+        const result = await authRequest.put(`/api/v1/schedules/${scheduleId}/modify`, scheduleUpdateRequest);
         console.log('callScheduleUpdateAPI result : ', result);
 
         if (result.status === 201) {
@@ -247,17 +247,3 @@ export const callScheduleParticipantsAPI = ({scheduleId}) => {
 
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-

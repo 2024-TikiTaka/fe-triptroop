@@ -4,13 +4,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Chat, Person, } from "react-bootstrap-icons";
 import { Button, Container, Dropdown, Image, Nav, Navbar } from "react-bootstrap";
 
-import { isLogin } from "../../utils/TokenUtils";
+import { isAdmin, isLogin } from "../../utils/TokenUtils";
 import { reset } from "../../modules/UserModules";
 import { callLogoutAPI } from "../../apis/AuthAPICalls";
-import { callProfileAPI } from "../../apis/ProfileAPICalls";
+import { callMyProfileAPI } from "../../apis/ProfileAPICalls";
 
 import ChatBox from "../item/ChatBox";
 import ProfileImage from "./ProfileImage";
+import { callCurrentUserAPI } from "../../apis/UserAPICalls";
 
 const CustomNavLink = ({ to, children }) => (
     <NavLink
@@ -24,21 +25,23 @@ function Header() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    const { success, profile } = useSelector(state => state.userReducer);
     const [ showChat, setShowChat ] = useState(false);
+    const { success: loginSuccess, currentUser } = useSelector(state => state.userReducer);
+    const { currentProfile } = useSelector(state => state.profileReducer);
 
     useEffect(() => {
 
-        if (success === true) {
-            navigate(`/`);
+        if (loginSuccess === true) {
+            navigate(isAdmin() ? '/admin' : '/');
             dispatch(reset());
-        }
 
-        if (isLogin()) {
-            !profile && dispatch(callProfileAPI());
+            if (isLogin()) {
+                !currentUser && dispatch(callCurrentUserAPI());
+                !currentProfile && dispatch(callMyProfileAPI());
+            }
         }
-    }, [ success, profile ]);
+    }, [ loginSuccess, dispatch, navigate ]);
+
 
     function BeforeLogin() {
         return (
@@ -59,7 +62,6 @@ function Header() {
     }
 
     function AfterLogin() {
-
         return (
             <>
                 {/* Chat */}
@@ -81,21 +83,20 @@ function Header() {
                                 <Dropdown.Item as="div">
                                     <div className="d-flex align-items-center">
                                         <div className="me-3">
-                                            <ProfileImage />
+                                            <ProfileImage src={currentProfile?.profileImage} />
                                         </div>
                                         <div>
                                             <p className="small m-0">
-                                                {profile?.nickname}
+                                                {currentProfile?.nickname || '닉네임'}
                                             </p>
                                             <p className="small m-0">
-
+                                                {currentUser?.email || '이메일'}
                                             </p>
                                         </div>
                                     </div>
                                 </Dropdown.Item>
                                 <Dropdown.Divider />
                                 <Dropdown.Item onClick={() => navigate(`/mypage`)}>마이페이지</Dropdown.Item>
-                                <Dropdown.Item onClick={() => navigate(`/likes`)}>좋아요</Dropdown.Item>
                                 <Dropdown.Item onClick={() => navigate(`/settings`)}>설정</Dropdown.Item>
                                 <Dropdown.Divider />
                                 <Dropdown.Item onClick={() => dispatch(callLogoutAPI())}>로그아웃</Dropdown.Item>
@@ -137,12 +138,12 @@ function Header() {
                             <Nav.Link as={CustomNavLink} to="/schedules">
                                 일정
                             </Nav.Link>
-                            <Nav.Link as={CustomNavLink} to="/companions">
-                                동행
-                            </Nav.Link>
-                            <Nav.Link as={CustomNavLink} to="/inquiry">
-                                문의
-                            </Nav.Link>
+                            {/* <Nav.Link as={CustomNavLink} to="/companions"> */}
+                            {/*     동행 */}
+                            {/* </Nav.Link> */}
+                            {/* <Nav.Link as={CustomNavLink} to="/inquiry"> */}
+                            {/*     문의 */}
+                            {/* </Nav.Link> */}
                         </Nav>
                     </Navbar.Collapse>
 

@@ -2,13 +2,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import 'react-toastify/dist/ReactToastify.css';
 import "./styles/common.css";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/router/ProtectedRoute";
 
 import ErrorPage from "./pages/error/Error";
 import Layout from "./layouts/Layout";
 import Main from "./pages/main/Main";
 import Login from "./pages/user/Login";
+import Signup from "./pages/user/Signup";
 import KakaoAuth from "./pages/user/KakaoAuth";
 import SchedulesList from "./components/list/SchedulesList";
 import ScheduleDetail from "./pages/schedule/ScheduleDetail";
@@ -19,7 +20,7 @@ import AdminLayout from "./layouts/AdminLayout";
 import AdminMain from "./pages/admin/main/AdminMain";
 import AdminUsers from "./pages/admin/user/AdminUsers";
 import AdminUserDetail from "./pages/admin/user/AdminUserDetail";
-import AdminUserRegist from "./pages/admin/user/AdminUserRegist";
+import AdminUserRegister from "./pages/admin/user/AdminUserRegister";
 import AdminUserDelete from "./pages/admin/user/AdminUserDelete";
 import AdminInquiries from "./pages/admin/inquiry/AdminInquiries";
 import AdminInquiryDetail from "./pages/admin/inquiry/AdminInquiryDetail";
@@ -46,20 +47,29 @@ import ScheduleItemRemove from "./pages/schedule/ScheduleItemRemove";
 import ScheduleApply from "./pages/schedule/ScheduleApply";
 import ScheduleRejected from "./pages/schedule/ScheduleRejected";
 import ScheduleParticipant from "./pages/schedule/ScheduleParticipant";
-
+import FindPassword from "./pages/user/FindPassword";
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Layout />}>
-                    <Route index element={<Main />} />
+                <Route path="/" element={<Layout/>}>
+                    <Route index element={<Main/>}/>
 
                     {/* 비회원 ============================= */}
                     <Route
                         path="/signup"
                         element={
                             <ProtectedRoute isAuthenticated={false}>
+                                <Signup />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/find/password"
+                        element={
+                            <ProtectedRoute isAuthenticated={false}>
+                                <FindPassword />
                             </ProtectedRoute>
                         }
                     />
@@ -103,11 +113,11 @@ function App() {
                     <Route path="/schedules/:scheduleItemId/item" element={<ScheduleItemUpdate />} />
                     <Route path="/schedules/regist" element={<ScheduleRegist />} />
                     {/* 동행 */}
-                    <Route path="/companions" />
+                    <Route path="/companions"/>
                     {/* 문의 */}
-                    <Route path="/inquiry" />
+                    <Route path="/inquiry"/>
                     {/* 오류 */}
-                    <Route path="*" element={<ErrorPage />} />
+                    <Route path="*" element={<ErrorPage/>}/>
                 </Route>
 
                 {/* 마이페이지 */}
@@ -119,7 +129,7 @@ function App() {
                         </ProtectedRoute>
                     }
                 >
-                    <Route index element={<MyHome />} />
+                    <Route index element={<Navigate to="/mypage/home" />} />
                     <Route path="home" element={<MyHome />} />
                     <Route path="travels" element={<MyTravels />} />
                     <Route path="schedules" element={<MySchedules />} />
@@ -128,13 +138,12 @@ function App() {
                 {/* 설정/ */}
                 <Route
                     path="/settings"
-                    element={
-                        <ProtectedRoute isAuthenticated={true}>
-                            <MyPageLayout />
-                        </ProtectedRoute>
+                    element={<ProtectedRoute isAuthenticated={true}>
+                        <MyPageLayout />
+                    </ProtectedRoute>
                     }
                 >
-                    <Route index element={<ProfileSettings />} />
+                    <Route index element={<Navigate to="/settings/profile" />} />
                     <Route path="profile" element={<ProfileSettings />} />
                     <Route path="user" element={<UserSettings />} />
                     <Route path="password" element={<PasswordSettings />} />
@@ -153,15 +162,15 @@ function App() {
                 >
                     <Route index element={<AdminMain />} />
                     <Route path="users">
-                        <Route index element={<AdminUsers />} />
-                        <Route path=":userId" element={<AdminUserDetail />} />
-                        <Route path="regist" element={<AdminUserRegist />} />
-                        <Route path="delete" element={<AdminUserDelete />} />
+                        <Route index element={<AdminUsers/>}/>
+                        <Route path=":userId" element={<AdminUserDetail/>}/>
+                        <Route path="regist" element={<AdminUserRegister/>}/>
+                        <Route path="delete" element={<AdminUserDelete/>}/>
                     </Route>
                     <Route path="inquires">
-                        <Route index element={<AdminInquiries />} />
-                        <Route path="inquiryId" element={<AdminInquiryDetail />} />
-                        <Route path="regist" element={<AdminInquiryRegister />} />
+                        <Route index element={<AdminInquiries/>}/>
+                        <Route path="inquiryId" element={<AdminInquiryDetail/>}/>
+                        <Route path="regist" element={<AdminInquiryRegister/>}/>
                     </Route>
                     <Route path="categories">
                         <Route index element={<AdminCategories />} />
@@ -169,7 +178,6 @@ function App() {
                         <Route path="regist" element={<AdminCategoryRegist />} />
                     </Route>
                     <Route path="notices" />
-                    {/*<Route path="test" element={<TestDl/>}/>*/}
 
                     {/* 오류 */}
                     <Route path="*" element={<ErrorPage />} />

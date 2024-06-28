@@ -1,46 +1,42 @@
 import React from "react";
 import { Card, Col, Container, Dropdown, Row } from 'react-bootstrap';
 import ProfileImage from "./ProfileImage";
-import { ThreeDots } from "react-bootstrap-icons";
+import { BalloonFill, ThreeDots } from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
 
-function MyPageHeader() {
+function MyPageHeader({ userInfo, profileInfo }) {
+
+    const navigate = useNavigate();
+
 
     return (
-        <Container className="mt-4">
-            <Row>
+        <Container className="mt-4 mb-4">
+            <Row className="align-items-stretch">
                 <Col md={8}>
-                    <Card className="mb-4">
+                    <Card className="p-2 h-100">
                         <Card.Body>
                             <Row>
-                                <Col xs={3}>
+                                <Col xs={12} md={4}>
                                     <div className="d-flex flex-column align-items-center">
-                                        <ProfileImage size={"6.5rem"} />
-                                        <h5 className="mt-2">남나미</h5>
-                                        <span>여성 / 20대</span>
+                                        <ProfileImage
+                                            src={profileInfo?.profileImage}
+                                            size={"5rem"} />
+                                        <h4 className="mt-2 h6">{profileInfo?.nickname}</h4>
+                                        <span className="small">{userInfo?.email}</span>
                                     </div>
                                 </Col>
-                                <Col xs={9}>
+                                <Col xs={12} md={8}>
                                     <div className="d-flex justify-content-between align-items-start">
                                         <div>
-                                            {/* <div className="mb-2"> */}
-                                            {/*     <Badge bg="secondary" className="me-1">레포츠</Badge> */}
-                                            {/*     <Badge bg="secondary" className="me-1">문화</Badge> */}
-                                            {/*     <Badge bg="secondary" className="me-1">체험</Badge> */}
-                                            {/*     <Badge bg="secondary" className="me-1">공연/행사</Badge> */}
-                                            {/*     <Badge bg="secondary" className="me-1">관광</Badge> */}
-                                            {/*     <Badge bg="secondary" className="me-1">맛집</Badge> */}
-                                            {/* </div> */}
-                                            <h6 className="small">소개</h6>
-                                            <p>여행 같이 가실분~ 동행글 올려놨으니 확인 후 신청 ㅋㅋ ㅎㅎ</p>
+                                            <h5 className="small">소개</h5>
+                                            <p>{profileInfo?.introduction}</p>
                                         </div>
                                         <Dropdown>
                                             <Dropdown.Toggle variant="light" id="dropdown-basic">
                                                 <ThreeDots />
                                             </Dropdown.Toggle>
                                             <Dropdown.Menu>
-                                                <Dropdown.Item>프로필 관리</Dropdown.Item>
-                                                <Dropdown.Item>계정</Dropdown.Item>
-                                                <Dropdown.Item>로그아웃</Dropdown.Item>
+                                                <Dropdown.Item onClick={() => navigate(`/settings`)}>설정</Dropdown.Item>
                                             </Dropdown.Menu>
                                         </Dropdown>
                                     </div>
@@ -54,12 +50,13 @@ function MyPageHeader() {
                     </Card>
                 </Col>
                 <Col md={4}>
-                    <Card className="mb-4">
-                        <Card.Body>ss
-                            <div className="d-flex justify-content-center align-items-center" style={{ height: '100px' }}>
-                                <h4 className="mb-0">회원의 고도는</h4>
-                                <div className="ms-3">
-                                    <h1 className="mb-0">50M</h1>
+                    <Card className="p-2 h-100">
+                        <Card.Body>
+                            <div style={{ height: '100px' }}>
+                                <h5 className="small">고도</h5>
+                                <div className="d-flex flex-column justify-content-center align-items-center">
+                                    <BalloonFill className="fs-1" />
+                                    <div className="fs-2">{userInfo?.godo}m</div>
                                 </div>
                             </div>
                         </Card.Body>

@@ -2,24 +2,23 @@ import React, { useEffect } from "react";
 import SettingContent from "../../components/content/SettingContent";
 import ProfileForm from "../../components/form/ProfileForm";
 import { useDispatch, useSelector } from "react-redux";
-import { isLogin } from "../../utils/TokenUtils";
-import { callProfileAPI } from "../../apis/ProfileAPICalls";
+import { callMyProfileAPI } from "../../apis/ProfileAPICalls";
 
 function ProfileSettings() {
 
     const dispatch = useDispatch();
-    const { profile } = useSelector(state => state.profileReducer);
+    const { success: modifySuccess, currentProfile } = useSelector(state => state.profileReducer);
+
 
     useEffect(() => {
-        if (isLogin()) {
-            !profile && dispatch(callProfileAPI());
+        if (modifySuccess) {
+            dispatch(callMyProfileAPI());
         }
-    }, []);
-
+    }, [ dispatch, modifySuccess ]);
     return (
         <>
             <SettingContent>
-                <ProfileForm profile={profile} />
+                <ProfileForm profileInfo={currentProfile} />
             </SettingContent>
         </>
     );

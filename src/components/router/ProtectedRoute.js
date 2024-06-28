@@ -1,18 +1,18 @@
-import {Navigate} from 'react-router-dom';
-import {isAdmin, isLogin} from '../../utils/TokenUtils';
+import { Navigate } from 'react-router-dom';
+import { isAdmin, isLogin } from '../../utils/TokenUtils';
 
-function ProtectedRoute({isAuthenticated, isAdminOnly, children}) {
+function ProtectedRoute({ isAuthenticated, isAdminOnly, children }) {
+
+    if (isAdminOnly) {
+        return isAdmin() ? children : <Navigate to="/" />;
+    }
 
     if (isAuthenticated) {
-        /* 관리자 */
-        if (isAdminOnly) {
-            return isAdmin() ? children : <Navigate to="/"/>;
-        }
-
-        return isLogin() ? children : <Navigate to="/login"/>;
-
+        /* 로그인 해야만 볼 수 있는 컴포넌트 (EX. 마이페이지) */
+        return isLogin() ? children : <Navigate to="/login" />;
     } else {
-        return !isLogin() ? children : <Navigate to="/"/>;
+        /* 로그인 하면 볼 수 없는 컴포넌트 (EX. 로그인, 회원가입) */
+        return !isLogin() ? children : <Navigate to="/" />;
     }
 }
 

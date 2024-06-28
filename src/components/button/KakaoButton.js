@@ -7,7 +7,7 @@ const KakaoButton = ({ ...props }) => {
     const REDIRECT_URI = `${process.env.REACT_APP_KAKAO_URL}`;
     const KAKAO_DEFAULT_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
-    const loginHandler = () => {
+    const handleClick = () => {
         window.location.href = KAKAO_DEFAULT_URL;
     };
 
@@ -18,7 +18,7 @@ const KakaoButton = ({ ...props }) => {
                 size={"lg"}
                 style={{ background: "#FEE500" }}
                 className="fs-6 mb-0"
-                onClick={loginHandler}
+                onClick={handleClick}
             >
                 <Kakao width={"18"} />
                 <span className="ms-2">카카오로 시작하기</span>
