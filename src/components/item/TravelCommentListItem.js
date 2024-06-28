@@ -10,14 +10,11 @@ function TravelCommentListItem({comments: {id, content, nickname, profileImage}}
                     <div className="bg-light rounded p-3" key={id}>
                         <div>
                             <div className="mb-3">
-                                {
-                                    !profileImage
-                                        ? (<DefaultProfile/>)
+
                                         : (<img className="avatar avatar-md rounded-circle float-start me-3"
                                                 src={profileImage}
                                                 alt={nickname}/>)
-                                }
-                                <DefaultProfile/>
+                             
                                 <div>
                                     <h6 className="m-0">{nickname}</h6>
                                     <span className="me-3 small">2 days ago</span>

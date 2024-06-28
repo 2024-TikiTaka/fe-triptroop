@@ -6,6 +6,8 @@ import TravelList from "../../components/list/TravelList";
 import PagingBar from "../../components/pagination/PagingBar";
 import JobPostingsStatus from "./TravelNavber";
 import {useNavigate} from "react-router-dom";
+import TravelCardList from "../../components/item/TravelListItem";
+import {Button} from "react-bootstrap";
 
 
 
@@ -32,15 +34,15 @@ function TravelMain() {
     return (
         <>
             {/* 등록 버튼 */}
-            <button onClick={handleInsertButtonClick}>여행지 등록</button>
+            <Button onClick={handleInsertButtonClick}>여행지 등록</Button>
 
 
             {
                 travels &&
                 <>
 
-                    <JobPostingsStatus /> {/* JobPostingsStatus 컴포넌트 추가 */}
-                    <TravelList data={travels.data}/>
+                    {/*<JobPostingsStatus /> /!* JobPostingsStatus 컴포넌트 추가 *!/*/}
+                    <TravelCardList data={travels.data}/>
                     <PagingBar pageInfo={travels.pageInfo} setCurrentPage={setCurrentPage}/>
 
                 </>

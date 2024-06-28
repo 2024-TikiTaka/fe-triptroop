@@ -1,9 +1,8 @@
 import TravelListItem from "../item/TravelListItem";
-import styles from '../../styles/travel.css';
 
 function TravelList({ data }) {
     return (
-        <div className={styles.travelsDiv}>
+        <div >
             {data && data.map(travel =>
                 <TravelListItem key={travel.id} travel={travel} />)
             }
