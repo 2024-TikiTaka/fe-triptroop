@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
-import KaKaoMapAPI from "../map/KaKaoMapAPI";
+import { Button, Form, Row } from "react-bootstrap";
+import KakaomapSearch from "../map/KakaomapSearch";
 import { callTravelInsertAPI } from "../../apis/TravelAPICalls";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const TravelRegistration = () => {
-    const [formData, setFormData] = useState({
+    const [ formData, setFormData ] = useState({
         categoryId: '',
         areaId: '',
         placeId: '',
@@ -53,14 +53,14 @@ const TravelRegistration = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = new FormData();
-        data.append('travelRequest', new Blob([JSON.stringify({
+        data.append('travelRequest', new Blob([ JSON.stringify({
             categoryId: formData.categoryId,
             areaId: formData.areaId,
             address: formData.address,
             name: formData.name,
             title: formData.title,
             content: formData.content,
-        })], { type: 'application/json' }));
+        }) ], { type: 'application/json' }));
 
         if (formData.images.length > 0) {
             for (let i = 0; i < formData.images.length; i++) {
@@ -90,7 +90,7 @@ const TravelRegistration = () => {
     return (
         <Form onSubmit={handleSubmit}>
             <Row className="mb-3">
-                <Form.Group as={Col} controlId="formGridCategory">
+                <Form.Group className="mb-3" controlId="formGridCategory">
                     <Form.Label>카테고리</Form.Label>
                     <Form.Control as="select" name="categoryId" value={formData.categoryId} onChange={handleCategoryChange}>
                         <option value="">카테고리 선택</option>
@@ -107,9 +107,9 @@ const TravelRegistration = () => {
                     </Form.Control>
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridArea">
+                <Form.Group className="mb-3" controlId="formGridArea">
                     <Form.Label>지역</Form.Label>
-                    <Form.Control as="select" name="areaId" value={formData.areaId} onChange={handleAreaChange}>
+                    <Form.Select name="areaId" value={formData.areaId} onChange={handleAreaChange}>
                         <option value="">지역 선택</option>
                         <option value="1">서울</option>
                         <option value="2">부산</option>
@@ -121,33 +121,32 @@ const TravelRegistration = () => {
                         <option value="8">세종</option>
                         <option value="9">경기</option>
                         <option value="10">강원</option>
-                    </Form.Control>
+                    </Form.Select>
                 </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formGridPlace">
+                    <KakaomapSearch onPlaceSelect={handlePlaceSelect} />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formGridImages">
+                    <Form.Label>이미지</Form.Label>
+                    <Form.Control type="file" accept="image/*" ref={imageInput} onChange={handleFileChange} multiple />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formGridTitle">
+                    <Form.Label>제목</Form.Label>
+                    <Form.Control type="text" name="title" value={formData.title} onChange={handleChange} />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formGridContent">
+                    <Form.Label>내용</Form.Label>
+                    <Form.Control as="textarea" name="content" value={formData.content} onChange={handleChange} />
+                </Form.Group>
+
+                <div className="text-end">
+                    <Button type="submit" variant="primary" className="px-4">등록</Button>
+                </div>
             </Row>
-
-            <Form.Group className="mb-3" controlId="formGridPlace">
-                <Form.Label>장소</Form.Label>
-                <KaKaoMapAPI onPlaceSelect={handlePlaceSelect} />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formGridTitle">
-                <Form.Label>제목</Form.Label>
-                <Form.Control type="text" name="title" value={formData.title} onChange={handleChange} />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formGridContent">
-                <Form.Label>내용</Form.Label>
-                <Form.Control as="textarea" name="content" value={formData.content} onChange={handleChange} />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formGridImages">
-                <Form.Label>이미지</Form.Label>
-                <Form.Control type="file" accept="image/*" ref={imageInput} onChange={handleFileChange} multiple />
-            </Form.Group>
-
-            <Button variant="primary" type="submit">
-                등록
-            </Button>
         </Form>
     );
 };

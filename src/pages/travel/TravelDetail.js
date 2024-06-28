@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { callCommentAPI, callTravelDeleteAPI, callTravelDetailAPI } from "../../apis/TravelAPICalls";
 import TravelItem from "../../components/item/TravelItem";
 import TravelCommentList from "../../components/list/TravelCommentList";
-import KakaoMap from "../../components/map/KakaoMap";
+import Kakaomap from "../../components/map/Kakaomap";
 import { Button } from "react-bootstrap";
 import PagingBar from "../../components/pagination/PagingBar";
 
@@ -64,7 +64,7 @@ function TravelDetail() {
 
             {travel && travel.place && (
                 <div>
-                    <KakaoMap place={travel.place} />
+                    <Kakaomap place={travel.place} />
                 </div>
             )}
 
