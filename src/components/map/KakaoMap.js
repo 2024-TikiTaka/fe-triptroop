@@ -1,7 +1,7 @@
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import React, { useEffect, useState } from "react";
 
-const KakaoMapTest = ({ place }) => {
+const KakaoMap = ({ place }) => {
     const [ position, setPosition ] = useState(null);
 
     useEffect(() => {
@@ -61,4 +61,4 @@ const KakaoMapTest = ({ place }) => {
     );
 };
 
-export default KakaoMapTest;
+export default KakaoMap;
