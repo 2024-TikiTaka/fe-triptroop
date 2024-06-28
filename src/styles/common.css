@@ -75,6 +75,7 @@ button[class*="logo"] {
 main {
     min-height: calc(100vh - 82px - 265px)
 }
+main > .container {padding-bottom: 5rem}
 
 /*----------------------------------------------------------------
     0.3   CUSTOM BOOTSTRAP
