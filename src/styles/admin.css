@@ -192,7 +192,7 @@ html:has(.admin-layout) {
     width: 120px;
 }
 
-.search-form button {
+.search-form button:not(.filter-reset) {
     width: 55px;
 }
 
@@ -212,7 +212,7 @@ html:has(.admin-layout) {
     outline: none;
 }
 
-.search-input button {
+.search-input button:not(.filter-reset) {
     display: flex;
     width: 38px;
     height: 38px;

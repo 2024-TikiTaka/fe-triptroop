@@ -15,6 +15,20 @@ export const callAdminUserListAPI = ({currentPage = 1}) => {
     }
 };
 
+// 관리자 > 회원 관리 > 회원 목록 조회 검색 필터링
+export const callAdminUserSearchListAPI = ({type, keyword, currentPage = 1}) => {
+
+    return async (dispatch) => {
+        const result = await authRequest.get(`/api/v1/admin/users?page=${currentPage}&type=${type}&keyword=${keyword}`)
+        console.log('callAdminUserListAPI result : ', result);
+
+        if (result.status === 200) {
+            dispatch(getList(result));
+        }
+
+    }
+};
+
 
 // 관리자 > 회원 관리 > 회원 상세 조회
 export const callAdminUserDetailAPI = ({userId}) => {
