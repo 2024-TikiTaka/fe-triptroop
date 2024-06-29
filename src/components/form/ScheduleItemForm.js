@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Badge, Form } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale/ko";
-import KaKaoMapAPI from "../map/KaKaoMapAPI";
+import KakaomapSearch from "../map/KakaomapSearch";
 
 function ScheduleItemForm({ index, onFormChange }) {
-    const [form, setForm] = useState({
+    const [ form, setForm ] = useState({
         address: '',
         name: '',
         kind: '',
@@ -42,13 +42,13 @@ function ScheduleItemForm({ index, onFormChange }) {
 
     useEffect(() => {
         onFormChange(index, form);
-    }, [form, index, onFormChange]);
+    }, [ form, index, onFormChange ]);
 
     return (
         <>
             <h2 className="fs-1 fw-bold text-center mb-5">일정 계획 등록</h2>
 
-            <KaKaoMapAPI onPlaceSelect={handlePlaceSelect} />
+            <KakaomapSearch onPlaceSelect={handlePlaceSelect} />
             <Form.Group id="scheduleItem" className="mb-3">
                 <Form.Label>구분 선택</Form.Label>
                 <Form.Select

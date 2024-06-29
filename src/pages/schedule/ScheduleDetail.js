@@ -1,15 +1,15 @@
-import {useNavigate, useParams} from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {callScheduleAcceptAPI, callScheduleApplyAPI, callScheduleDetailAPI} from "../../apis/ScheduleAPICalls";
+import { Button } from "react-bootstrap";
+import { callScheduleApplyAPI, callScheduleDetailAPI } from "../../apis/ScheduleAPICalls";
 import ScheduleItem from "../../components/item/ScheduleItem";
-import KakaoMapSelect from "../../components/map/kakaoMapSelect";
-import {Button} from "react-bootstrap";
+import Kakaomap from "../../components/map/Kakaomap";
 
 function ScheduleDetail() {
     const dispatch = useDispatch();
     const { scheduleId } = useParams();
-    const [loading, setLoading] = useState(true); // 로딩 상태 추가
+    const [ loading, setLoading ] = useState(true); // 로딩 상태 추가
     const { schedule } = useSelector(state => state.scheduleReducer);
     const navigate = useNavigate();
 
@@ -39,7 +39,7 @@ function ScheduleDetail() {
         };
 
         fetchScheduleDetail();
-    }, [dispatch, scheduleId]);
+    }, [ dispatch, scheduleId ]);
 
     console.log("일정 Details:", schedule);
 
@@ -49,19 +49,16 @@ function ScheduleDetail() {
             {!loading && schedule && schedule.scheduleItemInfoResponse && ( // 로딩이 완료되고 schedule이 존재하는 경우에만 컴포넌트 렌더링
                 <div className="detail-div">
                     {schedule.scheduleItemInfoResponse.map(item => (
-                        <KakaoMapSelect key={item.id} place={item} />
-
+                            <Kakaomap key={item.id} place={item} />
                         )
-
-            )}
+                    )}
                     <div>
                         <ScheduleItem schedule={schedule} />
-                        <Button variant="primary" onClick={handleClickAccept}>신청</Button>{' '}
-                        <Button variant="success" onClick={handleClickModify}>수정</Button>{' '}
+                        <Button variant="primary" onClick={handleClickAccept}>신청</Button>
+                        <Button variant="success" onClick={handleClickModify}>수정</Button>
                         <Button variant="danger" onClick={handleClickDeleted}>삭제</Button>
 
                     </div>
-
 
 
                 </div>

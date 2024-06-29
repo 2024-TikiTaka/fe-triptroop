@@ -11,7 +11,8 @@ function PagingBar({ pageInfo, setCurrentPage }) {
         <>
             <Pagination>
                 <Pagination.First
-                    onClick={() => setCurrentPage(0)}
+                    onClick={() => setCurrentPage(1)}
+                    disabled={pageInfo.currentPage == 1}
                 />
                 <Pagination.Prev
                     disabled={pageInfo.currentPage <= 1}
@@ -35,7 +36,8 @@ function PagingBar({ pageInfo, setCurrentPage }) {
                     onClick={() => setCurrentPage(pageInfo.currentPage + 1)}
                 />
                 <Pagination.Last
-                    onClick={() => setCurrentPage(pageInfo.maxPage - 1)}
+                    disabled={pageInfo.currentPage >= pageInfo.maxPage}
+                    onClick={() => setCurrentPage(pageInfo.maxPage)}
                 />
             </Pagination>
         </>

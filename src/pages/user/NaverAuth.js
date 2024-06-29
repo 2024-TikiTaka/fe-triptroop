@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Spinner } from 'react-bootstrap';
-import { callKakaoAuthAPI } from '../../apis/AuthAPICalls';
+import { callNaverAuthAPI } from '../../apis/AuthAPICalls';
 
-const KakaoAuth = () => {
+const NaverAuth = () => {
 	// const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const code = new URL(document.location.toString()).searchParams.get('code');
 	console.log(code);
 
 	useEffect(() => {
-		dispatch(callKakaoAuthAPI(code));
+		dispatch(callNaverAuthAPI(code));
 	}, [dispatch]);
 
 	return (
@@ -25,4 +25,4 @@ const KakaoAuth = () => {
 	);
 };
 
-export default KakaoAuth;
+export default NaverAuth;
