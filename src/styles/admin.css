@@ -222,6 +222,12 @@ html:has(.admin-layout) {
     padding: 0;
 }
 
+.search-input .filter-reset {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+}
+
 .user-list-table {
     min-height: 454px;
     margin-bottom: 1rem;

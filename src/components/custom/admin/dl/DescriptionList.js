@@ -81,7 +81,9 @@ const DescriptionList = ({items, rowSizes, dtWidth}) => {
                 );
             })}
         </Container>
-    );
+
+    )
+        ;
 };
 
 export default DescriptionList;
