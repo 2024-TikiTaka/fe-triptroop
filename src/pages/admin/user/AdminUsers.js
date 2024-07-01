@@ -121,6 +121,7 @@ function AdminUsers() {
             active: "활동",
             suspended: "정지",
             withdrawn: "탈퇴",
+            delete: "삭제",
             F: "여자",
             M: "남자",
         };

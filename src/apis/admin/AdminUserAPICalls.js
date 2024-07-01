@@ -1,5 +1,5 @@
 import {authRequest} from "../api";
-import {getInfo, getList, success} from "../../modules/admin/AdminUserModules";
+import {getInfo, getList, remove, success} from "../../modules/admin/AdminUserModules";
 
 // 관리자 > 회원 관리 > 회원 목록 조회
 export const callAdminUserListAPI = ({currentPage = 1}) => {
@@ -25,7 +25,6 @@ export const callAdminUserSearchListAPI = ({type, keyword, currentPage = 1}) => 
         if (result.status === 200) {
             dispatch(getList(result));
         }
-
     }
 };
 
@@ -43,6 +42,7 @@ export const callAdminUserDetailAPI = ({userId}) => {
             }
         } catch (error) {
             console.error('callAdminUserDetailAPI error: ', error);
+            throw error; // 예외를 다시 던져서 상위에서 처리할 수 있도록 함
         }
 
     }
@@ -69,4 +69,25 @@ export const callAdminUserRegisterAPI = (formData) => {
     }
 }
 
+//관리자 > 회원 관리 > 회원 삭제
+export const callAdminUserDeleteAPI = ({userId}) => {
+
+    return async (dispatch) => {
+        try {
+            console.log(`api 호출 메소드 안에서 Deleting user with ID: ${userId}`);
+            const result = await authRequest.delete(`/api/v1/admin/users/${userId}`);
+            console.log('callAdminUserDeleteAPI 안의 result : ', result);
+
+            if (result.status === 200) {
+                dispatch(remove(result));
+            } else {
+                alert('회원 삭제에 실패 했습니다.')
+            }
+            return result;
+        } catch (error) {
+            console.error('callAdminUserDeleteAPI 안의 error: ', error);
+            throw error; // 예외를 다시 던져서 상위에서 처리할 수 있도록 함
+        }
+    }
+}
 
