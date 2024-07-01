@@ -10,20 +10,6 @@ import {callAdminUserRegisterAPI} from "../../../../apis/admin/AdminUserAPICalls
 import {format} from "date-fns";
 
 const DynamicForm = ({fields, context, rowSizes}) => {
-    // const [dynamicForm, setDynamicForm] = useState({
-    //     email: '',
-    //     nickname: '',
-    //     password: '',
-    //     passwordConfirm: '',
-    //     name: '',
-    //     gender: 'M',
-    //     birth: '',
-    //     role: 'USER',
-    //     phone: '',
-    //     status: 'ACTIVE',
-    //     introduction: '',
-    //     mbti: ''
-    // });
 
     const initialFormState = fields.reduce((acc, field) => {
         if (field.name === 'birth') {
@@ -54,13 +40,6 @@ const DynamicForm = ({fields, context, rowSizes}) => {
         return acc;
     }, {}), context);
 
-    // const initialFormState = fields.reduce((acc, field) => {
-    //     acc[field.name] = '';
-    //     return acc;
-    // }, {});
-
-    // const [form, setForm] = useState(initialFormState);
-
     const handleChange = (event) => {
         const {name, value, type, checked, files} = event.target;
         setForm({
@@ -78,12 +57,6 @@ const DynamicForm = ({fields, context, rowSizes}) => {
         }));
     }
 
-    // const validateForm = () => {
-    //     if (!form.email || !form.nickname || !form.role || !form.gender || !form.name || !form.birth || !form.status) {
-    //         return false;
-    //     }
-    //     return true;
-    // }
     const validateForm = () => {
         const missingFields = [];
 
@@ -127,11 +100,6 @@ const DynamicForm = ({fields, context, rowSizes}) => {
             introduction: form.introduction,
             mbti: form.mbti
         }
-
-        // if (!orderedForm.gender) {
-        //     alert('성별을 선택해주세요.');
-        //     return;
-        // }
 
         const formData = new FormData();
         formData.append('adminUserSaveRequest', new Blob([JSON.stringify(adminUserSaveRequest)], {type: 'application/json'}));
@@ -188,6 +156,14 @@ const DynamicForm = ({fields, context, rowSizes}) => {
                 dateFormat="yyyy-MM-dd"
                 showPopperArrow={false}
                 maxDate={new Date()}
+            />
+        ) : field.type === 'textarea' ? (
+            <textarea
+                className="form-control"
+                name={field.name}
+                value={form[field.name]}
+                onChange={handleChange}
+                required={field.required}
             />
         ) : field.type === 'checkbox' ? (
             <input

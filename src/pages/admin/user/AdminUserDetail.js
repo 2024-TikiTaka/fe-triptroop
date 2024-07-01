@@ -19,14 +19,6 @@ function AdminUserDetail() {
 
     const mappedAdmin = TranslateKeys(getInfo, 'admin_user');
 
-
-    //console.log("items 값 : ", items);
-    // console.log("getInfo 값 : ", getInfo);
-    // console.log("userId 값 : ", userId);
-    // console.log("dispatch 값 : ", dispatch);
-    // console.log("mappedAdmin 값 : ", mappedAdmin);
-
-    // const items = getInfo && displayOrder.map((key) => ({}))
     const items = getInfo && displayOrder.map((key) => ({
         term: mappedAdmin[key] || key,
         description: getInfo[key]

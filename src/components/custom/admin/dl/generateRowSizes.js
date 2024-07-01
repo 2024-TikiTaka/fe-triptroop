@@ -16,10 +16,3 @@ function generateRowSizes(length, oneIndices) {
 export const rowSizes = generateRowSizes(length, oneIndices);
 
 
-//
-// // 예시 사용법
-// const length = 8; // 목록의 길이
-// const oneIndices = [2]; // 1을 설정할 인덱스
-// const rowSizes = generateRowSizes(length, oneIndices); // 결과: [2, 2, 1, 2, 2, 2, 2, 2]
-//
-// console.log(rowSizes); // [2, 2, 1, 2, 2, 2, 2, 2]

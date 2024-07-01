@@ -13,8 +13,8 @@ const transformMap = {
     상태: {
         ACTIVE: '활동',
         SUSPENDED: '정지',
-        WITHDRAWN: '탈퇴'
-
+        WITHDRAWN: '탈퇴',
+        DELETE: '삭제'
     },
     생년월일: {
         '1900-01-01': ' - '
