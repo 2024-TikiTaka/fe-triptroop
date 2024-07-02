@@ -8,12 +8,11 @@ const AdminInquiryList = ({data}) => {
     const rows = data && Array.isArray(data) ? data.map((item, index) => ({
         No: item.inquiryId,
         작성자: item.nickname || ` - `,  // 닉네임이 없는 경우 빈 문자열로 설정
-        //신고구분: item.inquiryKind === '' ? '' : '',
-        문의구분: item.inquiryKind,
-        내용: item.content,
-        //처리상태: item.status === '' ? '' : item.status === '' ? '' : '',
+        문의구분: item.inquiryKind === 'INQUIRY' ? '문의' : '제안',
+        내용: item.content || ` - `,
+        //처리상태: item.status === 'INQUIRY' ? '' : item.status === '' ? '' : '',
         작성일: item.createdAt,
-        처리상태: item.status
+        처리상태: item.status === 'PROCESSED' ? '처리완료' : ' 처리중 '
     })) : [];
 
     const navigate = useNavigate();

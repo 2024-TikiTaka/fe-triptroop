@@ -5,7 +5,7 @@ import {callAdminInquiryListAPI, callAdminInquirySearchListAPI} from "../../../a
 import {Button, Form} from "react-bootstrap";
 import {ArrowCounterclockwise, Search} from "react-bootstrap-icons";
 import PagingBar from "../../../components/pagination/PagingBar";
-import AdminUserList from "../../../components/list/admin/AdminUserList";
+import AdminInquiryList from "../../../components/list/admin/AdminInquiryList";
 
 function AdminInquiries() {
     const dispatch = useDispatch();
@@ -115,6 +115,11 @@ function AdminInquiries() {
         navigate("/admin/inquiries?page=1");
     };
 
+
+    useEffect(() => {
+        console.log("문의 목록 getList 출력 확인 : ", getList); // 데이터 확인
+    }, [getList]);
+
     // const translateKeywordToKorean = (keyword) => {
     //     const reverseMapping = {
     //         user: "회원",
@@ -143,12 +148,11 @@ function AdminInquiries() {
             <div className="d-flex justify-content-between mb-4 align-items-center">
                 <Form className="search-form d-flex align-items-center">
                     <Form.Select onChange={handleTypeChange} value={searchType}>
-                        <option value="email">아이디</option>
-                        <option value="nickname">닉네임</option>
-                        <option value="inquiryKind">신고구분</option>
+                        <option value="nickname">작성자</option>
+                        <option value="inquiryKind">문의구분</option>
                         <option value="content">내용</option>
-                        <option value="status">상태</option>
-                        <option value="createdAt">신고 일시</option>
+                        <option value="createdAt">작성일</option>
+                        <option value="status">처리상태</option>
                     </Form.Select>
                     <div className="search-input">
                         <input
@@ -172,7 +176,7 @@ function AdminInquiries() {
             {getList ? (
                 <div className="ad-user-list">
                     <div className="user-list-table">
-                        <AdminUserList data={getList.data}/>
+                        <AdminInquiryList data={getList.data}/>
                     </div>
                     <PagingBar
                         className="justify-content-center"
