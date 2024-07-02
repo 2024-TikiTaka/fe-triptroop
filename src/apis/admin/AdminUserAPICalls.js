@@ -1,5 +1,5 @@
 import {authRequest} from "../api";
-import {getInfo, getList, remove, success} from "../../modules/admin/AdminUserModules";
+import {getInfo, getList, remove, success} from "../../modules/admin/AdminModules";
 
 // 관리자 > 회원 관리 > 회원 목록 조회
 export const callAdminUserListAPI = ({currentPage = 1}) => {

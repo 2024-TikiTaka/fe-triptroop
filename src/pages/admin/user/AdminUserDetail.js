@@ -11,7 +11,7 @@ const displayOrder = ['email', 'nickname', 'role', 'gender', 'name', 'birth', 'p
 function AdminUserDetail() {
     const dispatch = useDispatch();
     const {userId} = useParams();
-    const {getInfo} = useSelector(state => state.adminUserReducer);
+    const {getInfo} = useSelector(state => state.adminReducer);
 
     useEffect(() => {
         dispatch(callAdminUserDetailAPI({userId}));

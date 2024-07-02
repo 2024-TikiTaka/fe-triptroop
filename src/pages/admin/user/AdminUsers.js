@@ -13,8 +13,7 @@ function AdminUsers() {
     const [searchType, setSearchType] = useState("email"); // 기본 타입을 "email"로 설정
     const [searchKeyword, setSearchKeyword] = useState("");
     const navigate = useNavigate();
-    const {getList} = useSelector(state => state.adminUserReducer);
-
+    const {getList} = useSelector(state => state.adminReducer);
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const sort = searchParams.get('sort');

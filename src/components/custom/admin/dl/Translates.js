@@ -11,9 +11,9 @@ export const ADMIN_USER = {
 
 export const ADMIN_INQUIRY = {
     inquiryId: "No",
-    title: "제목",
+    nickname: "작성자",
+    inquiryKind: "문의구분",
     content: "내용",
     createdAt: "작성일",
-    status: "처리 상태",
-    userId: "작성자"
+    status: "처리상태"
 };
