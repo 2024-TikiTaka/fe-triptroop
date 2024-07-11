@@ -40,8 +40,8 @@
       <th align="left">Libraries & APIs</th>
       <td>
         <img alt="React" src="https://img.shields.io/badge/React-%2320232a?style=flat-square&logo=react&logoColor=%2361DAFB">
-        <img alt="React-Router" src="https://img.shields.io/badge/React_Router-black?style=flat-square&logo=reactrouter&logoColor=white">
         <img alt="Redux" src="https://img.shields.io/badge/Redux-%23593d88?style=flat-square&logo=redux&logoColor=white">
+        <img alt="React-Router" src="https://img.shields.io/badge/React_Router-black?style=flat-square&logo=reactrouter&logoColor=white">
         <img alt="React-Hook-Form" src="https://img.shields.io/badge/React_Hook_Form-white?style=flat-square&logo=React-Hook-Form&logoColor=white&color=ec5990" />
         <img alt="Axios" src="https://img.shields.io/badge/Axios-ffffff?style=flat-square&logo=axios&logoColor=671ddf">
         <img alt="Bootstrap" src="https://img.shields.io/badge/Bootstrap-white?style=flat-square&logo=Bootstrap&logoColor=white&color=712cf9" />
