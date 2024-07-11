@@ -37,19 +37,19 @@
       </td>
     </tr>
     <tr>
-      <th align="left">Libraries & APIs</th>
+      <th align="left">Libraries</th>
       <td>
         <img alt="React" src="https://img.shields.io/badge/React-%2320232a?style=flat-square&logo=react&logoColor=%2361DAFB">
         <img alt="Redux" src="https://img.shields.io/badge/Redux-%23593d88?style=flat-square&logo=redux&logoColor=white">
         <img alt="React-Router" src="https://img.shields.io/badge/React_Router-black?style=flat-square&logo=reactrouter&logoColor=white">
-        <img alt="React-Hook-Form" src="https://img.shields.io/badge/React_Hook_Form-white?style=flat-square&logo=React-Hook-Form&logoColor=white&color=ec5990" />
         <img alt="Axios" src="https://img.shields.io/badge/Axios-ffffff?style=flat-square&logo=axios&logoColor=671ddf">
+        <img alt="React-Hook-Form" src="https://img.shields.io/badge/React_Hook_Form-white?style=flat-square&logo=React-Hook-Form&logoColor=white&color=ec5990" />
         <img alt="Bootstrap" src="https://img.shields.io/badge/Bootstrap-white?style=flat-square&logo=Bootstrap&logoColor=white&color=712cf9" />
         <img alt="Kakaomap API" src="https://img.shields.io/badge/Kakaomap_API-%23323330?style=flat-square&logo=kakaotalk&color=%23323330&logoColor=%23F7DF1E" />
       </td>
     </tr>
     <tr>
-      <th align="left">Deploys</th>
+      <th align="left">Deployment</th>
       <td>
         <img alt="Vercel" src="https://img.shields.io/badge/Vercel-%23000000?style=flat-square&logo=vercel&logoColor=white" />
       </td>
