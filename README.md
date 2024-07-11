@@ -18,6 +18,11 @@
   </tbody>
 </table>
 
+- 트립트룹(TRIPTROOP)은 “여행 그룹” 을 의미하며 여행을 함께할 사람을 모으고 여행 정보를 공유하는 서비스 입니다.
+- 순수한 정보 공유와 커뮤니티 활성화에 중점을 두어 여행자들이 보다 풍부하고 진정한 여행 경험을 할 수 있도록 돕습니다.
+
+<br/>
+
 ## 규칙
 
 -   [Git, Github 커밋 가이드](https://github.com/2024-TikiTaka/fe-triptroop/wiki/%EC%BB%A4%EB%B0%8B-%EA%B0%80%EC%9D%B4%EB%93%9C)
