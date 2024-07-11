@@ -41,11 +41,11 @@
       <td>
         <img alt="React" src="https://img.shields.io/badge/React-%2320232a?style=flat-square&logo=react&logoColor=%2361DAFB">
         <img alt="Redux" src="https://img.shields.io/badge/Redux-%23593d88?style=flat-square&logo=redux&logoColor=white">
-        <img alt="React-Router" src="https://img.shields.io/badge/React_Router-black?style=flat-square&logo=reactrouter&logoColor=white">
+        <img alt="React-Router" src="https://img.shields.io/badge/React_Router-CA4245?style=flat-square&logo=reactrouter&logoColor=white">
         <img alt="Axios" src="https://img.shields.io/badge/Axios-ffffff?style=flat-square&logo=axios&logoColor=671ddf">
         <br/>
-        <img alt="React-Bootstrap" src="https://img.shields.io/badge/React_Bootstrap-white?style=flat-square&logo=reactbootstrap&logoColor=white&color=41E0FD" />
-        <img alt="React-Hook-Form" src="https://img.shields.io/badge/React_Hook_Form-white?style=flat-square&logo=React-Hook-Form&logoColor=white&color=ec5990" />
+        <img alt="React-Hook-Form" src="https://img.shields.io/badge/React_Hook_Form-ec5990?style=flat-square&logo=React-Hook-Form&logoColor=white" />
+        <img alt="React-Bootstrap" src="https://img.shields.io/badge/React_Bootstrap-41E0FD?style=flat-square&logo=reactbootstrap&logoColor=white" />
         <img alt="Kakaomap API" src="https://img.shields.io/badge/Kakaomap_API-%23323330?style=flat-square&logo=kakaotalk&color=%23323330&logoColor=%23F7DF1E" />
       </td>
     </tr>
