@@ -1,6 +1,22 @@
 # 트립트룹(TRIPTROOP) 
 
-<img src="https://avatars.githubusercontent.com/u/168394855?s=200&v=4" width="150" alt="favicon">
+<br/>
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <img src="https://avatars.githubusercontent.com/u/168394855?s=200&v=4" height="150" alt="favicon">
+      </td>
+      <td>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://github.com/2024-TikiTaka/.github/blob/main/Logo/logo_triptroop_horizontal_darkmode.png?raw=true">
+          <img src="https://github.com/2024-TikiTaka/.github/blob/main/Logo/logo_triptroop_horizontal_lightmode.png?raw=true" height="30">
+        </picture>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## 규칙
 
