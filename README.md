@@ -75,15 +75,63 @@
 </table>
 <br />
 
-
 ## 팀원 소개
-| 팀원 | 이름 | 담당 기능 |
-|:--------------:|:--------------:|:--------------|
-| [<img src="https://avatars.githubusercontent.com/u/154950177?v=4"      height=75 width=75> ](https://github.com/ddalla0425)  | 김다솔 <br/> [@ddalla0425](https://github.com/ddalla0425) |  신고<br> 차단<br> 관리자 |
-| [<img src="https://avatars.githubusercontent.com/u/42160693?s=96&v=4"  height=75 width=75> ](https://github.com/may54ther)   | 김아현 <br/> [@may54ther](https://github.com/may54ther) |  회원<br> 프로필<br> 매칭 |
-| [<img src="https://avatars.githubusercontent.com/u/154950075?s=60&v=4" height=75 width=75> ](https://github.com/qkrquddjs1)  | 박병언 <br/> [@qkrquddjs1](https://github.com/qkrquddjs1) |  여행지 소개<br> 여행 기록 |
-| [<img src="https://avatars.githubusercontent.com/u/154950170?v=4"      height=75 width=75> ](https://github.com/EUNJAE97)    | 이은재 <br/> [@EUNJAE97](https://github.com/EUNJAE97) |  일정<br> 동행글 |
-| [<img src="https://avatars.githubusercontent.com/u/120306336?v=4"      height=75 width=75> ](https://github.com/chk2023)     | 조형기 <br/> [@chk2023](https://github.com/chk2023) |  채팅<br> 친구 |
+
+<table>
+  <tbody>
+    <tr>
+      <!-- 김다솔 -->
+      <td align="center">
+        <a href="https://github.com/ddalla0425"><img alt="김다솔" src="https://avatars.githubusercontent.com/u/154950177?v=4" height="125" /></a>
+      </td>
+      <!-- 김아현 -->
+      <td align="center">
+        <a href="https://github.com/may54ther"><img src="https://avatars.githubusercontent.com/u/42160693?s=96&v=4" height="125" /></a>
+        </a>
+      </td>
+    <!-- 박병언 -->
+      <td align="center">
+        <a href="https://github.com/qkrquddjs1"><img src="https://avatars.githubusercontent.com/u/154950075?s=60&v=4" height="125" /></a>
+      </td>
+    <!-- 이은재 -->
+      <td align="center">
+        <a href="https://github.com/EUNJAE97"><img src="https://avatars.githubusercontent.com/u/154950170?s=96&v=4" height="125" /></a>
+      </td>
+    <!-- 조형기 -->
+      <td align="center">
+        <a href="https://github.com/chk2023"><img src="https://avatars.githubusercontent.com/u/120306336?s=96&v=4" height="125" /></a>
+      </td>
+    </tr>
+    <tr>
+      <!-- 김다솔 -->
+      <td align="center">
+       김다솔 
+       <br />(<a href="https://github.com/ddalla0425">@ddalla0425</a>)
+      </td>
+      <!-- 김아현 -->
+      <td align="center">
+         김아현
+        <br />(<a href="https://github.com/may54ther">@may54ther</a>)
+        </a>
+      </td>
+    <!-- 박병언 -->
+      <td align="center">
+         박병언
+        <br />(<a href="https://github.com/qkrquddjs1">@qkrquddjs1</a>)
+      </td>
+    <!-- 이은재 -->
+      <td align="center">
+         이은재
+        <br />(<a href="https://github.com/yunii2222">@EUNJAE97</a>)
+      </td>
+    <!-- 조형기 -->
+      <td align="center">
+        조형기
+        <br />(<a href="https://github.com/chk2023">@chk2023</a>)
+      </td>
+    </tr>
+</tbody>
+</table>
 
 
 <!--
@@ -105,9 +153,9 @@
 ## 트러블 슈팅
 
 ## 프로젝트 후기
--->
+
 
 ## 규칙
 
 -   [Git, Github 커밋 가이드](https://github.com/2024-TikiTaka/fe-triptroop/wiki/%EC%BB%A4%EB%B0%8B-%EA%B0%80%EC%9D%B4%EB%93%9C)
-
+-->
