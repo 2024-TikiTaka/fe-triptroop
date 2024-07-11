@@ -33,27 +33,25 @@
       <td>
         <img alt="HTML" src="https://img.shields.io/badge/HTML-E34F26?style=flat-square&logo=html5&logoColor=white" />
         <img alt="CSS" src="https://img.shields.io/badge/CSS-1572B6?style=flat-square&logo=css3&logoColor=white" />
-        <img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?style=flat-square&logo=javascript&logoColor=%23F7DF1E">
+        <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-%23323330?style=flat-square&logo=javascript&logoColor=%23F7DF1E">
       </td>
     </tr>
     <tr>
       <th align="left">Libraries & APIs</th>
       <td>
-        <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=flat-square&logo=react&logoColor=%2361DAFB">
-        <img alt="Redux" src="https://img.shields.io/badge/redux-%23593d88.svg?style=flat-square&logo=redux&logoColor=white">
+        <img alt="React" src="https://img.shields.io/badge/React-%2320232a?style=flat-square&logo=react&logoColor=%2361DAFB">
+        <img alt="React-Router" src="https://img.shields.io/badge/React_Router-black?style=flat-square&logo=reactrouter&logoColor=white">
+        <img alt="Redux" src="https://img.shields.io/badge/Redux-%23593d88?style=flat-square&logo=redux&logoColor=white">
+        <img alt="React-Hook-Form" src="https://img.shields.io/badge/React_Hook_Form-white?style=flat-square&logo=React-Hook-Form&logoColor=white&color=ec5990" />
         <img alt="Axios" src="https://img.shields.io/badge/Axios-ffffff?style=flat-square&logo=axios&logoColor=671ddf">
         <img alt="Bootstrap" src="https://img.shields.io/badge/Bootstrap-white?style=flat-square&logo=Bootstrap&logoColor=white&color=712cf9" />
-        <img alt="React-Hook-Form" src="https://img.shields.io/badge/React_Hook_Form-white?style=flat-square&logo=React-Hook-Form&logoColor=white&color=ec5990" />
         <img alt="Kakaomap API" src="https://img.shields.io/badge/Kakaomap_API-%23323330?style=flat-square&logo=kakaotalk&color=%23323330&logoColor=%23F7DF1E" />
       </td>
     </tr>
     <tr>
-      <th align="left">Infrastructure</th>
+      <th align="left">Deploys</th>
       <td>
-        <img alt="Vercel" src="https://img.shields.io/badge/vercel-%23000000.svg?style=flat-square&logo=vercel&logoColor=white" />
-        <img alt="AWS" src="https://img.shields.io/badge/AWS-%23FF9900.svg?style=flat-square&logo=amazon-aws&logoColor=white" />
-        <img alt="Docker" src="https://img.shields.io/badge/docker-%230db7ed.svg?style=flat-square&logo=docker&logoColor=white" />
-        <img alt="Github Actions" src="https://img.shields.io/badge/github%20actions-%232671E5.svg?style=flat-square&logo=githubactions&logoColor=white" />
+        <img alt="Vercel" src="https://img.shields.io/badge/Vercel-%23000000?style=flat-square&logo=vercel&logoColor=white" />
       </td>
     </tr>
     <tr>
@@ -68,8 +66,8 @@
       <th align="left">Collaboration Platforms</th>
       <td>
         <img alt="Discord" src="https://img.shields.io/badge/Discord-%235865F2.svg?style=flat-square&logo=discord&logoColor=white" />
-        <img alt="Notion" src="https://img.shields.io/badge/Notion-%23000000.svg?style=flat-square&logo=notion&logoColor=white" />
-        <img alt="Figma" src="https://img.shields.io/badge/figma-%23F24E1E.svg?style=flat-square&logo=figma&logoColor=white" />
+        <img alt="Notion" src="https://img.shields.io/badge/Notion-%23000000?style=flat-square&logo=notion&logoColor=white" />
+        <img alt="Figma" src="https://img.shields.io/badge/Figma-%23F24E1E?style=flat-square&logo=figma&logoColor=white" />
       </td>
     </tr>
   </tbody>
