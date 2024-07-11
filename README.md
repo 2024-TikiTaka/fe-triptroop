@@ -23,10 +23,6 @@
 
 <br/>
 
-## 규칙
-
--   [Git, Github 커밋 가이드](https://github.com/2024-TikiTaka/fe-triptroop/wiki/%EC%BB%A4%EB%B0%8B-%EA%B0%80%EC%9D%B4%EB%93%9C)
-
 ## 개발 환경
 
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
@@ -40,6 +36,69 @@
 [![Redux](https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=redux&logoColor=white)](https://redux.js.org/)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-563C79?style=flat-square&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 [![Axios (axios)](https://img.shields.io/badge/Axios-ffffff?style=flat-square&logo=axios&logoColor=671ddf)](https://axios-http.com/)
+
+<table>
+  <tbody>
+    <tr>
+      <th align="left">Languages</th>
+      <td>
+        <img alt="HTML" src="https://img.shields.io/badge/HTML-E34F26?style=flat-square&logo=html5&logoColor=white" />
+        <img alt="CSS" src="https://img.shields.io/badge/CSS-1572B6?style=flat-square&logo=css3&logoColor=white" />
+        <img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?style=flat-square&logo=javascript&logoColor=%23F7DF1E">
+        <img alt="Java" src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=openjdk&logoColor=white"/>
+      </td>
+    </tr>
+    <tr>
+      <th align="left">Frameworks</th>
+      <td>
+        <img alt="Spring Boot" src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat-square&logo=spring-boot&logoColor=white" />
+        <img alt="Spring Security" src="https://img.shields.io/badge/Spring_Security-6DB33F?style=flat-square&logo=spring-security&logoColor=white" />
+        <img alt="Hibernate" src="https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white" />
+        <img alt="JWT" src="https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens" />
+      </td>
+    </tr>
+    <tr>
+      <th align="left">Libraries & APIs</th>
+      <td>
+        <img alt="Hibernate" src="https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white" />
+        <img alt="JWT" src="https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens" />
+        <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB">
+        <img alt="Redux" src="https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white">
+        <img alt="Axios" src="https://img.shields.io/badge/Axios-ffffff?style=for-the-badge&logo=axios&logoColor=671ddf">
+        <img alt="Bootstrap" src="https://img.shields.io/badge/bootstrap">
+        <img alt="React-Hook-Form" src="https://img.shields.io/badge/react_hook_form">
+        <img alt="Kakaomap API" src="https://img.shields.io/badge/kakao">
+      </td>
+    </tr>
+    <tr>
+      <th align="left">Infrastructure</th>
+      <td>
+        <img alt="Vercel" src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white" />
+        <img alt="AWS" src="https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white" />
+        <img alt="Docker" src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" />
+        <img alt="Github Actions" src="https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white" />
+      </td>
+    </tr>
+    <tr>
+      <th align="left">Version Control & IDEs</th>
+      <td>
+        <img alt="Git" src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
+        <img alt="GitHub" src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />
+        <img alt="IntelliJ IDEA" src="https://img.shields.io/badge/IntelliJ_IDEA-000000?style=for-the-badge&logo=intellij-idea&logoColor=white" />
+      </td>
+    </tr>
+     <tr>
+      <th align="left">Collaboration Platforms</th>
+      <td>
+        <img alt="Discord" src="https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white" />
+        <img alt="Notion" src="https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white" />
+        <img alt="Figma" src="https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white" />
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br />
+
 
 ## 팀원 소개
 | 팀원 | 이름 | 담당 기능 |
@@ -71,3 +130,8 @@
 
 ## 프로젝트 후기
 -->
+
+## 규칙
+
+-   [Git, Github 커밋 가이드](https://github.com/2024-TikiTaka/fe-triptroop/wiki/%EC%BB%A4%EB%B0%8B-%EA%B0%80%EC%9D%B4%EB%93%9C)
+
