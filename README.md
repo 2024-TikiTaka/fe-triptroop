@@ -82,24 +82,24 @@
     <tr>
       <!-- 김다솔 -->
       <td align="center">
-        <a href="https://github.com/ddalla0425"><img alt="김다솔" src="https://avatars.githubusercontent.com/u/154950177?v=4" height="125" /></a>
+        <a href="https://github.com/ddalla0425"><img alt="김다솔" src="https://avatars.githubusercontent.com/u/154950177" height="125" /></a>
       </td>
       <!-- 김아현 -->
       <td align="center">
-        <a href="https://github.com/may54ther"><img src="https://avatars.githubusercontent.com/u/42160693?s=96&v=4" height="125" /></a>
+        <a href="https://github.com/may54ther"><img src="https://avatars.githubusercontent.com/u/42160693" height="125" /></a>
         </a>
       </td>
     <!-- 박병언 -->
       <td align="center">
-        <a href="https://github.com/qkrquddjs1"><img src="https://avatars.githubusercontent.com/u/154950075?s=60&v=4" height="125" /></a>
+        <a href="https://github.com/qkrquddjs1"><img src="https://avatars.githubusercontent.com/u/151039466" height="125" /></a>
       </td>
     <!-- 이은재 -->
       <td align="center">
-        <a href="https://github.com/EUNJAE97"><img src="https://avatars.githubusercontent.com/u/154950170?s=96&v=4" height="125" /></a>
+        <a href="https://github.com/EUNJAE97"><img src="https://avatars.githubusercontent.com/u/154950170" height="125" /></a>
       </td>
     <!-- 조형기 -->
       <td align="center">
-        <a href="https://github.com/chk2023"><img src="https://avatars.githubusercontent.com/u/120306336?s=96&v=4" height="125" /></a>
+        <a href="https://github.com/chk2023"><img src="https://avatars.githubusercontent.com/u/120306336" height="125" /></a>
       </td>
     </tr>
     <tr>
